@@ -4,12 +4,15 @@
  * @author jdleiva
  * @version %I% %G%
  */
-
 public abstract class Usuario {
     protected String nombre;
     protected String apellido;
+
     /**
      * Constructor de la Clase, especificando un valor para nombre y apellido
+     *
+     * @param nombre   el nombre
+     * @param apellido el apellido
      */
     public Usuario(String nombre, String apellido) {
         this.nombre = nombre;
@@ -17,23 +20,37 @@ public abstract class Usuario {
     }
 
     /**
-     * Setters
+     * Sets nombre
+     *
+     * @param nombre the nombre
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Sets apellido.
+     *
+     * @param apellido the apellido
+     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
     /**
-     * Getters
+     * Gets nombre.
+     *
+     * @return the nombre
      */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Gets apellido.
+     *
+     * @return the apellido
+     */
     public String getApellido() {
         return apellido;
     }

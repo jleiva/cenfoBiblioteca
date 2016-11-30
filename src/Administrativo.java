@@ -8,7 +8,7 @@
 public class Administrativo extends Usuario {
     private String tipoNombramiento;
     private int cantidadHorasSemanales;
-    
+
     /**
      * Constructor de la Clase.
      *
