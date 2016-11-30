@@ -1,11 +1,3 @@
-/*
- * Copyright (c) info deberiamos incluir algo??
- *
- */
-
-// Aqui van los package
-// e imports
-
 /**
  * La clase {@code Usuario} es abstracta, la usamos como superclase.
  *

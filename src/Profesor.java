@@ -1,10 +1,4 @@
-/*
- * Copyright (c) info deberiamos incluir algo??
- *
- */
-
-// Aqui van los package
-// e imports
+import java.time.LocalDate;
 
 /**
  * La clase {@code Profesor} hereda de la superclase {@code Usuario}
@@ -14,6 +8,9 @@
  */
 
 public class Profesor extends Usuario {
+    private String tipoContrato;
+    private LocalDate fechaContratacion;
+
     /**
      * Constructor de la Clase.
      *

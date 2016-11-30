@@ -1,11 +1,3 @@
-/*
- * Copyright (c) info deberiamos incluir algo??
- *
- */
-
-// Aqui van los package
-// e imports
-
 /**
  * La clase {@code Administrativo} hereda de la superclase {@code Usuario}
  *
@@ -13,7 +5,10 @@
  * @version %I% %G%
  */
 
-public class Administrativo extends Usuario{
+public class Administrativo extends Usuario {
+    private String tipoNombramiento;
+    private int cantidadHorasSemanales;
+    
     /**
      * Constructor de la Clase.
      *
