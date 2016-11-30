@@ -13,5 +13,14 @@
  * @version %I% %G%
  */
 
-public class Administrativo {
+public class Administrativo extends Usuario{
+    /**
+     * Constructor de la Clase.
+     *
+     * @param nombre   el nombre
+     * @param apellido el apellido
+     */
+    public Administrativo(String nombre, String apellido) {
+        super(nombre, apellido);
+    }
 }

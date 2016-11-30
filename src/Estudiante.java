@@ -13,5 +13,14 @@
  * @version %I% %G%
  */
 
-public class Estudiante {
+public class Estudiante extends Usuario {
+    /**
+     * Constructor de la Clase.
+     *
+     * @param nombre   el nombre
+     * @param apellido el apellido
+     */
+    public Estudiante(String nombre, String apellido) {
+        super(nombre, apellido);
+    }
 }
