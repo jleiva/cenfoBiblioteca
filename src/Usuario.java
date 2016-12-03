@@ -5,18 +5,18 @@
  * @version %I% %G%
  */
 public abstract class Usuario {
+    protected String id;
     protected String nombre;
     protected String apellido;
 
-    /**
-     * Constructor de la Clase, especificando un valor para nombre y apellido
-     *
-     * @param nombre   el nombre
-     * @param apellido el apellido
-     */
-    public Usuario(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Usuario(String id) {
+        setId(id);
+    }
+
+    public Usuario(String nombre, String apellido, String id) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setId(id);
     }
 
     /**
@@ -37,6 +37,10 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * Gets nombre.
      *
@@ -53,6 +57,15 @@ public abstract class Usuario {
      */
     public String getApellido() {
         return apellido;
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
     }
 
     /**

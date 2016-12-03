@@ -7,7 +7,6 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-
 public class Audio extends Material {
     private String formato;
     private Duration duracion;
@@ -17,9 +16,10 @@ public class Audio extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido) {
-        super(fechaCompra, esRestringido);
+    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+        super(fechaCompra, esRestringido, tema);
     }
 
     /**
@@ -27,12 +27,14 @@ public class Audio extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
-     * @param formato       the formato
+     * @param tema          the tema
      * @param idioma        the idioma
+     * @param formato       the formato
      * @param duracion      the duracion
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido, String idioma, String formato, Duration duracion) {
-        super(fechaCompra, esRestringido, idioma);
+    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
+                 Duration duracion) {
+        super(fechaCompra, esRestringido, tema, idioma);
         setFormato(formato);
         setDuracion(duracion);
     }
@@ -74,6 +76,6 @@ public class Audio extends Material {
     }
 
     public String toString() {
-        return "Texto";
+        return "Audio";
     }
 }

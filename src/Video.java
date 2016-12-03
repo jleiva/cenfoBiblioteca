@@ -7,20 +7,21 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-
 public class Video extends Material {
     private String formato;
     private String director;
     private Duration duracion;
+
 
     /**
      * Instantiates a new Video.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido) {
-        super(fechaCompra, esRestringido);
+    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+        super(fechaCompra, esRestringido, tema);
     }
 
     /**
@@ -28,14 +29,18 @@ public class Video extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      * @param idioma        the idioma
      * @param formato       the formato
      * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, String idioma, String formato, String director,
-                 Duration duracion) {
-        super(fechaCompra, esRestringido, idioma);
+    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
+                 String director, Duration duracion) {
+        super(fechaCompra, esRestringido, tema, idioma);
+        setFormato(formato);
+        setDirector(director);
+        setDuracion(duracion);
     }
 
     /**
@@ -93,6 +98,6 @@ public class Video extends Material {
     }
 
     public String toString() {
-        return "Texto";
+        return "Video";
     }
 }

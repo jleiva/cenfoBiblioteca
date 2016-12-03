@@ -11,16 +11,20 @@ public abstract class Material {
     protected String idioma;
     protected LocalDate fechaCompra;
     protected boolean esRestringido;
+    protected Tema tema;
+
 
     /**
      * Instantiates a new Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido) {
+    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
         setFechaCompra(fechaCompra);
         setEsRestringido(esRestringido);
+        setTema(tema);
     }
 
     /**
@@ -28,11 +32,13 @@ public abstract class Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      * @param idioma        the idioma
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido, String idioma) {
+    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma) {
         setFechaCompra(fechaCompra);
         setEsRestringido(esRestringido);
+        setTema(tema);
         setIdioma(idioma);
     }
 
@@ -64,6 +70,24 @@ public abstract class Material {
     }
 
     /**
+     * Sets tema.
+     *
+     * @param tema the tema
+     */
+    public void setTema(Tema tema) {
+        this.tema = tema;
+    }
+
+    /**
+     * Gets tema.
+     *
+     * @return the tema
+     */
+    public Tema getTema() {
+        return tema;
+    }
+
+    /**
      * Gets fecha compra.
      *
      * @return the fecha compra
@@ -92,14 +116,11 @@ public abstract class Material {
 
     /**
      * Retorna un string que representa el estado de la clase. Incluye los
-     * valores de los atributos fechaCompra y esRestringido.
+     * valores de los atributos.
      *
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Material{" +
-                "fechaCompra=" + fechaCompra +
-                ", restringido=" + esRestringido +
-                '}';
+        return "Material{";
     }
 }

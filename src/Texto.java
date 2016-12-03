@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-
 public class Texto extends Material {
     private String titulo;
     private String nombreAutor;
@@ -18,9 +17,10 @@ public class Texto extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido) {
-        super(fechaCompra, esRestringido);
+    public Texto(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+        super(fechaCompra, esRestringido, tema);
     }
 
     /**
@@ -30,13 +30,14 @@ public class Texto extends Material {
      * @param esRestringido    the es restringido
      * @param titulo           the titulo
      * @param nombreAutor      the nombre autor
+     * @param tema             the tema
      * @param idioma           the idioma
      * @param fechaPublicacion the fecha publicacion
      * @param numPaginas       the num paginas
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor, String idioma,
+    public Texto(LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor, Tema tema, String idioma,
                  LocalDate fechaPublicacion, int numPaginas) {
-        super(fechaCompra, esRestringido, idioma);
+        super(fechaCompra, esRestringido, tema, idioma);
         setIdioma(titulo);
         setNombreAutor(nombreAutor);
         setIdioma(idioma);

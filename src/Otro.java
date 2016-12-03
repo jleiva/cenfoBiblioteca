@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-
 public class Otro extends Material {
     private String descripcion;
 
@@ -15,9 +14,10 @@ public class Otro extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      */
-    public Otro(LocalDate fechaCompra, boolean esRestringido) {
-        super(fechaCompra, esRestringido);
+    public Otro(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+        super(fechaCompra, esRestringido, tema);
     }
 
     /**
@@ -25,11 +25,12 @@ public class Otro extends Material {
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
+     * @param tema          the tema
      * @param idioma        the idioma
      * @param descripcion   the descripcion
      */
-    public Otro(LocalDate fechaCompra, boolean esRestringido, String idioma, String descripcion) {
-        super(fechaCompra, esRestringido, idioma);
+    public Otro(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String descripcion) {
+        super(fechaCompra, esRestringido, tema, idioma);
         setDescripcion(descripcion);
     }
 
