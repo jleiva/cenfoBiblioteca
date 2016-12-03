@@ -11,12 +11,14 @@ public abstract class Usuario {
 
     public Usuario(String id) {
         setId(id);
+        setNombre("");
+        setApellido("");
     }
 
     public Usuario(String nombre, String apellido, String id) {
+        this(id);
         setNombre(nombre);
         setApellido(apellido);
-        setId(id);
     }
 
     /**

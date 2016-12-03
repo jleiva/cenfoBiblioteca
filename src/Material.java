@@ -8,9 +8,9 @@ import java.time.LocalDate;
  */
 public abstract class Material {
     protected String id;
-    protected String idioma;
+    protected String idioma = "No Indicado";
     protected LocalDate fechaCompra;
-    protected boolean esRestringido;
+    protected boolean esRestringido; // default es false
     protected Tema tema;
 
 
@@ -25,6 +25,7 @@ public abstract class Material {
         setFechaCompra(fechaCompra);
         setEsRestringido(esRestringido);
         setTema(tema);
+        setIdioma(idioma);
     }
 
     /**
@@ -36,9 +37,7 @@ public abstract class Material {
      * @param idioma        the idioma
      */
     public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma) {
-        setFechaCompra(fechaCompra);
-        setEsRestringido(esRestringido);
-        setTema(tema);
+        this(fechaCompra, esRestringido, tema);
         setIdioma(idioma);
     }
 
