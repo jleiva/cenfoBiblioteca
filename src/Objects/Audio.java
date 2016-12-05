@@ -1,8 +1,10 @@
+package Objects;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
 /**
- * La clase {@code Audio} hereda de la superclase {@code Material}
+ * La clase {@code Objects.Audio} hereda de la superclase {@code Objects.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -12,7 +14,7 @@ public class Audio extends Material {
     private Duration duracion;
 
     /**
-     * Instantiates a new Audio.
+     * Instantiates a new Objects.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -23,7 +25,7 @@ public class Audio extends Material {
     }
 
     /**
-     * Instantiates a new Audio.
+     * Instantiates a new Objects.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -76,6 +78,6 @@ public class Audio extends Material {
     }
 
     public String toString() {
-        return "Audio";
+        return "Objects.Audio";
     }
 }

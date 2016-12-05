@@ -1,7 +1,9 @@
+package Objects;
+
 import java.time.LocalDate;
 
 /**
- * La clase {@code Profesor} hereda de la superclase {@code Usuario}
+ * La clase {@code Objects.Profesor} hereda de la superclase {@code Objects.Usuario}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -11,7 +13,7 @@ public class Profesor extends Usuario {
     private LocalDate fechaContratacion;
 
     /**
-     * Instantiates a new Profesor.
+     * Instantiates a new Objects.Profesor.
      *
      * @param nombre   the nombre
      * @param apellido the apellido
@@ -22,7 +24,7 @@ public class Profesor extends Usuario {
     }
 
     /**
-     * Instantiates a new Profesor.
+     * Instantiates a new Objects.Profesor.
      *
      * @param nombre            the nombre
      * @param apellido          the apellido
@@ -74,6 +76,6 @@ public class Profesor extends Usuario {
 
     @Override
     public String toString() {
-        return "Profesor{";
+        return "Objects.Profesor{";
     }
 }

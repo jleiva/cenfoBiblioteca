@@ -1,5 +1,7 @@
+package Objects;
+
 /**
- * La clase {@code Administrativo} hereda de la superclase {@code Usuario}
+ * La clase {@code Objects.Administrativo} hereda de la superclase {@code Objects.Usuario}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -9,7 +11,7 @@ public class Administrativo extends Usuario {
     private int cantidadHorasSemanales;
 
     /**
-     * Instantiates a new Administrativo.
+     * Instantiates a new Objects.Administrativo.
      *
      * @param nombre   the nombre
      * @param apellido the apellido
@@ -20,7 +22,7 @@ public class Administrativo extends Usuario {
     }
 
     /**
-     * Instantiates a new Administrativo.
+     * Instantiates a new Objects.Administrativo.
      *
      * @param nombre                 the nombre
      * @param apellido               the apellido
@@ -73,6 +75,6 @@ public class Administrativo extends Usuario {
 
     @Override
     public String toString() {
-        return "Administrativo{";
+        return "Objects.Administrativo{";
     }
 }
