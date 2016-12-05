@@ -1,7 +1,9 @@
+package Objects;
+
 import java.time.LocalDate;
 
 /**
- * La clase {@code Texto} hereda de la superclase {@code Material}
+ * La clase {@code Objects.Texto} hereda de la superclase {@code Objects.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -13,7 +15,7 @@ public class Texto extends Material {
     private int numPaginas;
 
     /**
-     * Instantiates a new Texto.
+     * Instantiates a new Objects.Texto.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -24,7 +26,7 @@ public class Texto extends Material {
     }
 
     /**
-     * Instantiates a new Texto.
+     * Instantiates a new Objects.Texto.
      *
      * @param fechaCompra      the fecha compra
      * @param esRestringido    the es restringido
@@ -118,6 +120,6 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "Texto";
+        return "Objects.Texto";
     }
 }

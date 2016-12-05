@@ -1,7 +1,9 @@
+package Objects;
+
 import java.time.LocalDate;
 
 /**
- * La clase {@code Material} es abstracta, la usamos como superclase.
+ * La clase {@code Objects.Material} es abstracta, la usamos como superclase.
  *
  * @author jdleiva
  * @version %I% %G%
@@ -15,7 +17,7 @@ public abstract class Material {
 
 
     /**
-     * Instantiates a new Material.
+     * Instantiates a new Objects.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -28,7 +30,7 @@ public abstract class Material {
     }
 
     /**
-     * Instantiates a new Material.
+     * Instantiates a new Objects.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -121,6 +123,6 @@ public abstract class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Material{";
+        return "Objects.Material{";
     }
 }

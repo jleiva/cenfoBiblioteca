@@ -1,5 +1,7 @@
+package Objects;
+
 /**
- * La clase {@code Estudiante} hereda de la superclase {@code Usuario}
+ * La clase {@code Objects.Estudiante} hereda de la superclase {@code Objects.Usuario}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -9,7 +11,7 @@ public class Estudiante extends Usuario {
     private int numeroCreditos;
 
     /**
-     * Instantiates a new Estudiante.
+     * Instantiates a new Objects.Estudiante.
      *
      * @param nombre   the nombre
      * @param apellido the apellido
@@ -20,7 +22,7 @@ public class Estudiante extends Usuario {
     }
 
     /**
-     * Instantiates a new Estudiante.
+     * Instantiates a new Objects.Estudiante.
      *
      * @param nombre         the nombre
      * @param apellido       the apellido
@@ -72,6 +74,6 @@ public class Estudiante extends Usuario {
 
     @Override
     public String toString() {
-        return "Estudiante{";
+        return "Objects.Estudiante{";
     }
 }

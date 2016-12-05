@@ -1,5 +1,7 @@
+package Objects;
+
 /**
- * La clase {@code Tema}
+ * La clase {@code Objects.Tema}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -9,7 +11,7 @@ public class Tema {
     private String nombre;
 
     /**
-     * Instantiates a new Tema.
+     * Instantiates a new Objects.Tema.
      *
      * @param id     the id
      * @param nombre the nombre
@@ -57,6 +59,6 @@ public class Tema {
 
     @Override
     public String toString() {
-        return "Tema";
+        return "Objects.Tema";
     }
 }

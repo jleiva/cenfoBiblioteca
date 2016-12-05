@@ -1,8 +1,10 @@
+package Objects;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
 /**
- * La clase {@code Video} hereda de la superclase {@code Material}
+ * La clase {@code Objects.Video} hereda de la superclase {@code Objects.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -14,7 +16,7 @@ public class Video extends Material {
 
 
     /**
-     * Instantiates a new Video.
+     * Instantiates a new Objects.Video.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -25,7 +27,7 @@ public class Video extends Material {
     }
 
     /**
-     * Instantiates a new Video.
+     * Instantiates a new Objects.Video.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -98,6 +100,6 @@ public class Video extends Material {
     }
 
     public String toString() {
-        return "Video";
+        return "Objects.Video";
     }
 }

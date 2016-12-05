@@ -1,7 +1,9 @@
+package Objects;
+
 import java.time.LocalDate;
 
 /**
- * La clase {@code Otro} hereda de la superclase {@code Material}
+ * La clase {@code Objects.Otro} hereda de la superclase {@code Objects.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -10,7 +12,7 @@ public class Otro extends Material {
     private String descripcion;
 
     /**
-     * Instantiates a new Otro.
+     * Instantiates a new Objects.Otro.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -21,7 +23,7 @@ public class Otro extends Material {
     }
 
     /**
-     * Instantiates a new Otro.
+     * Instantiates a new Objects.Otro.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -53,6 +55,6 @@ public class Otro extends Material {
     }
 
     public String toString() {
-        return "Texto";
+        return "Objects.Texto";
     }
 }
