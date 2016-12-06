@@ -1,9 +1,9 @@
-package Objects;
+package CapaLogica;
 
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Material} es abstracta, la usamos como superclase.
+ * La clase {@code CapaLogica.Material} es abstracta, la usamos como superclase.
  *
  * @author jdleiva
  * @version %I% %G%
@@ -13,33 +13,34 @@ public abstract class Material {
     protected String idioma = "No Indicado";
     protected LocalDate fechaCompra;
     protected boolean esRestringido; // default es false
-    protected Tema tema;
+    protected String tema;
 
 
     /**
-     * Instantiates a new Objects.Material.
+     * Instantiates a new CapaLogica.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+    public Material(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
         setFechaCompra(fechaCompra);
         setEsRestringido(esRestringido);
         setTema(tema);
+        setId(id);
         setIdioma(idioma);
     }
 
     /**
-     * Instantiates a new Objects.Material.
+     * Instantiates a new CapaLogica.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma) {
-        this(fechaCompra, esRestringido, tema);
+    public Material(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma) {
+        this(id, fechaCompra, esRestringido, tema);
         setIdioma(idioma);
     }
 
@@ -75,8 +76,12 @@ public abstract class Material {
      *
      * @param tema the tema
      */
-    public void setTema(Tema tema) {
+    public void setTema(String tema) {
         this.tema = tema;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -84,7 +89,7 @@ public abstract class Material {
      *
      * @return the tema
      */
-    public Tema getTema() {
+    public String getTema() {
         return tema;
     }
 
@@ -115,6 +120,10 @@ public abstract class Material {
         return idioma;
     }
 
+    public String getId() {
+        return id;
+    }
+
     /**
      * Retorna un string que representa el estado de la clase. Incluye los
      * valores de los atributos.
@@ -122,6 +131,6 @@ public abstract class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Objects.Material{";
+        return "CapaLogica.Material{";
     }
 }

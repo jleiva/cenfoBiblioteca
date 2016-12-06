@@ -1,9 +1,9 @@
-package Objects;
+package CapaLogica;
 
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Texto} hereda de la superclase {@code Objects.Material}
+ * La clase {@code CapaLogica.Texto} hereda de la superclase {@code CapaLogica.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -15,18 +15,18 @@ public class Texto extends Material {
     private int numPaginas;
 
     /**
-     * Instantiates a new Objects.Texto.
+     * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, esRestringido, tema);
     }
 
     /**
-     * Instantiates a new Objects.Texto.
+     * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra      the fecha compra
      * @param esRestringido    the es restringido
@@ -37,9 +37,9 @@ public class Texto extends Material {
      * @param fechaPublicacion the fecha publicacion
      * @param numPaginas       the num paginas
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor, Tema tema, String idioma,
-                 LocalDate fechaPublicacion, int numPaginas) {
-        super(fechaCompra, esRestringido, tema, idioma);
+    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
+                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
+        super(id, fechaCompra, esRestringido, tema, idioma);
         setIdioma(titulo);
         setNombreAutor(nombreAutor);
         setIdioma(idioma);
@@ -120,6 +120,6 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "Objects.Texto";
+        return "CapaLogica.Texto";
     }
 }

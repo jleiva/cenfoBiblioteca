@@ -1,47 +1,43 @@
-package Objects;
+package CapaLogica;
 
 import java.time.Duration;
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Video} hereda de la superclase {@code Objects.Material}
+ * La clase {@code CapaLogica.Audio} hereda de la superclase {@code CapaLogica.Material}
  *
  * @author jdleiva
  * @version %I% %G%
  */
-public class Video extends Material {
+public class Audio extends Material {
     private String formato;
-    private String director;
     private Duration duracion;
 
-
     /**
-     * Instantiates a new Objects.Video.
+     * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Audio(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, esRestringido, tema);
     }
 
     /**
-     * Instantiates a new Objects.Video.
+     * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma
      * @param formato       the formato
-     * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
-                 String director, Duration duracion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+    public Audio(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
+                 Duration duracion) {
+        super(id, fechaCompra, esRestringido, tema, idioma);
         setFormato(formato);
-        setDirector(director);
         setDuracion(duracion);
     }
 
@@ -52,15 +48,6 @@ public class Video extends Material {
      */
     public void setFormato(String formato) {
         this.formato = formato;
-    }
-
-    /**
-     * Sets director.
-     *
-     * @param director the director
-     */
-    public void setDirector(String director) {
-        this.director = director;
     }
 
     /**
@@ -82,15 +69,6 @@ public class Video extends Material {
     }
 
     /**
-     * Gets director.
-     *
-     * @return the director
-     */
-    public String getDirector() {
-        return director;
-    }
-
-    /**
      * Gets duracion.
      *
      * @return the duracion
@@ -100,6 +78,6 @@ public class Video extends Material {
     }
 
     public String toString() {
-        return "Objects.Video";
+        return "CapaLogica.Audio";
     }
 }
