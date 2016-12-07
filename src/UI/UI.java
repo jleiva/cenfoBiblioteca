@@ -15,7 +15,7 @@ public class UI {
         int noSalir;
         gestor = new Gestor();
 
-        // Agrego contenido para pruebas, despues debe cargar el menu y demas opciones
+        // Agrego contenido para pruebas, despues debe cargar el menu y submenus
 
         // Temas
         out.println(gestor.crearTema("Ciencias"));
