@@ -79,9 +79,9 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "CapaLogica.Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
+        String resul = "== Datos == \n";
+        resul += "Nombre: " + getNombre() + " " + getApellido() + "\n";
+
+        return resul;
     }
 }

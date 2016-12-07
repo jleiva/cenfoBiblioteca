@@ -22,7 +22,7 @@ public class Gestor {
             capaLogica.crearUsuario(nuevoAdministrativo);
             msg = "El usuario ha sido agregado";
         } else {
-            msg = "El n�mero de identificaci�n " + cedula + " ya est� en el sistema.";
+            msg = "El numero de identificacion " + cedula + " ya esta en el sistema.";
         }
 
         return msg;
@@ -38,23 +38,23 @@ public class Gestor {
             capaLogica.crearUsuario(nuevoEstudiante);
             msg = "El usuario ha sido agregado";
         } else {
-            msg = "El n�mero de identificaci�n " + carnet + " ya est� en el sistema.";
+            msg = "El numero de identificacion " + carnet + " ya esta en el sistema.";
         }
 
         return msg;
     }
 
-    public String crearProfesor(String nombre, String apellido, String cedula, String tipoContrato,
-                                  LocalDate fechaContratacion) {
+    public String crearProfesor(String nombre, String apellido, String cedula, String tipoContrato, int y, int m, int d) {
         String msg;
         Profesor nuevoProfesor;
 
         if (capaLogica.buscarUsuario(cedula) == null) {
+            LocalDate fechaContratacion = LocalDate.of(y, m, d);
             nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
             capaLogica.crearUsuario(nuevoProfesor);
             msg = "El usuario ha sido agregado";
         } else {
-            msg = "El n�mero de identificaci�n " + cedula + " ya est� en el sistema.";
+            msg = "El numero de identificacion " + cedula + " ya esta en el sistema.";
         }
 
         return msg;
@@ -122,12 +122,13 @@ public class Gestor {
         return msg;
     }
 
-    public String crearOtroMaterial(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma,
+    public String crearOtroMaterial(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
                                     String descripcion) {
         String msg;
         Material nuevoMatrerial;
 
         if (capaLogica.buscarMaterial(id) == null) {
+            LocalDate fechaCompra = LocalDate.of(y, m, d);
             nuevoMatrerial = new Otro(id, fechaCompra, esRestringido, tema, idioma, descripcion);
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
@@ -199,7 +200,7 @@ public class Gestor {
             capaLogica.borrarMaterial(material);
             msg = "El material ha sido eliminado";
         } else {
-            msg = "El n�mero de identificaci�n " + id + " no est� en el sistema.";
+            msg = "El numero de identificacion " + id + " no esta en el sistema.";
         }
 
         return msg;
@@ -222,7 +223,7 @@ public class Gestor {
     public String listarMateriales() {
         ArrayList<Material> materiales = capaLogica.getListaMateriales();
         int cantMateriales = materiales.size();
-        String resul = "No hay materiales.";
+        String resul = "";
 
         if (cantMateriales > 0) {
             for(int i=0; i < cantMateriales; i++) {
@@ -244,6 +245,8 @@ public class Gestor {
 
                 resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial + " | " + restringido + "\n";
             }
+        } else {
+            resul = "No hay materiales.";
         }
 
         return resul;
@@ -252,7 +255,7 @@ public class Gestor {
     public String listarUsuarios() {
         ArrayList<Usuario> usuarios = capaLogica.getListaUsuarios();
         int cantUsuarios = usuarios.size();
-        String resul = "No hay usuarios.";
+        String resul = "";
 
         if (cantUsuarios > 0) {
             for(int i=0; i < cantUsuarios; i++) {
@@ -272,6 +275,8 @@ public class Gestor {
 
                 resul += "Id: " + id + " | Nombre: " + nombre + " " + apellido + " | Rol: " + rolUsuario + "\n";
             }
+        } else {
+            resul = "No hay usuarios.";
         }
 
         return resul;

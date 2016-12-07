@@ -75,6 +75,12 @@ public class Administrativo extends Usuario {
 
     @Override
     public String toString() {
-        return "CapaLogica.Administrativo{";
+        String resul = super.toString();
+
+        resul += "Cedula: " + getId() + "\n";
+        resul += "Tipo Nombramiento: " + getTipoNombramiento() + "\n";
+        resul += "Horas Semanales: " + getCantidadHorasSemanales() + "\n";
+
+        return resul;
     }
 }
