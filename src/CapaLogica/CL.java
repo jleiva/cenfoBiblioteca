@@ -1,12 +1,12 @@
 package CapaLogica;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class CL {
     private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
     private ArrayList<Material> listaMateriales = new ArrayList<Material>();
     private ArrayList<Tema> listaTemas = new ArrayList<Tema>();
+    private ArrayList<Reservacion> listaReservaciones = new ArrayList<Reservacion>();
 
     public ArrayList<Usuario> getListaUsuarios() {
         return listaUsuarios;
@@ -20,8 +20,8 @@ public class CL {
         return listaTemas;
     }
 
-    public void crearUsuario(Usuario user) {
-        listaUsuarios.add(user);
+    public ArrayList<Reservacion> getListaReservaciones() {
+        return listaReservaciones;
     }
 
     public void borrarUsuario(Usuario user) {
@@ -36,40 +36,24 @@ public class CL {
         listaTemas.remove(tema);
     }
 
-    public Usuario buscarUsuario(String id) {
-        Usuario usuario = null;
-        boolean encontrado = false;
+    public void borrarReservacion(Reservacion reservacion) {
+        listaReservaciones.remove(reservacion);
+    }
 
-        for(int i=0; i < listaUsuarios.size() && !encontrado; i++) {
-            if(listaUsuarios.get(i).getId().equals(id)){
-                encontrado = true;
-                usuario = listaUsuarios.get(i);
-            }
-        }
-
-        return usuario;
+    public void crearUsuario(Usuario user) {
+        listaUsuarios.add(user);
     }
 
     public void crearMaterial(Material material) {
         listaMateriales.add(material);
     }
 
-    public Material buscarMaterial(String id) {
-        Material material = null;
-        boolean encontrado = false;
-
-        for(int i=0; i < listaMateriales.size() && !encontrado; i++) {
-            if(listaMateriales.get(i).getId().equals(id)){
-                encontrado = true;
-                material = listaMateriales.get(i);
-            }
-        }
-
-        return material;
-    }
-
     public void crearTema(Tema tema) {
         listaTemas.add(tema);
+    }
+
+    public void crearReservacion(Reservacion reservacion) {
+        listaReservaciones.add(reservacion);
     }
 
     public Tema buscarTemaPorNombre(String nombre) {
@@ -98,5 +82,47 @@ public class CL {
         }
 
         return tema;
+    }
+
+    public Material buscarMaterial(String id) {
+        Material material = null;
+        boolean encontrado = false;
+
+        for(int i=0; i < listaMateriales.size() && !encontrado; i++) {
+            if(listaMateriales.get(i).getId().equals(id)){
+                encontrado = true;
+                material = listaMateriales.get(i);
+            }
+        }
+
+        return material;
+    }
+
+    public Usuario buscarUsuario(String id) {
+        Usuario usuario = null;
+        boolean encontrado = false;
+
+        for(int i=0; i < listaUsuarios.size() && !encontrado; i++) {
+            if(listaUsuarios.get(i).getId().equals(id)){
+                encontrado = true;
+                usuario = listaUsuarios.get(i);
+            }
+        }
+
+        return usuario;
+    }
+
+    public Reservacion buscarReservacion(String id) {
+        Reservacion reservacion = null;
+        boolean encontrado = false;
+
+        for(int i=0; i < listaReservaciones.size() && !encontrado; i++) {
+            if(listaReservaciones.get(i).getId().equals(id)){
+                encontrado = true;
+                reservacion = listaReservaciones.get(i);
+            }
+        }
+
+        return reservacion;
     }
 }

@@ -78,6 +78,10 @@ public class Audio extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Audio";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Duracion: " + getDuracion().toMinutes() + " minutos" + "\n";
+        return resul;
     }
 }

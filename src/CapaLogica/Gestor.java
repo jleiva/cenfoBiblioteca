@@ -11,6 +11,20 @@ public class Gestor {
 
     }
 
+    public String crearReservacion(String userId, String materialId) {
+        String msg = "No se pudo crear la reservacion.";
+        Usuario usuario = capaLogica.buscarUsuario(userId);
+        Material material = capaLogica.buscarMaterial(materialId);
+
+        if (usuario != null && material != null) {
+            Reservacion nuevaReserva = new Reservacion(usuario, material);
+            capaLogica.crearReservacion(nuevaReserva);
+            msg = "Reservacion creada";
+        }
+
+        return msg;
+    }
+
     public String crearAdministrativo(String nombre, String apellido, String cedula, char tipoNombramiento,
                                       int cantidadHorasSemanales) {
         String msg;
@@ -73,12 +87,14 @@ public class Gestor {
         return msg;
     }
 
-    public String crearTexto(String id, LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
-                             String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
+    public String crearTexto(String id, int y, int m, int d, boolean esRestringido, String titulo, String nombreAutor,
+                             String tema, String idioma, int py, int pm, int pd, int numPaginas) {
         String msg;
         Material nuevoMatrerial;
 
         if (capaLogica.buscarMaterial(id) == null) {
+            LocalDate fechaCompra = LocalDate.of(y, m, d);
+            LocalDate fechaPublicacion = LocalDate.of(py, pm, pd);
             nuevoMatrerial = new Texto(id, fechaCompra, esRestringido, titulo, nombreAutor, tema, idioma,
                     fechaPublicacion, numPaginas);
             capaLogica.crearMaterial(nuevoMatrerial);
@@ -90,12 +106,14 @@ public class Gestor {
         return msg;
     }
 
-    public String crearVideo(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma,
-                             String formato, String director, Duration duracion) {
+    public String crearVideo(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
+                             String formato, String director, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
 
         if (capaLogica.buscarMaterial(id) == null) {
+            Duration duracion = Duration.ofMinutes(dMinutos);
+            LocalDate fechaCompra = LocalDate.of(y, m, d);
             nuevoMatrerial = new Video(id, fechaCompra, esRestringido, tema, idioma, formato, director, duracion);
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
@@ -106,12 +124,14 @@ public class Gestor {
         return msg;
     }
 
-    public String crearAudio(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma,
-                             String formato, Duration duracion) {
+    public String crearAudio(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
+                             String formato, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
 
         if (capaLogica.buscarMaterial(id) == null) {
+            Duration duracion = Duration.ofMinutes(dMinutos);
+            LocalDate fechaCompra = LocalDate.of(y, m, d);
             nuevoMatrerial = new Audio(id, fechaCompra, esRestringido, tema, idioma, formato, duracion);
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
@@ -178,6 +198,49 @@ public class Gestor {
         return msg;
     }
 
+    public String buscarReservacion(String id) {
+        Reservacion reservacion = capaLogica.buscarReservacion(id);
+        String msg;
+
+        if (reservacion != null) {
+            msg = reservacion.toString();
+        } else {
+            msg = "El numero de identificacion " + id + " no esta en el sistema.";
+        }
+
+        return msg;
+    }
+
+    public ArrayList<Reservacion> buscarReservacionesPorUsuario(String id) {
+        ArrayList<Reservacion> reservasPorUsuario = new ArrayList<>();
+        ArrayList<Reservacion> listaReservaciones = capaLogica.getListaReservaciones();
+        int cantReservaciones = listaReservaciones.size();
+
+        if (cantReservaciones > 0) {
+            for (int i = 0; i < cantReservaciones; i++) {
+                if(listaReservaciones.get(i).getUsuario().getId().equals(id)){
+                    reservasPorUsuario.add(listaReservaciones.get(i));
+                }
+            }
+        }
+
+        return reservasPorUsuario;
+    }
+
+    public String borrarReservacion(String id) {
+        String msg;
+        Reservacion reservacion = capaLogica.buscarReservacion(id);
+
+        if (reservacion != null) {
+            capaLogica.borrarReservacion(reservacion);
+            msg = "La reservacion con ID " + id + " ha sido eliminado";
+        } else {
+            msg = "El numero de identificacion " + id + " no esta en el sistema.";
+        }
+
+        return msg;
+    }
+
     public String borrarUsuario(String id) {
         String msg;
         Usuario usuario = capaLogica.buscarUsuario(id);
@@ -214,7 +277,7 @@ public class Gestor {
             capaLogica.borrarTema(tema);
             msg = "El tema " + "con Id " + id + " ha sido eliminado";
         } else {
-            msg = "El n�mero de identificaci�n " + id + " no est� en el sistema.";
+            msg = "El numero de identificacion " + id + " no esta en el sistema.";
         }
 
         return msg;
@@ -243,7 +306,8 @@ public class Gestor {
                     tipoMaterial = "Otro";
                 }
 
-                resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial + " | " + restringido + "\n";
+                resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial +
+                        " | " + restringido + "\n";
             }
         } else {
             resul = "No hay materiales.";
@@ -296,6 +360,48 @@ public class Gestor {
             }
         } else {
             resul = "No hay temas.";
+        }
+
+        return resul;
+    }
+
+    public String listarReservaciones() {
+        ArrayList<Reservacion> reservaciones = capaLogica.getListaReservaciones();
+        int cantReservas = reservaciones.size();
+        String resul = "";
+
+        if (cantReservas > 0) {
+            for (int i = 0; i < cantReservas; i++) {
+                String id = reservaciones.get(i).getId();
+                LocalDate fecha = reservaciones.get(i).getFechaReservacion();
+                String usuario = reservaciones.get(i).getUsuario().getId();
+                String material = reservaciones.get(i).getMaterial().getId();
+
+                resul += "Id: " + id + " | Fecha Reservacion: " + fecha +  " | Usuario Id: " + usuario + " | Material Id: " + material + "\n";
+            }
+        } else {
+            resul = "No hay reservaciones.";
+        }
+
+        return resul;
+    }
+
+    public String listarReservacionesPorUsuario(String id) {
+        String resul = "";
+        Usuario usuario = capaLogica.buscarUsuario(id);
+
+        if (usuario != null) {
+            ArrayList<Reservacion> reservasUsuario = buscarReservacionesPorUsuario(id);
+            for (int i = 0; i < reservasUsuario.size(); i++) {
+                String idU = reservasUsuario.get(i).getId();
+                LocalDate fecha = reservasUsuario.get(i).getFechaReservacion();
+                String userId = reservasUsuario.get(i).getUsuario().getId();
+                String material = reservasUsuario.get(i).getMaterial().getId();
+
+                resul += "Id: " + idU + " | Fecha Reservacion: " + fecha + " | Material Id: " + material + "\n";
+            }
+        } else {
+            resul = "El numero de identificacion " + id + " no esta en el sistema.";
         }
 
         return resul;

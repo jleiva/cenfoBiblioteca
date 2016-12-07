@@ -100,6 +100,11 @@ public class Video extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Video";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Director: " + getDirector() + "\n";
+        resul += "Duracion: " + getDuracion().toMinutes() + " minutos" + "\n";
+        return resul;
     }
 }
