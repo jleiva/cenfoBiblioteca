@@ -76,6 +76,12 @@ public class Profesor extends Usuario {
 
     @Override
     public String toString() {
-        return "CapaLogica.Profesor{";
+        String resul = super.toString();
+
+        resul += "Cedula: " + getId() + "\n";
+        resul += "Tipo Contrato: " + getTipoContrato() + "\n";
+        resul += "Fecha Contratacion: " + getFechaContratacion() + "\n";
+
+        return resul;
     }
 }

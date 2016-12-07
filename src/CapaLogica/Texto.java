@@ -40,9 +40,9 @@ public class Texto extends Material {
     public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
                  String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
         super(id, fechaCompra, esRestringido, tema, idioma);
-        setIdioma(titulo);
-        setNombreAutor(nombreAutor);
         setIdioma(idioma);
+        setNombreAutor(nombreAutor);
+        setTitulo(titulo);
         setFechaPublicacion(fechaPublicacion);
         setNumPaginas(numPaginas);
     }
@@ -120,6 +120,12 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Texto";
+        String resul = super.toString();
+
+        resul += "Titulo: " + getTitulo() + "\n";
+        resul += "Autor: " + getNombreAutor() + "\n";
+        resul += "Fecha Publicacion: " + getFechaPublicacion() + "\n";
+        resul += "Numero de Paginas: " + getNumPaginas() + "\n";
+        return resul;
     }
 }

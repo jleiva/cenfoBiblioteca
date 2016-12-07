@@ -131,6 +131,13 @@ public abstract class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "CapaLogica.Material{";
+        String resul = "Id: " + getId() + "\n";
+
+        resul += "Tema: " + getTema() + "\n";
+        resul += "Idioma: " + getIdioma() + "\n";
+        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + "\n";
+        resul += "Fecha Compra: " + getFechaCompra() + "\n";
+
+        return resul;
     }
 }
