@@ -1,7 +1,7 @@
-package Objects;
+package CapaLogica;
 
 /**
- * La clase {@code Objects.Usuario} es abstracta, la usamos como superclase.
+ * La clase {@code CapaLogica.Usuario} es abstracta, la usamos como superclase.
  *
  * @author jdleiva
  * @version %I% %G%
@@ -77,7 +77,7 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Objects.Usuario{" +
+        return "CapaLogica.Usuario{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 '}';

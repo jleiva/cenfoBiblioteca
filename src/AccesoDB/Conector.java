@@ -1,4 +1,4 @@
-package AccesoBD;
+package AccesoDB;
 
 /**
  *Clase Conector
@@ -17,16 +17,16 @@ public class Conector{
 	
 	/**
 	 *M�todo est�tico que devuelve el 
-	 *objeto AccesoBD para que sea utilizado
+	 *objeto AccesoDB para que sea utilizado
 	 *por las clases
-	 *@return objeto del tipo AccesoBD del paquete 
+	 *@return objeto del tipo AccesoDB del paquete
 	 *CapaAccesoDatos
 	 */
 	 
 	public static AccesoBD getConector() throws 
 	java.sql.SQLException,Exception{
 		if (conectorBD == null){			
-//			conectorBD = new AccesoBD("sun.jdbc.odbc.JdbcOdbcDriver","jdbc:odbc:BDCxC","sa","jass2002");
+//			conectorBD = new AccesoDB("sun.jdbc.odbc.JdbcOdbcDriver","jdbc:odbc:BDCxC","sa","jass2002");
 			conectorBD = new AccesoBD("sun.jdbc.odbc.JdbcOdbcDriver","jdbc:odbc:BDCxCAccess","","");
 		}
 		return conectorBD;

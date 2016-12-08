@@ -1,7 +1,7 @@
-package AccesoBD;
+package AccesoDB;
 
 /**
- *Clase AccesoBD
+ *Clase AccesoDB
  *@version 2.0
  *@author Laura Monge Izaguirre
  *Clase que maneja el acceso a la base de datos.

@@ -1,9 +1,9 @@
-package Objects;
+package CapaLogica;
 
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Texto} hereda de la superclase {@code Objects.Material}
+ * La clase {@code CapaLogica.Texto} hereda de la superclase {@code CapaLogica.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -15,7 +15,7 @@ public class Texto extends Material {
     private int numPaginas;
 
     /**
-     * Instantiates a new Objects.Texto.
+     * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -26,7 +26,7 @@ public class Texto extends Material {
     }
 
     /**
-     * Instantiates a new Objects.Texto.
+     * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra      the fecha compra
      * @param esRestringido    the es restringido
@@ -120,6 +120,6 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "Objects.Texto";
+        return "CapaLogica.Texto";
     }
 }
