@@ -17,11 +17,10 @@ public class Audio extends Material {
      * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Audio(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
-        super(id, fechaCompra, esRestringido, tema);
+    public Audio(String id, LocalDate fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
     }
 
     /**
