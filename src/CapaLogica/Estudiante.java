@@ -1,7 +1,7 @@
-package Objects;
+package CapaLogica;
 
 /**
- * La clase {@code Objects.Estudiante} hereda de la superclase {@code Objects.Usuario}
+ * La clase {@code CapaLogica.Estudiante} hereda de la superclase {@code CapaLogica.Usuario}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -11,7 +11,7 @@ public class Estudiante extends Usuario {
     private int numeroCreditos;
 
     /**
-     * Instantiates a new Objects.Estudiante.
+     * Instantiates a new CapaLogica.Estudiante.
      *
      * @param nombre   the nombre
      * @param apellido the apellido
@@ -22,7 +22,7 @@ public class Estudiante extends Usuario {
     }
 
     /**
-     * Instantiates a new Objects.Estudiante.
+     * Instantiates a new CapaLogica.Estudiante.
      *
      * @param nombre         the nombre
      * @param apellido       the apellido
@@ -74,6 +74,6 @@ public class Estudiante extends Usuario {
 
     @Override
     public String toString() {
-        return "Objects.Estudiante{";
+        return "CapaLogica.Estudiante{";
     }
 }

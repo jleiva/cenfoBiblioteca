@@ -1,9 +1,9 @@
-package Objects;
+package CapaLogica;
 
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Profesor} hereda de la superclase {@code Objects.Usuario}
+ * La clase {@code CapaLogica.Profesor} hereda de la superclase {@code CapaLogica.Usuario}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -13,7 +13,7 @@ public class Profesor extends Usuario {
     private LocalDate fechaContratacion;
 
     /**
-     * Instantiates a new Objects.Profesor.
+     * Instantiates a new CapaLogica.Profesor.
      *
      * @param nombre   the nombre
      * @param apellido the apellido
@@ -24,7 +24,7 @@ public class Profesor extends Usuario {
     }
 
     /**
-     * Instantiates a new Objects.Profesor.
+     * Instantiates a new CapaLogica.Profesor.
      *
      * @param nombre            the nombre
      * @param apellido          the apellido
@@ -76,6 +76,6 @@ public class Profesor extends Usuario {
 
     @Override
     public String toString() {
-        return "Objects.Profesor{";
+        return "CapaLogica.Profesor{";
     }
 }

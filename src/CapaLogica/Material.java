@@ -1,9 +1,9 @@
-package Objects;
+package CapaLogica;
 
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Material} es abstracta, la usamos como superclase.
+ * La clase {@code CapaLogica.Material} es abstracta, la usamos como superclase.
  *
  * @author jdleiva
  * @version %I% %G%
@@ -17,7 +17,7 @@ public abstract class Material {
 
 
     /**
-     * Instantiates a new Objects.Material.
+     * Instantiates a new CapaLogica.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -31,7 +31,7 @@ public abstract class Material {
     }
 
     /**
-     * Instantiates a new Objects.Material.
+     * Instantiates a new CapaLogica.Material.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -122,6 +122,6 @@ public abstract class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Objects.Material{";
+        return "CapaLogica.Material{";
     }
 }

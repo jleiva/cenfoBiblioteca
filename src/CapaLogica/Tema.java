@@ -1,7 +1,7 @@
-package Objects;
+package CapaLogica;
 
 /**
- * La clase {@code Objects.Tema}
+ * La clase {@code CapaLogica.Tema}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -11,7 +11,7 @@ public class Tema {
     private String nombre;
 
     /**
-     * Instantiates a new Objects.Tema.
+     * Instantiates a new CapaLogica.Tema.
      *
      * @param id     the id
      * @param nombre the nombre
@@ -59,6 +59,6 @@ public class Tema {
 
     @Override
     public String toString() {
-        return "Objects.Tema";
+        return "CapaLogica.Tema";
     }
 }

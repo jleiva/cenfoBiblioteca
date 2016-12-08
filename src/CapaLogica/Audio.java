@@ -1,10 +1,10 @@
-package Objects;
+package CapaLogica;
 
 import java.time.Duration;
 import java.time.LocalDate;
 
 /**
- * La clase {@code Objects.Audio} hereda de la superclase {@code Objects.Material}
+ * La clase {@code CapaLogica.Audio} hereda de la superclase {@code CapaLogica.Material}
  *
  * @author jdleiva
  * @version %I% %G%
@@ -14,7 +14,7 @@ public class Audio extends Material {
     private Duration duracion;
 
     /**
-     * Instantiates a new Objects.Audio.
+     * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -25,7 +25,7 @@ public class Audio extends Material {
     }
 
     /**
-     * Instantiates a new Objects.Audio.
+     * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
@@ -78,6 +78,6 @@ public class Audio extends Material {
     }
 
     public String toString() {
-        return "Objects.Audio";
+        return "CapaLogica.Audio";
     }
 }
