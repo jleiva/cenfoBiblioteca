@@ -28,6 +28,22 @@ public class Audio extends Material {
      * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     * @param formato       the formato
+     * @param duracion      the duracion
+     */
+    public Audio(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+                 Duration duracion) {
+        super(id, fechaCompra, tema, idioma);
+        setFormato(formato);
+        setDuracion(duracion);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Audio.
+     *
+     * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma

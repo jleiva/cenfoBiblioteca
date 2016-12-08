@@ -58,11 +58,20 @@ public class Gestor {
         return msg;
     }
 
-    public String crearProfesor(String nombre, String apellido, String cedula, String tipoContrato, int y, int m, int d) {
+    public String crearProfesor(String nombre, String apellido, String cedula, int contrato, int y, int m, int d) {
         String msg;
+        String tipoContrato = "";
         Profesor nuevoProfesor;
 
         if (capaLogica.buscarUsuario(cedula) == null) {
+            switch (contrato) {
+                case 1:
+                    tipoContrato = "Tiempo Completo";
+                    break;
+                case 2:
+                    tipoContrato = "Medio Tiempo";
+                    break;
+            }
             LocalDate fechaContratacion = LocalDate.of(y, m, d);
             nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
             capaLogica.crearUsuario(nuevoProfesor);
@@ -87,7 +96,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearTexto(String id, int y, int m, int d, boolean esRestringido, String titulo, String nombreAutor,
+    public String crearTexto(String id, int y, int m, int d, String pRestringido, String titulo, String nombreAutor,
                              String tema, String idioma, int py, int pm, int pd, int numPaginas) {
         String msg;
         Material nuevoMatrerial;
@@ -95,8 +104,15 @@ public class Gestor {
         if (capaLogica.buscarMaterial(id) == null) {
             LocalDate fechaCompra = LocalDate.of(y, m, d);
             LocalDate fechaPublicacion = LocalDate.of(py, pm, pd);
-            nuevoMatrerial = new Texto(id, fechaCompra, esRestringido, titulo, nombreAutor, tema, idioma,
-                    fechaPublicacion, numPaginas);
+
+            if (pRestringido.equalsIgnoreCase("S")) {
+                nuevoMatrerial = new Texto(id, fechaCompra, true, titulo, nombreAutor, tema, idioma,
+                        fechaPublicacion, numPaginas);
+            } else {
+                nuevoMatrerial = new Texto(id, fechaCompra, titulo, nombreAutor, tema, idioma,
+                        fechaPublicacion, numPaginas);
+            }
+
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
         } else {
@@ -106,7 +122,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearVideo(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
+    public String crearVideo(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
                              String formato, String director, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
@@ -114,7 +130,13 @@ public class Gestor {
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
             LocalDate fechaCompra = LocalDate.of(y, m, d);
-            nuevoMatrerial = new Video(id, fechaCompra, esRestringido, tema, idioma, formato, director, duracion);
+
+            if (pRestringido.equalsIgnoreCase("S")) {
+                nuevoMatrerial = new Video(id, fechaCompra, true, tema, idioma, formato, director, duracion);
+            } else {
+                nuevoMatrerial = new Video(id, fechaCompra, tema, idioma, formato, director, duracion);
+            }
+
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
         } else {
@@ -124,7 +146,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearAudio(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
+    public String crearAudio(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
                              String formato, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
@@ -132,7 +154,13 @@ public class Gestor {
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
             LocalDate fechaCompra = LocalDate.of(y, m, d);
-            nuevoMatrerial = new Audio(id, fechaCompra, esRestringido, tema, idioma, formato, duracion);
+
+            if (pRestringido.equalsIgnoreCase("S")) {
+                nuevoMatrerial = new Audio(id, fechaCompra, true, tema, idioma, formato, duracion);
+            } else {
+                nuevoMatrerial = new Audio(id, fechaCompra, tema, idioma, formato, duracion);
+            }
+
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
         } else {
@@ -142,14 +170,20 @@ public class Gestor {
         return msg;
     }
 
-    public String crearOtroMaterial(String id, int y, int m, int d, boolean esRestringido, String tema, String idioma,
+    public String crearOtroMaterial(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
                                     String descripcion) {
         String msg;
         Material nuevoMatrerial;
 
         if (capaLogica.buscarMaterial(id) == null) {
             LocalDate fechaCompra = LocalDate.of(y, m, d);
-            nuevoMatrerial = new Otro(id, fechaCompra, esRestringido, tema, idioma, descripcion);
+
+            if (pRestringido.equalsIgnoreCase("S")) {
+                nuevoMatrerial = new Otro(id, fechaCompra, true, tema, idioma, descripcion);
+            } else {
+                nuevoMatrerial = new Otro(id, fechaCompra, tema, idioma, descripcion);
+            }
+
             capaLogica.crearMaterial(nuevoMatrerial);
             msg = "El material ha sido agregado";
         } else {
@@ -172,7 +206,20 @@ public class Gestor {
         return msg;
     }
 
-    public String buscarTema(String id) {
+    public String buscarTemaPorNombre(String nombre) {
+        Tema tema = capaLogica.buscarTemaPorNombre(nombre);
+        String msg;
+
+        if (tema != null) {
+            msg = tema.toString();
+        } else {
+            msg = "El tema con nombre " + nombre + " no esta en el sistema.";
+        }
+
+        return msg;
+    }
+
+    public String buscarTemaPorId(String id) {
         Tema tema = capaLogica.buscarTemaPorId(id);
         String msg;
 

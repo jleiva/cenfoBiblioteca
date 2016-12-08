@@ -18,11 +18,42 @@ public class Texto extends Material {
      * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     */
+    public Texto(String id, LocalDate fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Texto.
+     *
+     * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
     public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
         super(id, fechaCompra, esRestringido, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Texto.
+     *
+     * @param fechaCompra      the fecha compra
+     * @param titulo           the titulo
+     * @param nombreAutor      the nombre autor
+     * @param tema             the tema
+     * @param idioma           the idioma
+     * @param fechaPublicacion the fecha publicacion
+     * @param numPaginas       the num paginas
+     */
+    public Texto(String id, LocalDate fechaCompra, String titulo, String nombreAutor,
+                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
+        super(id, fechaCompra, tema, idioma);
+        setIdioma(idioma);
+        setNombreAutor(nombreAutor);
+        setTitulo(titulo);
+        setFechaPublicacion(fechaPublicacion);
+        setNumPaginas(numPaginas);
     }
 
     /**

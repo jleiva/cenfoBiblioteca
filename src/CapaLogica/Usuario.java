@@ -79,9 +79,6 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        String resul = "== Datos == \n";
-        resul += "Nombre: " + getNombre() + " " + getApellido() + "\n";
-
-        return resul;
+        return "Nombre: " + getNombre() + " " + getApellido() + "\n";
     }
 }

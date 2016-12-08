@@ -76,9 +76,9 @@ public class Estudiante extends Usuario {
     public String toString() {
         String resul = super.toString();
 
-        resul += "Carne: " + getId() + "\n";
+        resul += "Carne: " + getId()  + "\n";
         resul += "Carrera: " + getCarrera() + "\n";
-        resul += "Creditos Matriculados: " + getNumeroCreditos() + "\n";
+        resul += "Creditos Matriculados: " + getNumeroCreditos();
 
         return resul;
     }

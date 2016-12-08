@@ -15,6 +15,34 @@ public abstract class Material {
     protected boolean esRestringido; // default es false
     protected String tema;
 
+    /**
+     * Instantiates a new CapaLogica.Material.
+     *
+     * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     */
+    public Material(String id, LocalDate fechaCompra, String tema) {
+        setFechaCompra(fechaCompra);
+        setEsRestringido(esRestringido);
+        setTema(tema);
+        setId(id);
+        setIdioma(idioma);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Material.
+     *
+     * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     */
+    public Material(String id, LocalDate fechaCompra, String idioma, String tema) {
+        setFechaCompra(fechaCompra);
+        setEsRestringido(esRestringido);
+        setTema(tema);
+        setId(id);
+        setIdioma(idioma);
+    }
 
     /**
      * Instantiates a new CapaLogica.Material.

@@ -30,6 +30,24 @@ public class Video extends Material {
      * Instantiates a new CapaLogica.Video.
      *
      * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     * @param formato       the formato
+     * @param director      the director
+     * @param duracion      the duracion
+     */
+    public Video(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+                 String director, Duration duracion) {
+        super(id, fechaCompra, tema, idioma);
+        setFormato(formato);
+        setDirector(director);
+        setDuracion(duracion);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Video.
+     *
+     * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma

@@ -26,6 +26,20 @@ public class Otro extends Material {
      * Instantiates a new CapaLogica.Otro.
      *
      * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     * @param descripcion   the descripcion
+     */
+    public Otro(String id, LocalDate fechaCompra, String tema, String idioma,
+                String descripcion) {
+        super(id, fechaCompra, tema, idioma);
+        setDescripcion(descripcion);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Otro.
+     *
+     * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma
