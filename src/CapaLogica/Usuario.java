@@ -10,6 +10,7 @@ public abstract class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
+    protected String username;
 
     public Usuario(String id) {
         setId(id);

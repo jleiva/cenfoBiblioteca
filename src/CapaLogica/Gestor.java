@@ -7,8 +7,14 @@ import java.util.ArrayList;
 public class Gestor {
     private static CL capaLogica = new CL();
 
-    public void validarDatos() {
+    public boolean validarDatos(String user, String pass) {
+        Usuario usuarioValido = capaLogica.buscarUsuario(user);
 
+        if (usuarioValido != null) {
+
+        }
+
+        return true;
     }
 
     public String crearReservacion(String userId, String materialId) {
@@ -97,9 +103,19 @@ public class Gestor {
     }
 
     public String crearTexto(String id, int y, int m, int d, String pRestringido, String titulo, String nombreAutor,
-                             String tema, String idioma, int py, int pm, int pd, int numPaginas) {
+                             String pTema, String idioma, int py, int pm, int pd, int numPaginas) {
         String msg;
         Material nuevoMatrerial;
+        Tema nuevoTema;
+        String tema;
+
+        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
+            nuevoTema = new Tema(pTema);
+            tema = nuevoTema.getNombre();
+            capaLogica.crearTema(nuevoTema);
+        } else {
+            tema = pTema;
+        }
 
         if (capaLogica.buscarMaterial(id) == null) {
             LocalDate fechaCompra = LocalDate.of(y, m, d);
@@ -122,10 +138,20 @@ public class Gestor {
         return msg;
     }
 
-    public String crearVideo(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
+    public String crearVideo(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
                              String formato, String director, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
+        Tema nuevoTema;
+        String tema;
+
+        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
+            nuevoTema = new Tema(pTema);
+            tema = nuevoTema.getNombre();
+            capaLogica.crearTema(nuevoTema);
+        } else {
+            tema = pTema;
+        }
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
@@ -146,10 +172,20 @@ public class Gestor {
         return msg;
     }
 
-    public String crearAudio(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
+    public String crearAudio(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
                              String formato, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
+        Tema nuevoTema;
+        String tema;
+
+        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
+            nuevoTema = new Tema(pTema);
+            tema = nuevoTema.getNombre();
+            capaLogica.crearTema(nuevoTema);
+        } else {
+            tema = pTema;
+        }
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
@@ -170,10 +206,20 @@ public class Gestor {
         return msg;
     }
 
-    public String crearOtroMaterial(String id, int y, int m, int d, String pRestringido, String tema, String idioma,
+    public String crearOtroMaterial(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
                                     String descripcion) {
         String msg;
         Material nuevoMatrerial;
+        Tema nuevoTema;
+        String tema;
+
+        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
+            nuevoTema = new Tema(pTema);
+            tema = nuevoTema.getNombre();
+            capaLogica.crearTema(nuevoTema);
+        } else {
+            tema = pTema;
+        }
 
         if (capaLogica.buscarMaterial(id) == null) {
             LocalDate fechaCompra = LocalDate.of(y, m, d);
@@ -452,6 +498,33 @@ public class Gestor {
         }
 
         return resul;
+    }
+
+    public Reservacion buscarReservacionARedimir(String idUser, String idMaterial) {
+        Reservacion reserva = null;
+        boolean encontrado = false;
+        ArrayList<Reservacion> reservasUsuario = buscarReservacionesPorUsuario(idUser);
+
+        for (int i = 0; i < reservasUsuario.size() && !encontrado; i++) {
+            if(reservasUsuario.get(i).getMaterial().getId().equals(idMaterial)){
+                encontrado = true;
+                reserva = reservasUsuario.get(i);
+            }
+        }
+
+        return reserva;
+    }
+
+    public String redimirReservacion(String idUser, String idMaterial) {
+        String msg = "No hay reservacion.";
+        Reservacion hayReserva = buscarReservacionARedimir(idUser, idMaterial);
+
+        if (hayReserva != null) {
+            capaLogica.borrarReservacion(hayReserva);
+            msg = "Reservacion con Id " + hayReserva.getId() + " ha sido redimida.";
+        }
+
+        return msg;
     }
 
     public static boolean hayUsuarios() {

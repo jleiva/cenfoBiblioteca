@@ -79,13 +79,13 @@ public class UI {
         out.print("Digite su Password: ");
         password = in.readLine();
 
-        gestor.validarDatos();
+        gestor.validarDatos(usuario, password);
     }
 
     private static void menuAdmin() {
         out.println();
         out.println("============== Menu Principal del Sistema =========================");
-        out.println("1. Usuarios.\n2. Materiales.\n3. Temas.\n4. Reservaciones.\n0. Salir");
+        out.println("1. Usuarios.\n2. Materiales.\n3. Temas.\n4. Reservaciones.\n5. Redimir reservacion.\n0. Salir");
         out.println();
     }
 
@@ -107,7 +107,9 @@ public class UI {
             ejecutarAccionTemas();
         } else if (opcion == 4) { // Reservaciones
             ejecutarAccionReservaciones();
-        } else {
+        } else if (opcion == 5) { // Redimir
+            ejecutarAccionRedimir();
+        }else {
             noSalir = 0;
         }
 
@@ -124,7 +126,7 @@ public class UI {
             out.println("1. Ver lista de Usuarios.");
             out.println("2. Registrar nuevo Usuario.");
             out.println("3. Buscar Usuario.");
-            out.println("4. Elimnar Usuario.");
+            out.println("4. Eliminar Usuario.");
             out.println("5. Modificar Usuario."); // Falta la funcionalidad
             out.println("0. Ir a Menu Principal.");
             out.println();
@@ -139,7 +141,7 @@ public class UI {
 
                 case 2:
                     out.println("============== Registrar nuevo Usuario ==============");
-                    out.println("Tipo de Usuario a crear:\n 1. Estudiante.\n 2.Profesor.\n 3.Administrativo.\nSeleccione tipo usuario: ");
+                    out.println("Tipo de Usuario a crear:\n 1. Estudiante.\n 2. Profesor.\n 3. Administrativo.\nSeleccione tipo usuario: ");
                     int tipoUsuario = Integer.parseInt(in.readLine());
                     out.println("Id:");
                     String idNuevoUser = in.readLine();
@@ -228,7 +230,7 @@ public class UI {
             out.println("1. Ver lista de Materiales.");
             out.println("2. Registrar nuevo Material.");
             out.println("3. Buscar Material.");
-            out.println("4. Elimnar Material");
+            out.println("4. Eliminar Material");
             out.println("5. Modificar Material");
             out.println("0. Ir a Menu Principal");
             out.println();
@@ -356,7 +358,7 @@ public class UI {
             out.println("1. Ver lista de Temas.");
             out.println("2. Registrar nuevo Tema.");
             out.println("3. Buscar Tema.");
-            out.println("4. Elimnar Tema");
+            out.println("4. Eliminar Tema");
             out.println("5. Modificar Tema");
             out.println("0. Ir a Menu Principal");
             out.println();
@@ -425,9 +427,10 @@ public class UI {
             out.println("2. Registrar nueva Reservacion.");
             out.println("3. Buscar Reservacion.");
             out.println("4. Buscar Reservacion por Usuario.");
-            out.println("5. Eliminar Reservacion");
-            out.println("6. Modificar Reservacion");
-            out.println("0. Ir a Menu Principal");
+            out.println("5. Eliminar Reservacion.");
+            out.println("6. Modificar Reservacion.");
+            out.println("7. Redimir Reservacion.");
+            out.println("0. Ir a Menu Principal.");
             out.println();
 
             opc = leerOpcionSelecionada();
@@ -440,7 +443,14 @@ public class UI {
 
                 case 2:
                     out.println("============== Registrar Reservacion ==============");
-                    out.println(gestor.listarReservaciones());
+                    out.println();
+                    out.println("Materiales Disponibles:");
+                    out.println(gestor.listarMateriales());
+                    out.println("Id Material a reservar: ");
+                    idReserva = in.readLine();
+                    out.println("Id Usuario: ");
+                    idUser = in.readLine();
+                    out.println(gestor.crearReservacion(idUser, idReserva));
                     break;
 
                 case 3:
@@ -470,6 +480,61 @@ public class UI {
                 case 6:
                     out.println("============== Modificar Reservacion ==============");
                     out.println(gestor.listarReservaciones());
+                    break;
+
+                case 7:
+                    out.println("============== Redimir Reservacion ==============");
+                    out.println("Ingrese el Id del usuario: ");
+                    idUser = in.readLine();
+                    out.println(gestor.listarReservacionesPorUsuario(idUser));
+                    out.println("Ingrese el Id del Material: ");
+                    String idMaterial = in.readLine();
+                    out.println(gestor.redimirReservacion(idUser, idMaterial));
+                    break;
+
+                default:
+                    opc = 0;
+                    break;
+            }
+
+        } while (opc != 0);
+    }
+
+    private static void ejecutarAccionRedimir() throws java.io.IOException {
+        int opc;
+        String idUser;
+
+        do {
+            out.println();
+            out.println("============== Submenu Redimir =========================");
+            out.println("1. Listar Reservaciones.");
+            out.println("2. Listar Usuarios.");
+            out.println("3. Redimir reservacion.");
+            out.println("0. Ir a Menu Principal.");
+            out.println();
+
+            opc = leerOpcionSelecionada();
+
+            switch (opc) {
+                case 1:
+                    out.println("============== Lista de Reservaciones ==============");
+                    out.println(gestor.listarReservaciones());
+                    break;
+
+                case 2:
+                    out.println("============== Listar Usuarios ==============");
+                    out.println(gestor.listarUsuarios());
+                    break;
+
+                case 3:
+                    out.println("============== Redimir Reservacion ==============");
+                    out.println("Ingrese el Id del usuario: ");
+                    idUser = in.readLine();
+                    out.println("Reservaciones del Usuario: ");
+                    out.println(gestor.listarReservacionesPorUsuario(idUser));
+                    out.println("Ingrese el Id del Material: ");
+                    String idMaterial = in.readLine();
+                    out.println(gestor.redimirReservacion(idUser, idMaterial));
                     break;
 
                 default:
