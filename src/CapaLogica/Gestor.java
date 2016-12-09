@@ -79,6 +79,7 @@ public class Gestor {
                     tipoContrato = "Medio Tiempo";
                     break;
             }
+
             try {
                 LocalDate fechaContratacion = LocalDate.of(y, m, d);
                 nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
@@ -165,16 +166,23 @@ public class Gestor {
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
-            LocalDate fechaCompra = LocalDate.of(y, m, d);
+            LocalDate fechaCompra = null;
 
-            if (pRestringido.equalsIgnoreCase("S")) {
-                nuevoMatrerial = new Video(id, fechaCompra, true, tema, idioma, formato, director, duracion);
-            } else {
-                nuevoMatrerial = new Video(id, fechaCompra, tema, idioma, formato, director, duracion);
+            try {
+                fechaCompra = LocalDate.of(y, m, d);
+
+                if (pRestringido.equalsIgnoreCase("S")) {
+                    nuevoMatrerial = new Video(id, fechaCompra, true, tema, idioma, formato, director, duracion);
+                } else {
+                    nuevoMatrerial = new Video(id, fechaCompra, tema, idioma, formato, director, duracion);
+                }
+
+                capaLogica.crearMaterial(nuevoMatrerial);
+                msg = "El material ha sido agregado";
+            } catch (Exception e) {
+                msg = "[Error] Fecha invalida, no se creo el Material";
             }
 
-            capaLogica.crearMaterial(nuevoMatrerial);
-            msg = "El material ha sido agregado";
         } else {
             msg = "El numero de identificacion " + id + " ya esta en el sistema.";
         }
@@ -199,16 +207,20 @@ public class Gestor {
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
-            LocalDate fechaCompra = LocalDate.of(y, m, d);
+            LocalDate fechaCompra = null;
 
-            if (pRestringido.equalsIgnoreCase("S")) {
-                nuevoMatrerial = new Audio(id, fechaCompra, true, tema, idioma, formato, duracion);
-            } else {
-                nuevoMatrerial = new Audio(id, fechaCompra, tema, idioma, formato, duracion);
+            try {
+                if (pRestringido.equalsIgnoreCase("S")) {
+                    nuevoMatrerial = new Audio(id, fechaCompra, true, tema, idioma, formato, duracion);
+                } else {
+                    nuevoMatrerial = new Audio(id, fechaCompra, tema, idioma, formato, duracion);
+                }
+
+                capaLogica.crearMaterial(nuevoMatrerial);
+                msg = "El material ha sido agregado";
+            } catch (Exception e) {
+                msg = "[Error] Fecha invalida, no se creo el Material";
             }
-
-            capaLogica.crearMaterial(nuevoMatrerial);
-            msg = "El material ha sido agregado";
         } else {
             msg = "El numero de identificacion " + id + " ya esta en el sistema.";
         }
@@ -232,16 +244,21 @@ public class Gestor {
         }
 
         if (capaLogica.buscarMaterial(id) == null) {
-            LocalDate fechaCompra = LocalDate.of(y, m, d);
+            LocalDate fechaCompra = null;
 
-            if (pRestringido.equalsIgnoreCase("S")) {
-                nuevoMatrerial = new Otro(id, fechaCompra, true, tema, idioma, descripcion);
-            } else {
-                nuevoMatrerial = new Otro(id, fechaCompra, tema, idioma, descripcion);
+            try {
+                fechaCompra = LocalDate.of(y, m, d);
+                if (pRestringido.equalsIgnoreCase("S")) {
+                    nuevoMatrerial = new Otro(id, fechaCompra, true, tema, idioma, descripcion);
+                } else {
+                    nuevoMatrerial = new Otro(id, fechaCompra, tema, idioma, descripcion);
+                }
+
+                capaLogica.crearMaterial(nuevoMatrerial);
+                msg = "El material ha sido agregado";
+            } catch (Exception e) {
+                msg = "[Error] Fecha invalida, no se creo el Material";
             }
-
-            capaLogica.crearMaterial(nuevoMatrerial);
-            msg = "El material ha sido agregado";
         } else {
             msg = "El numero de identificacion " + id + " ya esta en el sistema.";
         }
