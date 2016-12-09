@@ -1,9 +1,7 @@
 package UI;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
-import java.io.PrintStream;
+import java.io.*;
+
 import CapaLogica.*;
 
 public class UI {
@@ -61,10 +59,14 @@ public class UI {
     }
 
     private static int leerOpcionSelecionada()throws java.io.IOException{
-        int opcion;
+        int opcion = 0;
 
         out.print("Seleccione opcion: ");
-        opcion = Integer.parseInt(in.readLine());
+        try {
+            opcion = Integer.parseInt(in.readLine());
+        } catch (NumberFormatException e) {
+            out.print("[Error] No se pudo iniciar el programa, valor invalido.");
+        }
         out.println();
 
         return opcion;
@@ -142,7 +144,12 @@ public class UI {
                 case 2:
                     out.println("============== Registrar nuevo Usuario ==============");
                     out.println("Tipo de Usuario a crear:\n 1. Estudiante.\n 2. Profesor.\n 3. Administrativo.\nSeleccione tipo usuario: ");
-                    int tipoUsuario = Integer.parseInt(in.readLine());
+                    int tipoUsuario = 0;
+                    try {
+                        tipoUsuario = Integer.parseInt(in.readLine());
+                    } catch (NumberFormatException e) {
+                        imprimirExepcion(e);
+                    }
                     out.println("Id:");
                     String idNuevoUser = in.readLine();
                     out.println("Nombre:");
@@ -155,29 +162,51 @@ public class UI {
                             out.println("Carrera:");
                             String carrera = in.readLine();
                             out.println("Creditos matriculados:");
-                            int creditos = Integer.parseInt(in.readLine());
-                            out.println(gestor.crearEstudiante(nombre, apellido, idNuevoUser, carrera, creditos));
+                            int creditos = 0;
+
+                            try {
+                                creditos = Integer.parseInt(in.readLine());
+                                out.println(gestor.crearEstudiante(nombre, apellido, idNuevoUser, carrera, creditos));
+                            } catch (NumberFormatException e) {
+                                imprimirExepcion(e);
+                                out.println("No se creo el Usuario");
+                            }
+
                             break;
 
                         case 2:
                             out.println("Tipo Contrato\n 1. Tiempo Completo.\n 2. Medio Tiempo.\nIndique el tipo de contrato");
-                            int contrato = Integer.parseInt(in.readLine());
-                            out.println("Fecha de contratatacion:");
-                            out.println("Dia:");
-                            int d = Integer.parseInt(in.readLine());
-                            out.println("Mes:");
-                            int m = Integer.parseInt(in.readLine());
-                            out.println("Año:");
-                            int y = Integer.parseInt(in.readLine());
-                            out.println(gestor.crearProfesor(nombre, apellido, idNuevoUser, contrato, y, m, d));
+                            int contrato = 0;
+
+                            try {
+                                contrato = Integer.parseInt(in.readLine());
+                                out.println("Fecha de contratatacion:");
+                                out.println("Dia:");
+                                int d = Integer.parseInt(in.readLine());
+                                out.println("Mes:");
+                                int m = Integer.parseInt(in.readLine());
+                                out.println("Año:");
+                                int y = Integer.parseInt(in.readLine());
+                                out.println(gestor.crearProfesor(nombre, apellido, idNuevoUser, contrato, y, m, d));
+                            } catch (NumberFormatException e) {
+                                imprimirExepcion(e);
+                                out.println("No se creo el Usuario");
+                            }
                             break;
 
                         case 3:
                             out.println("Tipo de nombramiento.\n Digite: A, B o C.");
                             char tipoNombramiento = in.readLine().charAt(0);
                             out.println("Horas asignadas:");
-                            int horas = Integer.parseInt(in.readLine());
-                            out.println(gestor.crearAdministrativo(nombre, apellido, idNuevoUser, tipoNombramiento, horas));
+                            int horas = 0;
+
+                            try {
+                                horas = Integer.parseInt(in.readLine());
+                                out.println(gestor.crearAdministrativo(nombre, apellido, idNuevoUser, tipoNombramiento, horas));
+                            } catch (NumberFormatException e) {
+                               imprimirExepcion(e);
+                                out.println("No se creo el Usuario");
+                            }
                             break;
                         default:
                             out.println("Opcion invalida.");
@@ -246,7 +275,18 @@ public class UI {
                 case 2:
                     out.println("============== Registrar nuevo Material ==============");
                     out.println("Tipo de Material a crear:\n 1. Texto.\n 2. Video.\n 3. Audio.\n 4. Otro.\nSeleccione tipo material: ");
-                    int tipoMaterial = Integer.parseInt(in.readLine());
+                    int tipoMaterial = 0;
+
+                    try {
+                        tipoMaterial = Integer.parseInt(in.readLine());
+                    } catch (NumberFormatException e) {
+                        imprimirExepcion(e);
+                        out.println("No se creo el Material.");
+                        return;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     out.println("ISBN: ");
                     String isbn = in.readLine();
                     out.println("Fecha de compra:");
@@ -286,20 +326,36 @@ public class UI {
                             out.println("Formato. VHS, VCD o DVD ");
                             String formato = in.readLine();
                             out.println("Duracion (en minutos): ");
-                            long duracion = Integer.parseInt(in.readLine());
-                            out.println("Director: ");
-                            String director = in.readLine();
-                            out.println(gestor.crearVideo(isbn, y, m, d, esRestringido, tema, idioma, formato,
-                                    director, duracion));
+                            long duracion = 0;
+
+                            try {
+                                duracion = Integer.parseInt(in.readLine());
+                                out.println("Director: ");
+                                String director = in.readLine();
+                                out.println(gestor.crearVideo(isbn, y, m, d, esRestringido, tema, idioma, formato,
+                                        director, duracion));
+                            } catch (NumberFormatException e) {
+                                imprimirExepcion(e);
+                                out.println("No se creo el Material.");
+                            }
+
                             break;
 
                         case 3:
                             out.println("Formato. Casete, CD o DVD ");
                             String aFormato = in.readLine();
                             out.println("Duracion (en minutos): ");
-                            long aDuracion = Integer.parseInt(in.readLine());
-                            out.println(gestor.crearAudio(isbn, y, m, d, esRestringido, tema, idioma, aFormato,
-                                    aDuracion));
+                            long aDuracion = 0;
+
+                            try {
+                                aDuracion = Integer.parseInt(in.readLine());
+                                out.println(gestor.crearAudio(isbn, y, m, d, esRestringido, tema, idioma, aFormato,
+                                        aDuracion));
+                            } catch (NumberFormatException e) {
+                                imprimirExepcion(e);
+                                out.println("No se creo el Material.");
+                            }
+
                             break;
 
                         case 4:
@@ -543,5 +599,11 @@ public class UI {
             }
 
         } while (opc != 0);
+    }
+
+    private static void imprimirExepcion(Exception e) {
+        if (e instanceof NumberFormatException) {
+            out.println("[Error]\nEl valor ingresado es invalido, solo se aceptan numeros.");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package CapaLogica;
 
+import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -78,10 +79,14 @@ public class Gestor {
                     tipoContrato = "Medio Tiempo";
                     break;
             }
-            LocalDate fechaContratacion = LocalDate.of(y, m, d);
-            nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
-            capaLogica.crearUsuario(nuevoProfesor);
-            msg = "El usuario ha sido agregado";
+            try {
+                LocalDate fechaContratacion = LocalDate.of(y, m, d);
+                nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
+                capaLogica.crearUsuario(nuevoProfesor);
+                msg = "El usuario ha sido agregado";
+            } catch (DateTimeException e) {
+                msg = "[Error] Fecha invalida, no se creo el Usuario.";
+            }
         } else {
             msg = "El numero de identificacion " + cedula + " ya esta en el sistema.";
         }
@@ -118,19 +123,24 @@ public class Gestor {
         }
 
         if (capaLogica.buscarMaterial(id) == null) {
-            LocalDate fechaCompra = LocalDate.of(y, m, d);
-            LocalDate fechaPublicacion = LocalDate.of(py, pm, pd);
+            try {
+                LocalDate fechaCompra = LocalDate.of(y, m, d);
+                LocalDate fechaPublicacion = LocalDate.of(py, pm, pd);
 
-            if (pRestringido.equalsIgnoreCase("S")) {
-                nuevoMatrerial = new Texto(id, fechaCompra, true, titulo, nombreAutor, tema, idioma,
-                        fechaPublicacion, numPaginas);
-            } else {
-                nuevoMatrerial = new Texto(id, fechaCompra, titulo, nombreAutor, tema, idioma,
-                        fechaPublicacion, numPaginas);
+                if (pRestringido.equalsIgnoreCase("S")) {
+                    nuevoMatrerial = new Texto(id, fechaCompra, true, titulo, nombreAutor, tema, idioma,
+                            fechaPublicacion, numPaginas);
+                } else {
+                    nuevoMatrerial = new Texto(id, fechaCompra, titulo, nombreAutor, tema, idioma,
+                            fechaPublicacion, numPaginas);
+                }
+
+                capaLogica.crearMaterial(nuevoMatrerial);
+                msg = "El material ha sido agregado";
+            } catch (DateTimeException e) {
+                msg = "[Error] Fecha invalida, no se creo el Material.";
             }
 
-            capaLogica.crearMaterial(nuevoMatrerial);
-            msg = "El material ha sido agregado";
         } else {
             msg = "El numero de identificacion " + id + " ya esta en el sistema.";
         }
