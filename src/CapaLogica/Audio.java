@@ -17,11 +17,26 @@ public class Audio extends Material {
      * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Audio(String id, LocalDate fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Audio.
+     *
+     * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     * @param formato       the formato
+     * @param duracion      the duracion
+     */
+    public Audio(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+                 Duration duracion) {
+        super(id, fechaCompra, tema, idioma);
+        setFormato(formato);
+        setDuracion(duracion);
     }
 
     /**
@@ -34,9 +49,9 @@ public class Audio extends Material {
      * @param formato       the formato
      * @param duracion      the duracion
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
+    public Audio(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  Duration duracion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+        super(id, fechaCompra, esRestringido, tema, idioma);
         setFormato(formato);
         setDuracion(duracion);
     }
@@ -78,6 +93,10 @@ public class Audio extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Audio";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Duracion: " + getDuracion().toMinutes() + " minutos" + "\n";
+        return resul;
     }
 }

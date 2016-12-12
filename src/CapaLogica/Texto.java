@@ -18,11 +18,42 @@ public class Texto extends Material {
      * Instantiates a new CapaLogica.Texto.
      *
      * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     */
+    public Texto(String id, LocalDate fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Texto.
+     *
+     * @param fechaCompra   the fecha compra
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, esRestringido, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Texto.
+     *
+     * @param fechaCompra      the fecha compra
+     * @param titulo           the titulo
+     * @param nombreAutor      the nombre autor
+     * @param tema             the tema
+     * @param idioma           the idioma
+     * @param fechaPublicacion the fecha publicacion
+     * @param numPaginas       the num paginas
+     */
+    public Texto(String id, LocalDate fechaCompra, String titulo, String nombreAutor,
+                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
+        super(id, fechaCompra, tema, idioma);
+        setIdioma(idioma);
+        setNombreAutor(nombreAutor);
+        setTitulo(titulo);
+        setFechaPublicacion(fechaPublicacion);
+        setNumPaginas(numPaginas);
     }
 
     /**
@@ -37,12 +68,12 @@ public class Texto extends Material {
      * @param fechaPublicacion the fecha publicacion
      * @param numPaginas       the num paginas
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor, Tema tema, String idioma,
-                 LocalDate fechaPublicacion, int numPaginas) {
-        super(fechaCompra, esRestringido, tema, idioma);
-        setIdioma(titulo);
-        setNombreAutor(nombreAutor);
+    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
+                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
+        super(id, fechaCompra, esRestringido, tema, idioma);
         setIdioma(idioma);
+        setNombreAutor(nombreAutor);
+        setTitulo(titulo);
         setFechaPublicacion(fechaPublicacion);
         setNumPaginas(numPaginas);
     }
@@ -120,6 +151,12 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Texto";
+        String resul = super.toString();
+
+        resul += "Titulo: " + getTitulo() + "\n";
+        resul += "Autor: " + getNombreAutor() + "\n";
+        resul += "Fecha Publicacion: " + getFechaPublicacion() + "\n";
+        resul += "Numero de Paginas: " + getNumPaginas() + "\n";
+        return resul;
     }
 }

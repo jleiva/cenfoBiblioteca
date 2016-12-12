@@ -74,6 +74,12 @@ public class Estudiante extends Usuario {
 
     @Override
     public String toString() {
-        return "CapaLogica.Estudiante{";
+        String resul = super.toString();
+
+        resul += "Carne: " + getId()  + "\n";
+        resul += "Carrera: " + getCarrera() + "\n";
+        resul += "Creditos Matriculados: " + getNumeroCreditos();
+
+        return resul;
     }
 }

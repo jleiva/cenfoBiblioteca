@@ -22,8 +22,26 @@ public class Video extends Material {
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Video(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, esRestringido, tema);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Video.
+     *
+     * @param fechaCompra   the fecha compra
+     * @param tema          the tema
+     * @param idioma        the idioma
+     * @param formato       the formato
+     * @param director      the director
+     * @param duracion      the duracion
+     */
+    public Video(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+                 String director, Duration duracion) {
+        super(id, fechaCompra, tema, idioma);
+        setFormato(formato);
+        setDirector(director);
+        setDuracion(duracion);
     }
 
     /**
@@ -37,9 +55,9 @@ public class Video extends Material {
      * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
+    public Video(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  String director, Duration duracion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+        super(id, fechaCompra, esRestringido, tema, idioma);
         setFormato(formato);
         setDirector(director);
         setDuracion(duracion);
@@ -100,6 +118,11 @@ public class Video extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Video";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Director: " + getDirector() + "\n";
+        resul += "Duracion: " + getDuracion().toMinutes() + " minutos" + "\n";
+        return resul;
     }
 }

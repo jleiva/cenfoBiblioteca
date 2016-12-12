@@ -10,6 +10,7 @@ public abstract class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
+    protected String username;
 
     public Usuario(String id) {
         setId(id);
@@ -79,9 +80,6 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "CapaLogica.Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
+        return "Nombre: " + getNombre() + " " + getApellido() + "\n";
     }
 }
