@@ -1,7 +1,6 @@
 package UI;
 
 import java.io.*;
-
 import CapaLogica.*;
 
 public class UI {
@@ -558,7 +557,7 @@ public class UI {
 
     private static void ejecutarAccionRedimir() throws java.io.IOException {
         int opc;
-        String idUser;
+        String idUser = null;
 
         do {
             out.println();
@@ -585,12 +584,36 @@ public class UI {
                 case 3:
                     out.println("============== Redimir Reservacion ==============");
                     out.println("Ingrese el Id del usuario: ");
-                    idUser = in.readLine();
-                    out.println("Reservaciones del Usuario: ");
-                    out.println(gestor.listarReservacionesPorUsuario(idUser));
+
+                    try {
+                        idUser = in.readLine();
+
+                        if (idUser.isEmpty()) {
+                            throw new Exception();
+                        }
+
+                        out.println("Reservaciones del Usuario: ");
+                        out.println(gestor.listarReservacionesPorUsuario(idUser));
+
+                    } catch (Exception e) {
+                        out.println("[Error] Debe ingresar un valor.");
+                    }
+
                     out.println("Ingrese el Id del Material: ");
-                    String idMaterial = in.readLine();
-                    out.println(gestor.redimirReservacion(idUser, idMaterial));
+                    String idMaterial = null;
+
+                    try {
+                        idMaterial = in.readLine();
+
+                        if (idMaterial.isEmpty()) {
+                            throw new Exception();
+                        }
+
+                        out.println(gestor.redimirReservacion(idUser, idMaterial));
+                    } catch (Exception e) {
+                        out.println("[Error] Debe ingresar un valor.");
+                    }
+
                     break;
 
                 default:
