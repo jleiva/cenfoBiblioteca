@@ -1,9 +1,13 @@
 package CapaLogica;
 
+import Multi.*;
+
 import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.Vector;
 
 public class Gestor {
     private static CL capaLogica = new CL();
@@ -95,21 +99,13 @@ public class Gestor {
         return msg;
     }
 
-    public String crearTema(String nombre) {
-        String msg = "El tema ya existe.";
-        Tema nuevoTema;
-
-        if (capaLogica.buscarTemaPorNombre(nombre) == null) {
-            nuevoTema = new Tema(nombre);
-            capaLogica.crearTema(nuevoTema);
-            msg = "El tema ha sido agregado";
-        }
-
-        return msg;
+    public void crearTema(String pnombre) throws Exception {
+        Tema tema;
+        tema = (new MultiTema()).crear(pnombre);
     }
 
-    public String crearTexto(String id, int y, int m, int d, String pRestringido, String titulo, String nombreAutor,
-                             String pTema, String idioma, int py, int pm, int pd, int numPaginas) {
+    public String crearTexto(String id, String fechaCompra, String pRestringido, String titulo, String nombreAutor,
+                             String pTema, String idioma, String fechaPublicacion, int numPaginas) {
         String msg;
         Material nuevoMatrerial;
         Tema nuevoTema;
@@ -125,14 +121,11 @@ public class Gestor {
 
         if (capaLogica.buscarMaterial(id) == null) {
             try {
-                LocalDate fechaCompra = LocalDate.of(y, m, d);
-                LocalDate fechaPublicacion = LocalDate.of(py, pm, pd);
-
                 if (pRestringido.equalsIgnoreCase("S")) {
                     nuevoMatrerial = new Texto(id, fechaCompra, true, titulo, nombreAutor, tema, idioma,
                             fechaPublicacion, numPaginas);
                 } else {
-                    nuevoMatrerial = new Texto(id, fechaCompra, titulo, nombreAutor, tema, idioma,
+                    nuevoMatrerial = new Texto(id, fechaCompra, false, titulo, nombreAutor, tema, idioma,
                             fechaPublicacion, numPaginas);
                 }
 
@@ -149,7 +142,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearVideo(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
+    public String crearVideo(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
                              String formato, String director, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
@@ -166,11 +159,8 @@ public class Gestor {
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
-            LocalDate fechaCompra = null;
 
             try {
-                fechaCompra = LocalDate.of(y, m, d);
-
                 if (pRestringido.equalsIgnoreCase("S")) {
                     nuevoMatrerial = new Video(id, fechaCompra, true, tema, idioma, formato, director, duracion);
                 } else {
@@ -190,7 +180,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearAudio(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
+    public String crearAudio(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
                              String formato, long dMinutos) {
         String msg;
         Material nuevoMatrerial;
@@ -207,13 +197,12 @@ public class Gestor {
 
         if (capaLogica.buscarMaterial(id) == null) {
             Duration duracion = Duration.ofMinutes(dMinutos);
-            LocalDate fechaCompra = null;
 
             try {
                 if (pRestringido.equalsIgnoreCase("S")) {
                     nuevoMatrerial = new Audio(id, fechaCompra, true, tema, idioma, formato, duracion);
                 } else {
-                    nuevoMatrerial = new Audio(id, fechaCompra, tema, idioma, formato, duracion);
+                    nuevoMatrerial = new Audio(id, fechaCompra, false, tema, idioma, formato, duracion);
                 }
 
                 capaLogica.crearMaterial(nuevoMatrerial);
@@ -228,7 +217,7 @@ public class Gestor {
         return msg;
     }
 
-    public String crearOtroMaterial(String id, int y, int m, int d, String pRestringido, String pTema, String idioma,
+    public String crearOtroMaterial(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
                                     String descripcion) {
         String msg;
         Material nuevoMatrerial;
@@ -244,10 +233,7 @@ public class Gestor {
         }
 
         if (capaLogica.buscarMaterial(id) == null) {
-            LocalDate fechaCompra = null;
-
             try {
-                fechaCompra = LocalDate.of(y, m, d);
                 if (pRestringido.equalsIgnoreCase("S")) {
                     nuevoMatrerial = new Otro(id, fechaCompra, true, tema, idioma, descripcion);
                 } else {
@@ -279,30 +265,35 @@ public class Gestor {
         return msg;
     }
 
-    public String buscarTemaPorNombre(String nombre) {
-        Tema tema = capaLogica.buscarTemaPorNombre(nombre);
-        String msg;
+    public Vector buscarTemaPorNombre(String pnombre) throws Exception {
+        Vector temas = null;
+        Vector datosTemas = null;
+        Tema tema;
+        temas = (new MultiTema()).buscarPorNombre(pnombre);
+        datosTemas = new Vector();
 
-        if (tema != null) {
-            msg = tema.toString();
-        } else {
-            msg = "El tema con nombre " + nombre + " no esta en el sistema.";
+        for (int i=0; i < temas.size(); i++) {
+            tema = ((Tema) temas.get(i));
+            TreeMap datosTema = new TreeMap();
+            datosTema.put("nombre", tema.getNombre());
+            datosTema.put("identificacion", tema.getId());
+
+            datosTemas.add(datosTema);
         }
 
-        return msg;
+        return datosTemas;
     }
 
-    public String buscarTemaPorId(String id) {
-        Tema tema = capaLogica.buscarTemaPorId(id);
-        String msg;
+    public TreeMap buscarTemaPorId(String pidentificacion) throws Exception {
+        TreeMap datos = null;
+        Tema tema = null;
+        String nombre;
+        datos = new TreeMap();
+        tema = (new MultiTema()).buscar(pidentificacion);
+        datos.put("nombre", tema.getNombre());
+        datos.put("identificacion", tema.getId());
 
-        if (tema != null) {
-            msg = tema.toString();
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
-
-        return msg;
+        return datos;
     }
 
     public String buscarUsuario(String id) {
@@ -375,62 +366,67 @@ public class Gestor {
         return msg;
     }
 
-    public String borrarMaterial(String id) {
-        String msg;
-        Material material = capaLogica.buscarMaterial(id);
-
-        if (material != null) {
-            capaLogica.borrarMaterial(material);
-            msg = "El material ha sido eliminado";
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
-
-        return msg;
+    public void borrarMaterial(String id) throws Exception {
+        Material material;
+        material = (new MultiMaterial()).buscar(id);
+        (new MultiMaterial()).borrar(material);
     }
 
-    public String borrarTema(String id) {
-        String msg;
-        Tema tema = capaLogica.buscarTemaPorId(id);
-
-        if (tema != null) {
-            capaLogica.borrarTema(tema);
-            msg = "El tema " + "con Id " + id + " ha sido eliminado";
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
-
-        return msg;
+    public void borrarTema(String pidTema) throws Exception {
+        Tema tema;
+        tema = (new MultiTema()).buscar(pidTema);
+        (new MultiTema()).borrar(tema);
     }
 
-    public String listarMateriales() {
-        ArrayList<Material> materiales = capaLogica.getListaMateriales();
-        int cantMateriales = materiales.size();
+//    public String listarMateriales() {
+//        ArrayList<Material> materiales = capaLogica.getListaMateriales();
+//        int cantMateriales = materiales.size();
+//        String resul = "";
+//
+//        if (cantMateriales > 0) {
+//            for(int i=0; i < cantMateriales; i++) {
+//                Material materialSel = materiales.get(i);
+//                String signatura = materialSel.getId();
+//                String tema = materialSel.getTema();
+//                String restringido = materialSel.getEsRestringido() ? "Restringido" : "No Restringido";
+//                String tipoMaterial = "";
+//
+//                if (materialSel.getClass().equals(Texto.class)) {
+//                    tipoMaterial = "Texto";
+//                } else if (materialSel.getClass().equals(Video.class)) {
+//                    tipoMaterial = "Video";
+//                } else if (materialSel.getClass().equals(Audio.class)) {
+//                    tipoMaterial = "Audio";
+//                } else if (materialSel.getClass().equals(Otro.class)) {
+//                    tipoMaterial = "Otro";
+//                }
+//
+//                resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial +
+//                        " | " + restringido + "\n";
+//            }
+//        } else {
+//            resul = "No hay materiales.";
+//        }
+//
+//        return resul;
+//    }
+
+    public String listarMateriales() throws Exception {
         String resul = "";
+        Vector datosMateriales = (new MultiMaterial()).buscarMateriales();
+        int cantMateriales = datosMateriales.size();
 
-        if (cantMateriales > 0) {
-            for(int i=0; i < cantMateriales; i++) {
-                Material materialSel = materiales.get(i);
-                String signatura = materialSel.getId();
-                String tema = materialSel.getTema();
-                String restringido = materialSel.getEsRestringido() ? "Restringido" : "No Restringido";
-                String tipoMaterial = "";
-
-                if (materialSel.getClass().equals(Texto.class)) {
-                    tipoMaterial = "Texto";
-                } else if (materialSel.getClass().equals(Video.class)) {
-                    tipoMaterial = "Video";
-                } else if (materialSel.getClass().equals(Audio.class)) {
-                    tipoMaterial = "Audio";
-                } else if (materialSel.getClass().equals(Otro.class)) {
-                    tipoMaterial = "Otro";
+        try {
+            if (cantMateriales > 0) {
+                for (int i = 0; i < datosMateriales.size(); i++) {
+                    resul += datosMateriales.get(i).toString();
                 }
-
-                resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial +
-                        " | " + restringido + "\n";
+            } else {
+                resul = "No hay Materiales";
             }
-        } else {
-            resul = "No hay materiales.";
+
+        } catch (Exception e) {
+            e.getMessage();
         }
 
         return resul;
@@ -466,20 +462,16 @@ public class Gestor {
         return resul;
     }
 
-    public String listarTemas() {
-        ArrayList<Tema> temas = capaLogica.getListaTemas();
-        int cantTemas = temas.size();
+    public String listarTemas() throws Exception {
         String resul = "";
+        Vector datosTemas = (new MultiTema()).buscarTemas();
 
-        if (cantTemas > 0) {
-            for (int i = 0; i < cantTemas; i++) {
-                String id = temas.get(i).getId();
-                String nombre = temas.get(i).getNombre();
-
-                resul += "Id: " + id + " | Tema: " + nombre + "\n";
+        try {
+            for (int i = 0; i < datosTemas.size(); i++) {
+                resul += datosTemas.get(i).toString();
             }
-        } else {
-            resul = "No hay temas.";
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return resul;

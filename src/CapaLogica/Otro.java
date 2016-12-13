@@ -17,7 +17,7 @@ public class Otro extends Material {
      * @param fechaCompra   the fecha compra
      * @param tema          the tema
      */
-    public Otro(String id, LocalDate fechaCompra, String tema) {
+    public Otro(String id, String fechaCompra, String tema) {
         super(id, fechaCompra, tema);
     }
 
@@ -29,7 +29,7 @@ public class Otro extends Material {
      * @param idioma        the idioma
      * @param descripcion   the descripcion
      */
-    public Otro(String id, LocalDate fechaCompra, String tema, String idioma, String descripcion) {
+    public Otro(String id, String fechaCompra, String tema, String idioma, String descripcion) {
         super(id, fechaCompra, tema, idioma);
         setDescripcion(descripcion);
     }
@@ -43,8 +43,8 @@ public class Otro extends Material {
      * @param idioma        the idioma
      * @param descripcion   the descripcion
      */
-    public Otro(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String descripcion) {
-        super(id, fechaCompra, esRestringido, tema, idioma);
+    public Otro(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String descripcion) {
+        super(id, idioma, fechaCompra, esRestringido, tema);
         setDescripcion(descripcion);
     }
 

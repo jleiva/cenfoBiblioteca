@@ -19,7 +19,7 @@ public class Audio extends Material {
      * @param fechaCompra   the fecha compra
      * @param tema          the tema
      */
-    public Audio(String id, LocalDate fechaCompra, String tema) {
+    public Audio(String id, String fechaCompra, String tema) {
         super(id, fechaCompra, tema);
     }
 
@@ -32,7 +32,7 @@ public class Audio extends Material {
      * @param formato       the formato
      * @param duracion      the duracion
      */
-    public Audio(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+    public Audio(String id, String fechaCompra, String tema, String idioma, String formato,
                  Duration duracion) {
         super(id, fechaCompra, tema, idioma);
         setFormato(formato);
@@ -49,9 +49,9 @@ public class Audio extends Material {
      * @param formato       the formato
      * @param duracion      the duracion
      */
-    public Audio(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
+    public Audio(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  Duration duracion) {
-        super(id, fechaCompra, esRestringido, tema, idioma);
+        super(id, idioma, fechaCompra, esRestringido, tema);
         setFormato(formato);
         setDuracion(duracion);
     }

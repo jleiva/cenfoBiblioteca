@@ -22,8 +22,9 @@ public class Video extends Material {
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Video(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
-        super(id, fechaCompra, esRestringido, tema);
+    public Video(String id, String fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, tema);
+        setEsRestringido(esRestringido);
     }
 
     /**
@@ -36,7 +37,7 @@ public class Video extends Material {
      * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(String id, LocalDate fechaCompra, String tema, String idioma, String formato,
+    public Video(String id, String fechaCompra, String tema, String idioma, String formato,
                  String director, Duration duracion) {
         super(id, fechaCompra, tema, idioma);
         setFormato(formato);
@@ -55,9 +56,10 @@ public class Video extends Material {
      * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
+    public Video(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  String director, Duration duracion) {
-        super(id, fechaCompra, esRestringido, tema, idioma);
+        super(id, fechaCompra, tema, idioma);
+        setEsRestringido(esRestringido);
         setFormato(formato);
         setDirector(director);
         setDuracion(duracion);

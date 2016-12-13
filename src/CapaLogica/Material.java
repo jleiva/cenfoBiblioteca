@@ -8,68 +8,51 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-public abstract class Material {
+public class Material {
     protected String id;
-    protected String idioma = "No Indicado";
-    protected LocalDate fechaCompra;
+    protected String idioma = "Español"; // default
+    protected String fechaCompra;
     protected boolean esRestringido; // default es false
     protected String tema;
 
     /**
      * Instantiates a new CapaLogica.Material.
      *
-     * @param fechaCompra   the fecha compra
-     * @param tema          the tema
+     * @param id   the id
+     * @param tema the tema
      */
-    public Material(String id, LocalDate fechaCompra, String tema) {
-        setFechaCompra(fechaCompra);
-        setEsRestringido(esRestringido);
-        setTema(tema);
+    public Material(String id, String fechaCompra, String tema) {
         setId(id);
+        setFechaCompra(fechaCompra);
+        setTema(tema);
+        setEsRestringido(esRestringido);
         setIdioma(idioma);
     }
 
     /**
      * Instantiates a new CapaLogica.Material.
      *
-     * @param fechaCompra   the fecha compra
-     * @param tema          the tema
-     * @param idioma        the idioma
+     * @param id     the id
+     * @param idioma the idioma
+     * @param tema   the tema
      */
-    public Material(String id, LocalDate fechaCompra, String idioma, String tema) {
-        setFechaCompra(fechaCompra);
-        setEsRestringido(esRestringido);
-        setTema(tema);
-        setId(id);
+    public Material(String id, String fechaCompra, String idioma, String tema) {
+        this(id, fechaCompra, tema);
         setIdioma(idioma);
     }
 
     /**
      * Instantiates a new CapaLogica.Material.
      *
-     * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
-     * @param tema          the tema
-     */
-    public Material(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
-        setFechaCompra(fechaCompra);
-        setEsRestringido(esRestringido);
-        setTema(tema);
-        setId(id);
-        setIdioma(idioma);
-    }
-
-    /**
-     * Instantiates a new CapaLogica.Material.
-     *
-     * @param fechaCompra   the fecha compra
+     * @param id            the id
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma
      */
-    public Material(String id, LocalDate fechaCompra, boolean esRestringido, String tema, String idioma) {
-        this(id, fechaCompra, esRestringido, tema);
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema) {
+        this(id, fechaCompra, tema);
         setIdioma(idioma);
+        setEsRestringido(esRestringido);
     }
 
     /**
@@ -77,7 +60,7 @@ public abstract class Material {
      *
      * @param fechaCompra the fecha compra
      */
-    public void setFechaCompra(LocalDate fechaCompra) {
+    public void setFechaCompra(String fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
@@ -108,6 +91,11 @@ public abstract class Material {
         this.tema = tema;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(String id) {
         this.id = id;
     }
@@ -126,7 +114,7 @@ public abstract class Material {
      *
      * @return the fecha compra
      */
-    public LocalDate getFechaCompra() {
+    public String getFechaCompra() {
         return fechaCompra;
     }
 
@@ -148,6 +136,11 @@ public abstract class Material {
         return idioma;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public String getId() {
         return id;
     }

@@ -16,39 +16,37 @@ public class UI {
         // Agrego contenido para pruebas, despues debe cargar el menu y submenus
 
         // Temas
-        out.println(gestor.crearTema("Ciencias"));
-        out.println(gestor.crearTema("Sociales"));
-        out.println(gestor.crearTema("Ingles"));
-        out.println(gestor.crearTema("Ciencias")); // No se debe agregar
-        out.println(gestor.crearTema("Matematicas"));
-        out.println(gestor.crearTema("Quimica"));
-        out.println(gestor.crearTema("Fisica Matematica"));
-        out.println(gestor.crearTema("Español"));
+//        out.println(gestor.crearTema("Sociales"));
+//        out.println(gestor.crearTema("Ingles"));
+//        out.println(gestor.crearTema("Matematicas"));
+//        out.println(gestor.crearTema("Quimica"));
+//        out.println(gestor.crearTema("Fisica Matematica"));
+//        out.println(gestor.crearTema("Español"));
 
         // Usuarios
-        out.println(gestor.crearEstudiante("Jose", "Leiva", "5324", "BSOFT", 10));
-        out.println(gestor.crearEstudiante("Pedro", "Pica", "6789", "Redes", 5));
-        out.println(gestor.crearEstudiante("Luis", "Marmol", "5324", "Redes", 7)); // No se debe agregar, id repetido
-        out.println(gestor.crearAdministrativo("Pablo", "Marmol", "1234", 'A', 48));
-        out.println(gestor.crearAdministrativo("Javier", "Caos", "5151", 'B', 30));
-        out.println(gestor.crearProfesor("Juan", "Solano", "2345", 1, 2016, 10, 1));
-        out.println(gestor.crearProfesor("Diego", "Maradona", "11171", 2, 2016, 5, 1));
+//        out.println(gestor.crearEstudiante("Jose", "Leiva", "5324", "BSOFT", 10));
+//        out.println(gestor.crearEstudiante("Pedro", "Pica", "6789", "Redes", 5));
+//        out.println(gestor.crearEstudiante("Luis", "Marmol", "5324", "Redes", 7)); // No se debe agregar, id repetido
+//        out.println(gestor.crearAdministrativo("Pablo", "Marmol", "1234", 'A', 48));
+//        out.println(gestor.crearAdministrativo("Javier", "Caos", "5151", 'B', 30));
+//        out.println(gestor.crearProfesor("Juan", "Solano", "2345", 1, 2016, 10, 1));
+//        out.println(gestor.crearProfesor("Diego", "Maradona", "11171", 2, 2016, 5, 1));
 
         // Materiales
-        out.println(gestor.crearTexto("ISBN001", 2015, 10, 1, "N", "Matematica Basica", "Pedro Pablo", "Matematicas", "Aleman", 2000, 10, 1, 200));
-        out.println(gestor.crearOtroMaterial("1117", 2015, 10, 1, "S", "Ciencias", "Ingles", "Folleto de Comics"));
-        out.println(gestor.crearOtroMaterial("ISBN1223", 2013, 10, 1, "S", "Musica", "Ingles", "Folleto de Letras"));
-        out.println(gestor.crearVideo("V201", 2015, 10, 1, "S", "Ciencias", "Ingles", "VHS", "Laura Algo", 30));
-        out.println(gestor.crearAudio("A101", 2016, 10, 1, "s", "Sociales", "Ingles", "CD", 120));
-        out.println(gestor.crearAudio("A222", 2016, 10, 1, "n", "Musica", "Español", "CD", 10));
+//        out.println(gestor.crearTexto("ISBN001", 2015, 10, 1, "N", "Matematica Basica", "Pedro Pablo", "Matematicas", "Aleman", 2000, 10, 1, 200));
+//        out.println(gestor.crearOtroMaterial("1117", 2015, 10, 1, "S", "Ciencias", "Ingles", "Folleto de Comics"));
+//        out.println(gestor.crearOtroMaterial("ISBN1223", 2013, 10, 1, "S", "Musica", "Ingles", "Folleto de Letras"));
+//        out.println(gestor.crearVideo("V201", 2015, 10, 1, "S", "Ciencias", "Ingles", "VHS", "Laura Algo", 30));
+//        out.println(gestor.crearAudio("A101", 2016, 10, 1, "s", "Sociales", "Ingles", "CD", 120));
+//        out.println(gestor.crearAudio("A222", 2016, 10, 1, "n", "Musica", "Español", "CD", 10));
 
         // Reservaciones
-        out.println(gestor.crearReservacion("2345", "ISBN001"));
-        out.println(gestor.crearReservacion("5324", "1117"));
-        out.println(gestor.crearReservacion("1987", "ISBN001")); // Usuario no existe, no se debe crear
-        out.println(gestor.crearReservacion("2345", "A101"));
-        out.println(gestor.crearReservacion("5324", "V201"));
-        out.println(gestor.crearReservacion("5324", "ISBN001"));
+//        out.println(gestor.crearReservacion("2345", "ISBN001"));
+//        out.println(gestor.crearReservacion("5324", "1117"));
+//        out.println(gestor.crearReservacion("1987", "ISBN001")); // Usuario no existe, no se debe crear
+//        out.println(gestor.crearReservacion("2345", "A101"));
+//        out.println(gestor.crearReservacion("5324", "V201"));
+//        out.println(gestor.crearReservacion("5324", "ISBN001"));
 
         do {
             menuAdmin();
@@ -268,7 +266,13 @@ public class UI {
             switch (opc) {
                 case 1:
                     out.println("============== Lista de Materiales ==============");
-                    out.println(gestor.listarMateriales());
+
+                    try {
+                        out.println(gestor.listarMateriales());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     break;
 
                 case 2:
@@ -283,18 +287,13 @@ public class UI {
                         out.println("No se creo el Material.");
                         return;
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        out.println(e.getMessage());
                     }
 
                     out.println("ISBN: ");
                     String isbn = in.readLine();
                     out.println("Fecha de compra:");
-                    out.println("Dia:");
-                    int d = Integer.parseInt(in.readLine());
-                    out.println("Mes:");
-                    int m = Integer.parseInt(in.readLine());
-                    out.println("Año:");
-                    int y = Integer.parseInt(in.readLine());
+                    String fechaCompra = in.readLine();
                     out.println("Material es Restringido? s/n ");
                     String esRestringido = in.readLine();
                     out.println("Tema: ");
@@ -309,16 +308,12 @@ public class UI {
                             out.println("Autor: ");
                             String autor = in.readLine();
                             out.println("Fecha publicacion:");
-                            out.println("Dia:");
-                            int pDia = Integer.parseInt(in.readLine());
-                            out.println("Mes:");
-                            int pMes = Integer.parseInt(in.readLine());
-                            out.println("Año:");
-                            int pAno = Integer.parseInt(in.readLine());
+                            String fechaPublicacion = in.readLine();
                             out.println("Numero de paginas: ");
                             int paginas = Integer.parseInt(in.readLine());
-                            out.println(gestor.crearTexto(isbn, y, m, d, esRestringido, titulo, autor, tema, idioma,
-                                    pAno, pMes, pDia, paginas));
+
+                            out.println(gestor.crearTexto(isbn, fechaCompra, esRestringido, titulo, autor, tema, idioma,
+                                    fechaPublicacion, paginas));
                             break;
 
                         case 2:
@@ -331,7 +326,7 @@ public class UI {
                                 duracion = Integer.parseInt(in.readLine());
                                 out.println("Director: ");
                                 String director = in.readLine();
-                                out.println(gestor.crearVideo(isbn, y, m, d, esRestringido, tema, idioma, formato,
+                                out.println(gestor.crearVideo(isbn, fechaCompra, esRestringido, tema, idioma, formato,
                                         director, duracion));
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
@@ -348,7 +343,7 @@ public class UI {
 
                             try {
                                 aDuracion = Integer.parseInt(in.readLine());
-                                out.println(gestor.crearAudio(isbn, y, m, d, esRestringido, tema, idioma, aFormato,
+                                out.println(gestor.crearAudio(isbn, fechaCompra, esRestringido, tema, idioma, aFormato,
                                         aDuracion));
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
@@ -360,7 +355,7 @@ public class UI {
                         case 4:
                             out.println("Descripcion: ");
                             String descripcion = in.readLine();
-                            out.println(gestor.crearOtroMaterial(isbn, y, m, d, esRestringido, tema, idioma, descripcion));
+                            out.println(gestor.crearOtroMaterial(isbn, fechaCompra, esRestringido, tema, idioma, descripcion));
                             break;
 
                         default:
@@ -373,7 +368,11 @@ public class UI {
                 case 3:
                     out.println("============== Buscar Material ==============");
                     out.println();
-                    out.println(gestor.listarMateriales());
+                    try {
+                        out.println(gestor.listarMateriales());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     out.println("Indique el ISBN del Material: ");
                     materialId = in.readLine();
                     out.println();
@@ -385,10 +384,20 @@ public class UI {
                 case 4:
                     out.println("============== Eliminar Material ==============");
                     out.println();
-                    out.println(gestor.listarMateriales());
+                    try {
+                        out.println(gestor.listarMateriales());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Indique el ISBN del Material a eliminar: ");
                     materialId = in.readLine();
-                    out.println(gestor.borrarMaterial(materialId));
+                    try {
+                        gestor.borrarMaterial(materialId);
+                        out.println("Material eliminado del sistema.");
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 5:
@@ -413,9 +422,9 @@ public class UI {
             out.println("1. Ver lista de Temas.");
             out.println("2. Registrar nuevo Tema.");
             out.println("3. Buscar Tema.");
-            out.println("4. Eliminar Tema");
-            out.println("5. Modificar Tema");
-            out.println("0. Ir a Menu Principal");
+            out.println("4. Eliminar Tema.");
+            out.println("5. Modificar Tema.");
+            out.println("0. Ir a Menu Principal.");
             out.println();
 
             opc = leerOpcionSelecionada();
@@ -423,7 +432,14 @@ public class UI {
             switch (opc) {
                 case 1:
                     out.println("============== Lista de Temas ==============");
-                    out.println(gestor.listarTemas());
+
+                    try {
+                        out.println(gestor.listarTemas());
+                    }
+                    catch (Exception ex) {
+                        out.print(ex.getMessage());
+                    }
+
                     break;
 
                 case 2:
@@ -431,30 +447,61 @@ public class UI {
                     out.println("Nombre: ");
                     String nombreTema = in.readLine();
 
-                    gestor.crearTema(nombreTema);
+                    try {
+                        gestor.crearTema(nombreTema);
+                        out.print("Tema agregado al sistema.");
+                        out.println();
+                    }
+                    catch (Exception ex) {
+                        out.print("El número de identificación ya está en el sistema.");
+                    }
+
                     break;
 
                 case 3:
                     out.println("============== Buscar Tema ==============");
                     out.println();
-                    out.println(gestor.listarTemas());
+
+                    try {
+                        out.println(gestor.listarTemas());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Ingrese el Id del Tema: ");
                     String criterio = in.readLine();
 
                     out.println();
                     out.println("======= Datos del Tema =======");
-                    out.println(gestor.buscarTemaPorId(criterio));
-                    out.println("=================================");
+
+                    try {
+                        out.println(gestor.buscarTemaPorId(criterio));
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
 
                     break;
 
                 case 4:
                     out.println("============== Eliminar Tema ==============");
                     out.println();
-                    out.println(gestor.listarTemas());
+
+                    try {
+                        out.println(gestor.listarTemas());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Indique el Id del Tema a eliminar: ");
                     String temaId = in.readLine();
-                    out.println(gestor.borrarTema(temaId));
+
+                    try {
+                        gestor.borrarTema(temaId);
+                        out.println("Tema eliminado del sistema.");
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     break;
 
                 case 5:
@@ -500,7 +547,11 @@ public class UI {
                     out.println("============== Registrar Reservacion ==============");
                     out.println();
                     out.println("Materiales Disponibles:");
-                    out.println(gestor.listarMateriales());
+                    try {
+                        out.println(gestor.listarMateriales());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     out.println("Id Material a reservar: ");
                     idReserva = in.readLine();
                     out.println("Id Usuario: ");

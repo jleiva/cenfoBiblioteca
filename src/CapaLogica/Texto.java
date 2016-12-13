@@ -11,55 +11,21 @@ import java.time.LocalDate;
 public class Texto extends Material {
     private String titulo;
     private String nombreAutor;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
     private int numPaginas;
 
     /**
      * Instantiates a new CapaLogica.Texto.
      *
-     * @param fechaCompra   the fecha compra
      * @param tema          the tema
      */
-    public Texto(String id, LocalDate fechaCompra, String tema) {
+    public Texto(String id, String fechaCompra, String tema) {
         super(id, fechaCompra, tema);
     }
 
     /**
      * Instantiates a new CapaLogica.Texto.
      *
-     * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
-     * @param tema          the tema
-     */
-    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String tema) {
-        super(id, fechaCompra, esRestringido, tema);
-    }
-
-    /**
-     * Instantiates a new CapaLogica.Texto.
-     *
-     * @param fechaCompra      the fecha compra
-     * @param titulo           the titulo
-     * @param nombreAutor      the nombre autor
-     * @param tema             the tema
-     * @param idioma           the idioma
-     * @param fechaPublicacion the fecha publicacion
-     * @param numPaginas       the num paginas
-     */
-    public Texto(String id, LocalDate fechaCompra, String titulo, String nombreAutor,
-                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
-        super(id, fechaCompra, tema, idioma);
-        setIdioma(idioma);
-        setNombreAutor(nombreAutor);
-        setTitulo(titulo);
-        setFechaPublicacion(fechaPublicacion);
-        setNumPaginas(numPaginas);
-    }
-
-    /**
-     * Instantiates a new CapaLogica.Texto.
-     *
-     * @param fechaCompra      the fecha compra
      * @param esRestringido    the es restringido
      * @param titulo           the titulo
      * @param nombreAutor      the nombre autor
@@ -68,10 +34,9 @@ public class Texto extends Material {
      * @param fechaPublicacion the fecha publicacion
      * @param numPaginas       the num paginas
      */
-    public Texto(String id, LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
-                 String tema, String idioma, LocalDate fechaPublicacion, int numPaginas) {
-        super(id, fechaCompra, esRestringido, tema, idioma);
-        setIdioma(idioma);
+    public Texto(String id, String fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
+                 String tema, String idioma, String fechaPublicacion, int numPaginas) {
+        super(id, idioma, fechaCompra, esRestringido, tema);
         setNombreAutor(nombreAutor);
         setTitulo(titulo);
         setFechaPublicacion(fechaPublicacion);
@@ -101,7 +66,7 @@ public class Texto extends Material {
      *
      * @param fechaPublicacion the fecha publicacion
      */
-    public void setFechaPublicacion(LocalDate fechaPublicacion) {
+    public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 
@@ -137,7 +102,7 @@ public class Texto extends Material {
      *
      * @return the fecha publicacion
      */
-    public LocalDate getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 

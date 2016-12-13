@@ -22,6 +22,11 @@ public class Tema {
         this.nombre = nombre;
     }
 
+    public Tema(String id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     /**
      * Gets id.
      *
