@@ -2,7 +2,6 @@ package Multi;
 
 import CapaAccesoBD.Conector;
 import CapaLogica.Material;
-import CapaLogica.Tema;
 
 import java.util.Vector;
 
@@ -16,7 +15,7 @@ public class MultiMaterial {
             Conector.getConector().ejecutarSQL(sql);
         }
         catch (Exception e) {
-            throw new Exception ("Error al borrar el material.");
+            e.printStackTrace();
         }
     }
 
@@ -60,5 +59,23 @@ public class MultiMaterial {
 
         rs.close();
         return materiales;
+    }
+
+    public Material crear(String id, String idioma, String fechaCompra, boolean esRestringido, String tema)
+            throws Exception {
+        Material material = null;
+        String sql;
+        sql = "INSERT INTO TMaterial "+
+                "(id, idioma, fechaCompra, esRestringido, tema) "+
+                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', '"+esRestringido+"', '"+tema+"');";
+        try {
+            Conector.getConector().ejecutarSQL(sql);
+            material = new Material(id, idioma, fechaCompra, esRestringido, tema);
+        }
+        catch (Exception e) {
+            throw new Exception ("El número de ISBN ya está en el sistema.");
+        }
+
+        return material;
     }
 }

@@ -292,8 +292,9 @@ public class UI {
 
                     out.println("ISBN: ");
                     String isbn = in.readLine();
-                    out.println("Fecha de compra:");
+                    out.println("Fecha de compra (dd/mm/yy):");
                     String fechaCompra = in.readLine();
+
                     out.println("Material es Restringido? s/n ");
                     String esRestringido = in.readLine();
                     out.println("Tema: ");
@@ -307,30 +308,41 @@ public class UI {
                             String titulo = in.readLine();
                             out.println("Autor: ");
                             String autor = in.readLine();
-                            out.println("Fecha publicacion:");
+                            out.println("Fecha publicacion (dd/mm/yy):");
                             String fechaPublicacion = in.readLine();
                             out.println("Numero de paginas: ");
                             int paginas = Integer.parseInt(in.readLine());
 
-                            out.println(gestor.crearTexto(isbn, fechaCompra, esRestringido, titulo, autor, tema, idioma,
-                                    fechaPublicacion, paginas));
+                            try {
+                                gestor.crearTexto(isbn, fechaCompra, esRestringido, titulo, autor, tema, idioma,
+                                        fechaPublicacion, paginas);
+                                out.println("Material agregado.");
+                            } catch (Exception e) {
+                                out.println(e.getMessage());
+                            }
                             break;
 
                         case 2:
                             out.println("Formato. VHS, VCD o DVD ");
                             String formato = in.readLine();
                             out.println("Duracion (en minutos): ");
-                            long duracion = 0;
+                            int duracion = 0;
 
                             try {
                                 duracion = Integer.parseInt(in.readLine());
                                 out.println("Director: ");
                                 String director = in.readLine();
-                                out.println(gestor.crearVideo(isbn, fechaCompra, esRestringido, tema, idioma, formato,
-                                        director, duracion));
+
+                                try {
+                                    gestor.crearVideo(isbn, fechaCompra, esRestringido, tema, idioma, formato,
+                                            director, duracion);
+                                    out.println("Material agregado.");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
-                                out.println("No se creo el Material.");
+                                out.println(e.getMessage());
                             }
 
                             break;
@@ -339,15 +351,21 @@ public class UI {
                             out.println("Formato. Casete, CD o DVD ");
                             String aFormato = in.readLine();
                             out.println("Duracion (en minutos): ");
-                            long aDuracion = 0;
+                            int aDuracion = 0;
 
                             try {
                                 aDuracion = Integer.parseInt(in.readLine());
-                                out.println(gestor.crearAudio(isbn, fechaCompra, esRestringido, tema, idioma, aFormato,
-                                        aDuracion));
+
+                                try {
+                                    gestor.crearAudio(isbn, fechaCompra, esRestringido, tema, idioma, aFormato,
+                                            aDuracion);
+                                    out.println("Material agregado.");
+                                } catch (Exception e) {
+                                    out.println(e.getMessage());
+                                }
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
-                                out.println("No se creo el Material.");
+                                out.println(e.getMessage());
                             }
 
                             break;
@@ -355,7 +373,12 @@ public class UI {
                         case 4:
                             out.println("Descripcion: ");
                             String descripcion = in.readLine();
-                            out.println(gestor.crearOtroMaterial(isbn, fechaCompra, esRestringido, tema, idioma, descripcion));
+                            try {
+                                gestor.crearOtroMaterial(isbn, fechaCompra, esRestringido, tema, idioma, descripcion);
+                                out.println("Material agregado.");
+                            } catch (Exception e) {
+                                out.println(e.getMessage());
+                            }
                             break;
 
                         default:
@@ -371,14 +394,18 @@ public class UI {
                     try {
                         out.println(gestor.listarMateriales());
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        out.println(e.getMessage());
                     }
                     out.println("Indique el ISBN del Material: ");
                     materialId = in.readLine();
                     out.println();
+
                     out.println("======= Datos del Material =======");
-                    out.println(gestor.buscarMaterial(materialId));
-                    out.println("=================================");
+                    try {
+                        out.println(gestor.buscarMaterial(materialId));
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 4:

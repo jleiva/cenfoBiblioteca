@@ -48,6 +48,7 @@ public class Otro extends Material {
         setDescripcion(descripcion);
     }
 
+
     /**
      * Sets descripcion.
      *

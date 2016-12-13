@@ -104,165 +104,80 @@ public class Gestor {
         tema = (new MultiTema()).crear(pnombre);
     }
 
-    public String crearTexto(String id, String fechaCompra, String pRestringido, String titulo, String nombreAutor,
-                             String pTema, String idioma, String fechaPublicacion, int numPaginas) {
-        String msg;
-        Material nuevoMatrerial;
-        Tema nuevoTema;
-        String tema;
 
-        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
-            nuevoTema = new Tema(pTema);
-            tema = nuevoTema.getNombre();
-            capaLogica.crearTema(nuevoTema);
+
+    public void crearTexto(String id, String fechaCompra, String pRestringido, String titulo, String nombreAutor,
+                             String pTema, String idioma, String fechaPublicacion, int numPaginas) throws Exception {
+        Material texto;
+
+        if (pRestringido.equalsIgnoreCase("S")) {
+            texto = (new MultiTexto()).crear(id, fechaCompra, true, titulo, nombreAutor, pTema, idioma,
+                    fechaPublicacion, numPaginas);
         } else {
-            tema = pTema;
+            texto = (new MultiTexto()).crear(id, fechaCompra, false, titulo, nombreAutor, pTema, idioma,
+                    fechaPublicacion, numPaginas);
         }
-
-        if (capaLogica.buscarMaterial(id) == null) {
-            try {
-                if (pRestringido.equalsIgnoreCase("S")) {
-                    nuevoMatrerial = new Texto(id, fechaCompra, true, titulo, nombreAutor, tema, idioma,
-                            fechaPublicacion, numPaginas);
-                } else {
-                    nuevoMatrerial = new Texto(id, fechaCompra, false, titulo, nombreAutor, tema, idioma,
-                            fechaPublicacion, numPaginas);
-                }
-
-                capaLogica.crearMaterial(nuevoMatrerial);
-                msg = "El material ha sido agregado";
-            } catch (DateTimeException e) {
-                msg = "[Error] Fecha invalida, no se creo el Material.";
-            }
-
-        } else {
-            msg = "El numero de identificacion " + id + " ya esta en el sistema.";
-        }
-
-        return msg;
     }
 
-    public String crearVideo(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
-                             String formato, String director, long dMinutos) {
-        String msg;
-        Material nuevoMatrerial;
-        Tema nuevoTema;
-        String tema;
+    public void crearVideo(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
+                             String formato, String director, int duracion) throws Exception {
+        Material video;
 
-        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
-            nuevoTema = new Tema(pTema);
-            tema = nuevoTema.getNombre();
-            capaLogica.crearTema(nuevoTema);
+        if (pRestringido.equalsIgnoreCase("S")) {
+            video = (new MultiVideo()).crear(id, fechaCompra, true, pTema, idioma, formato, director, duracion);
         } else {
-            tema = pTema;
+            video = (new MultiVideo()).crear(id, fechaCompra, false, pTema, idioma, formato, director, duracion);
         }
-
-        if (capaLogica.buscarMaterial(id) == null) {
-            Duration duracion = Duration.ofMinutes(dMinutos);
-
-            try {
-                if (pRestringido.equalsIgnoreCase("S")) {
-                    nuevoMatrerial = new Video(id, fechaCompra, true, tema, idioma, formato, director, duracion);
-                } else {
-                    nuevoMatrerial = new Video(id, fechaCompra, tema, idioma, formato, director, duracion);
-                }
-
-                capaLogica.crearMaterial(nuevoMatrerial);
-                msg = "El material ha sido agregado";
-            } catch (Exception e) {
-                msg = "[Error] Fecha invalida, no se creo el Material";
-            }
-
-        } else {
-            msg = "El numero de identificacion " + id + " ya esta en el sistema.";
-        }
-
-        return msg;
     }
 
-    public String crearAudio(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
-                             String formato, long dMinutos) {
-        String msg;
-        Material nuevoMatrerial;
-        Tema nuevoTema;
-        String tema;
+    public void crearAudio(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
+                             String formato, int duracion) throws Exception {
+        Material audio;
 
-        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
-            nuevoTema = new Tema(pTema);
-            tema = nuevoTema.getNombre();
-            capaLogica.crearTema(nuevoTema);
+        if (pRestringido.equalsIgnoreCase("S")) {
+            audio = (new MultiAudio()).crear(id, fechaCompra, true, pTema, idioma, formato, duracion);
         } else {
-            tema = pTema;
+            audio = (new MultiAudio()).crear(id, fechaCompra, false, pTema, idioma, formato, duracion);
         }
-
-        if (capaLogica.buscarMaterial(id) == null) {
-            Duration duracion = Duration.ofMinutes(dMinutos);
-
-            try {
-                if (pRestringido.equalsIgnoreCase("S")) {
-                    nuevoMatrerial = new Audio(id, fechaCompra, true, tema, idioma, formato, duracion);
-                } else {
-                    nuevoMatrerial = new Audio(id, fechaCompra, false, tema, idioma, formato, duracion);
-                }
-
-                capaLogica.crearMaterial(nuevoMatrerial);
-                msg = "El material ha sido agregado";
-            } catch (Exception e) {
-                msg = "[Error] Fecha invalida, no se creo el Material";
-            }
-        } else {
-            msg = "El numero de identificacion " + id + " ya esta en el sistema.";
-        }
-
-        return msg;
     }
 
-    public String crearOtroMaterial(String id, String fechaCompra, String pRestringido, String pTema, String idioma,
-                                    String descripcion) {
-        String msg;
-        Material nuevoMatrerial;
-        Tema nuevoTema;
-        String tema;
+    public void crearOtroMaterial(String id, String fechaCompra, String esRestringido, String tema, String idioma,
+                                  String descripcion) throws Exception {
+        Material otro;
 
-        if (capaLogica.buscarTemaPorNombre(pTema) == null) {
-            nuevoTema = new Tema(pTema);
-            tema = nuevoTema.getNombre();
-            capaLogica.crearTema(nuevoTema);
+        if (esRestringido.equalsIgnoreCase("S")) {
+            otro = (new MultiOtro()).crear(id, fechaCompra, true, tema, idioma, descripcion);
         } else {
-            tema = pTema;
+            otro = (new MultiOtro()).crear(id, fechaCompra, false, tema, idioma, descripcion);
         }
-
-        if (capaLogica.buscarMaterial(id) == null) {
-            try {
-                if (pRestringido.equalsIgnoreCase("S")) {
-                    nuevoMatrerial = new Otro(id, fechaCompra, true, tema, idioma, descripcion);
-                } else {
-                    nuevoMatrerial = new Otro(id, fechaCompra, tema, idioma, descripcion);
-                }
-
-                capaLogica.crearMaterial(nuevoMatrerial);
-                msg = "El material ha sido agregado";
-            } catch (Exception e) {
-                msg = "[Error] Fecha invalida, no se creo el Material";
-            }
-        } else {
-            msg = "El numero de identificacion " + id + " ya esta en el sistema.";
-        }
-
-        return msg;
     }
 
-    public String buscarMaterial(String id) {
-        Material material = capaLogica.buscarMaterial(id);
-        String msg;
+//    public String buscarMaterial(String id) {
+//        Material material = capaLogica.buscarMaterial(id);
+//        String msg;
+//
+//        if (material != null) {
+//            msg = material.toString();
+//        } else {
+//            msg = "El numero de identificacion " + id + " no esta en el sistema.";
+//        }
+//
+//        return msg;
+//    }
 
-        if (material != null) {
-            msg = material.toString();
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
+    public TreeMap buscarMaterial(String pidentificacion) throws Exception {
+        TreeMap datos = null;
+        Material material = null;
+        String nombre;
+        datos = new TreeMap();
+        material = (new MultiMaterial()).buscar(pidentificacion);
+        datos.put("id", material.getId());
+        datos.put("idioma", material.getIdioma());
+        datos.put("fecha compra", material.getFechaCompra());
+        datos.put("tema", material.getTema());
+        datos.put("es restringido", material.getEsRestringido());
 
-        return msg;
+        return datos;
     }
 
     public Vector buscarTemaPorNombre(String pnombre) throws Exception {
@@ -377,39 +292,6 @@ public class Gestor {
         tema = (new MultiTema()).buscar(pidTema);
         (new MultiTema()).borrar(tema);
     }
-
-//    public String listarMateriales() {
-//        ArrayList<Material> materiales = capaLogica.getListaMateriales();
-//        int cantMateriales = materiales.size();
-//        String resul = "";
-//
-//        if (cantMateriales > 0) {
-//            for(int i=0; i < cantMateriales; i++) {
-//                Material materialSel = materiales.get(i);
-//                String signatura = materialSel.getId();
-//                String tema = materialSel.getTema();
-//                String restringido = materialSel.getEsRestringido() ? "Restringido" : "No Restringido";
-//                String tipoMaterial = "";
-//
-//                if (materialSel.getClass().equals(Texto.class)) {
-//                    tipoMaterial = "Texto";
-//                } else if (materialSel.getClass().equals(Video.class)) {
-//                    tipoMaterial = "Video";
-//                } else if (materialSel.getClass().equals(Audio.class)) {
-//                    tipoMaterial = "Audio";
-//                } else if (materialSel.getClass().equals(Otro.class)) {
-//                    tipoMaterial = "Otro";
-//                }
-//
-//                resul += "Signatura: " + signatura + " | Tema: " + tema + " | Tipo Material: " + tipoMaterial +
-//                        " | " + restringido + "\n";
-//            }
-//        } else {
-//            resul = "No hay materiales.";
-//        }
-//
-//        return resul;
-//    }
 
     public String listarMateriales() throws Exception {
         String resul = "";

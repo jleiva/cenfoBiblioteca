@@ -152,11 +152,11 @@ public class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        String resul = "Id: " + getId() + "\n";
+        String resul = "Id: " + getId() + " - ";
 
-        resul += "Tema: " + getTema() + "\n";
-        resul += "Idioma: " + getIdioma() + "\n";
-        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + "\n";
+        resul += "Tema: " + getTema() + " - ";
+        resul += "Idioma: " + getIdioma() + " - ";
+        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + " - ";
         resul += "Fecha Compra: " + getFechaCompra() + "\n";
 
         return resul;

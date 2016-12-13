@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Video extends Material {
     private String formato;
     private String director;
-    private Duration duracion;
+    private int duracion;
 
 
     /**
@@ -38,7 +38,7 @@ public class Video extends Material {
      * @param duracion      the duracion
      */
     public Video(String id, String fechaCompra, String tema, String idioma, String formato,
-                 String director, Duration duracion) {
+                 String director, int duracion) {
         super(id, fechaCompra, tema, idioma);
         setFormato(formato);
         setDirector(director);
@@ -57,7 +57,7 @@ public class Video extends Material {
      * @param duracion      the duracion
      */
     public Video(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
-                 String director, Duration duracion) {
+                 String director, int duracion) {
         super(id, fechaCompra, tema, idioma);
         setEsRestringido(esRestringido);
         setFormato(formato);
@@ -88,7 +88,7 @@ public class Video extends Material {
      *
      * @param duracion the duracion
      */
-    public void setDuracion(Duration duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -115,7 +115,7 @@ public class Video extends Material {
      *
      * @return the duracion
      */
-    public Duration getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
@@ -124,7 +124,7 @@ public class Video extends Material {
 
         resul += "Formato: " + getFormato() + "\n";
         resul += "Director: " + getDirector() + "\n";
-        resul += "Duracion: " + getDuracion().toMinutes() + " minutos" + "\n";
+        resul += "Duracion: " + getDuracion() + " minutos" + "\n";
         return resul;
     }
 }
