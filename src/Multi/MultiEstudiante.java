@@ -19,7 +19,7 @@ public class MultiEstudiante {
             Conector.getConector().ejecutarSQL(sqlP);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception ("[Error] No fue posible eliminar al usuario.");
         }
     }
 
@@ -37,7 +37,7 @@ public class MultiEstudiante {
             usuario = new Estudiante(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"),
                     rs.getString("carrera"), rs.getInt("numeroCreditos"));
         } else {
-            throw new Exception ("El usuario no está registrado.");
+            throw new Exception ("[Error] El usuario no está registrado.");
         }
 
         rs.close();
@@ -63,7 +63,7 @@ public class MultiEstudiante {
             estudiante = new Estudiante(nombre, apellido, carnet, carrera, numeroCreditos);
         }
         catch (Exception e) {
-            throw new Exception ("El ID ya está en el sistema.");
+            throw new Exception ("[Error] El ID ya está en el sistema.");
         }
 
         return estudiante;

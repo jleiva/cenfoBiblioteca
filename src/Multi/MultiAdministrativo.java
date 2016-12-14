@@ -19,7 +19,7 @@ public class MultiAdministrativo {
             Conector.getConector().ejecutarSQL(sqlP);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception ("[Error] No fue posible eliminar al usuario.");
         }
     }
 
@@ -37,7 +37,7 @@ public class MultiAdministrativo {
             usuario = new Administrativo(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"),
                     rs.getString("tipoNombramiento"), rs.getInt("cantidadHorasSemanales"));
         } else {
-            throw new Exception ("El usuario no está registrado.");
+            throw new Exception ("[Error] El usuario no está registrado.");
         }
 
         rs.close();
@@ -64,7 +64,7 @@ public class MultiAdministrativo {
             administrativo = new Administrativo(nombre, apellido, cedula, tipoNombramiento, cantidadHorasSemanales);
         }
         catch (Exception e) {
-            throw new Exception ("El ID ya está en el sistema.");
+            throw new Exception ("[Error] El ID ya está en el sistema.");
         }
 
         return administrativo;

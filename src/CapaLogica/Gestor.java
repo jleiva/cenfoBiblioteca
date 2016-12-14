@@ -108,14 +108,71 @@ public class Gestor {
     public TreeMap buscarMaterial(String pidentificacion) throws Exception {
         TreeMap datos = null;
         Material material = null;
-        String nombre;
+        String tipoMaterial;
         datos = new TreeMap();
+
         material = (new MultiMaterial()).buscar(pidentificacion);
-        datos.put("id", material.getId());
-        datos.put("idioma", material.getIdioma());
-        datos.put("fecha compra", material.getFechaCompra());
-        datos.put("tema", material.getTema());
-        datos.put("es restringido", material.getEsRestringido());
+        tipoMaterial = material.getTipo();
+
+        switch (tipoMaterial) {
+            case "Audio":
+                Audio selectAudio = null;
+                selectAudio = (new MultiAudio()).buscar(pidentificacion);
+
+                datos.put("id", selectAudio.getId());
+                datos.put("idioma", selectAudio.getIdioma());
+                datos.put("fechaCompra", selectAudio.getFechaCompra());
+                datos.put("tema", selectAudio.getTema());
+                datos.put("esRestringido", selectAudio.getEsRestringido());
+                datos.put("formato", selectAudio.getFormato());
+                datos.put("duracion", selectAudio.getDuracion());
+                break;
+
+            case "Texto":
+                Texto selectTexto = null;
+                selectTexto = (new MultiTexto()).buscar(pidentificacion);
+
+                datos.put("id", selectTexto.getId());
+                datos.put("idioma", selectTexto.getIdioma());
+                datos.put("fechaCompra", selectTexto.getFechaCompra());
+                datos.put("tema", selectTexto.getTema());
+                datos.put("esRestringido", selectTexto.getEsRestringido());
+                datos.put("titulo", selectTexto.getTitulo());
+                datos.put("autor", selectTexto.getNombreAutor());
+                datos.put("fechaPublicacion", selectTexto.getFechaPublicacion());
+                datos.put("numeroPaginas", selectTexto.getNumPaginas());
+                break;
+
+            case "Video":
+                Video selectVideo = null;
+                selectVideo = (new MultiVideo()).buscar(pidentificacion);
+
+                datos.put("id", selectVideo.getId());
+                datos.put("idioma", selectVideo.getIdioma());
+                datos.put("fechaCompra", selectVideo.getFechaCompra());
+                datos.put("tema", selectVideo.getTema());
+                datos.put("esRestringido", selectVideo.getEsRestringido());
+                datos.put("director", selectVideo.getDirector());
+                datos.put("formato", selectVideo.getFormato());
+                datos.put("duracion", selectVideo.getDuracion());
+                break;
+
+            case "Otro":
+                Otro selectOtro = null;
+                selectOtro = (new MultiOtro()).buscar(pidentificacion);
+
+                datos.put("id", selectOtro.getId());
+                datos.put("idioma", selectOtro.getIdioma());
+                datos.put("fechaCompra", selectOtro.getFechaCompra());
+                datos.put("tema", selectOtro.getTema());
+                datos.put("esRestringido", selectOtro.getEsRestringido());
+                datos.put("descripcion", selectOtro.getDescripcion());
+                break;
+
+            default:
+
+                break;
+        }
 
         return datos;
     }
@@ -264,13 +321,39 @@ public class Gestor {
             case "Administrativo":
                 (new MultiAdministrativo()).borrar(usuario);
                 break;
+
+            default:
+                break;
         }
     }
 
     public void borrarMaterial(String id) throws Exception {
         Material material;
+        String tipoMaterial;
+
         material = (new MultiMaterial()).buscar(id);
-        (new MultiMaterial()).borrar(material);
+        tipoMaterial = material.getTipo();
+
+        switch (tipoMaterial) {
+            case "Texto":
+                (new MultiTexto()).borrar(material);
+                break;
+
+            case "Video":
+                (new MultiVideo()).borrar(material);
+                break;
+
+            case "Audio":
+                (new MultiAudio()).borrar(material);
+                break;
+
+            case "Otro":
+                (new MultiOtro()).borrar(material);
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void borrarTema(String pidTema) throws Exception {

@@ -19,7 +19,7 @@ public class MultiProfesor {
             Conector.getConector().ejecutarSQL(sqlP);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception ("[Error] No fue posible eliminar al usuario.");
         }
     }
 
@@ -37,7 +37,7 @@ public class MultiProfesor {
             usuario = new Profesor(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"),
                     rs.getString("tipoContrato"), rs.getString("fechaContratacion"));
         } else {
-            throw new Exception ("El usuario no está registrado.");
+            throw new Exception ("[Error] El usuario no está registrado.");
         }
 
         rs.close();
@@ -63,7 +63,7 @@ public class MultiProfesor {
             profesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception ("[Error] El ID ya está en el sistema.");
         }
 
         return profesor;
