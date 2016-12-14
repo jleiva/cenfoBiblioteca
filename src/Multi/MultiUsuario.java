@@ -1,7 +1,6 @@
 package Multi;
 
 import CapaAccesoBD.Conector;
-import CapaLogica.Tema;
 import CapaLogica.Usuario;
 
 import java.util.Vector;
@@ -25,13 +24,13 @@ public class MultiUsuario {
         Usuario usuario = null;
         java.sql.ResultSet rs;
         String sql;
-        sql = "SELECT id, nombre, apellido "+
+        sql = "SELECT id, nombre, apellido, tipo "+
                 "FROM TUsuario "+
                 "WHERE id='"+ pidentificacion +"';";
         rs = Conector.getConector().ejecutarSQL(sql,true);
 
         if (rs.next()) {
-            usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"));
+            usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"), rs.getString("tipo"));
         } else {
             throw new Exception ("El usuario no está registrado.");
         }
@@ -52,7 +51,7 @@ public class MultiUsuario {
         usuarios = new Vector();
 
         while (rs.next()){
-            usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"));
+            usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"), rs.getString("tipo"));
             usuarios.add(usuario);
         }
 

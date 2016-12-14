@@ -1,7 +1,7 @@
 package Multi;
 
 import CapaAccesoBD.Conector;
-import CapaLogica.Video;
+import CapaLogica.*;
 
 public class MultiVideo {
     public Video crear(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
@@ -12,8 +12,8 @@ public class MultiVideo {
         String sqlO;
 
         sqlM = "INSERT INTO TMaterial "+
-                "(id, idioma, fechaCompra, esRestringido, tema) "+
-                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"');";
+                "(id, idioma, fechaCompra, esRestringido, tema, tipo) "+
+                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"', 'Video');";
 
         sqlO = "INSERT INTO TVideo "+
                 "(id, formato, director, duracion) "+

@@ -36,7 +36,7 @@ public class Texto extends Material {
      */
     public Texto(String id, String fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
                  String tema, String idioma, String fechaPublicacion, int numPaginas) {
-        super(id, idioma, fechaCompra, esRestringido, tema);
+        super(id, idioma, fechaCompra, esRestringido, tema, "Texto");
         setNombreAutor(nombreAutor);
         setTitulo(titulo);
         setFechaPublicacion(fechaPublicacion);

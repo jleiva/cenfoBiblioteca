@@ -7,7 +7,7 @@ package CapaLogica;
  * @version %I% %G%
  */
 public class Administrativo extends Usuario {
-    private char tipoNombramiento;
+    private String tipoNombramiento;
     private int cantidadHorasSemanales;
 
     /**
@@ -18,7 +18,7 @@ public class Administrativo extends Usuario {
      * @param cedula   the cedula
      */
     public Administrativo(String nombre, String apellido, String cedula) {
-        super(nombre, apellido, cedula);
+        super(nombre, apellido, cedula, "Administrativo");
     }
 
     /**
@@ -30,9 +30,9 @@ public class Administrativo extends Usuario {
      * @param tipoNombramiento       the tipo nombramiento
      * @param cantidadHorasSemanales the cantidad horas semanales
      */
-    public Administrativo(String nombre, String apellido, String cedula, char tipoNombramiento,
+    public Administrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
                           int cantidadHorasSemanales) {
-        super(nombre, apellido, cedula);
+        super(nombre, apellido, cedula, "Administrativo");
         setTipoNombramiento(tipoNombramiento);
         setCantidadHorasSemanales(cantidadHorasSemanales);
     }
@@ -42,7 +42,7 @@ public class Administrativo extends Usuario {
      *
      * @param tipoNombramiento the tipo nombramiento
      */
-    public void setTipoNombramiento(char tipoNombramiento) {
+    public void setTipoNombramiento(String tipoNombramiento) {
         this.tipoNombramiento = tipoNombramiento;
     }
 
@@ -60,7 +60,7 @@ public class Administrativo extends Usuario {
      *
      * @return the tipo nombramiento
      */
-    public char getTipoNombramiento() {
+    public String getTipoNombramiento() {
         return tipoNombramiento;
     }
 

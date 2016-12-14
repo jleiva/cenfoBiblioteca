@@ -15,6 +15,8 @@ public class Material {
     protected boolean esRestringido; // default es false
     protected String tema;
 
+    protected String tipo;
+
     /**
      * Instantiates a new CapaLogica.Material.
      *
@@ -36,9 +38,10 @@ public class Material {
      * @param idioma the idioma
      * @param tema   the tema
      */
-    public Material(String id, String fechaCompra, String idioma, String tema) {
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema) {
         this(id, fechaCompra, tema);
         setIdioma(idioma);
+        setEsRestringido(esRestringido);
     }
 
     /**
@@ -49,10 +52,11 @@ public class Material {
      * @param tema          the tema
      * @param idioma        the idioma
      */
-    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema) {
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema, String tipo) {
         this(id, fechaCompra, tema);
         setIdioma(idioma);
         setEsRestringido(esRestringido);
+        setTipo(tipo);
     }
 
     /**
@@ -98,6 +102,14 @@ public class Material {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     /**
@@ -152,12 +164,13 @@ public class Material {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        String resul = "Id: " + getId() + " - ";
+        String resul = "Id: " + getId() + " | ";
 
-        resul += "Tema: " + getTema() + " - ";
-        resul += "Idioma: " + getIdioma() + " - ";
-        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + " - ";
-        resul += "Fecha Compra: " + getFechaCompra() + "\n";
+        resul += "Tema: " + getTema() + " | ";
+        resul += "Idioma: " + getIdioma() + " | ";
+        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + " | ";
+        resul += "Fecha Compra: " + getFechaCompra() + " | ";
+        resul += "Tipo Material: " + getTipo() + "\n";
 
         return resul;
     }

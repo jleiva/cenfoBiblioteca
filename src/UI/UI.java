@@ -171,7 +171,7 @@ public class UI {
 
                         case 3:
                             out.println("Tipo de nombramiento.\n Digite: A, B o C.");
-                            char tipoNombramiento = in.readLine().charAt(0);
+                            String tipoNombramiento = in.readLine();
                             out.println("Horas asignadas:");
                             int horas = 0;
 
@@ -212,12 +212,12 @@ public class UI {
                     userId = in.readLine();
                     out.println();
                     out.println("======= Datos del Usuario =======");
+
                     try {
                         out.println(gestor.buscarUsuario(userId));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    out.println("=================================");
                     break;
 
                 case 4:

@@ -1,7 +1,7 @@
 package Multi;
 
 import CapaAccesoBD.Conector;
-import CapaLogica.Texto;
+import CapaLogica.*;
 
 public class MultiTexto {
     public Texto crear(String id, String fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
@@ -12,8 +12,8 @@ public class MultiTexto {
         String sqlO;
 
         sqlM = "INSERT INTO TMaterial "+
-                "(id, idioma, fechaCompra, esRestringido, tema) "+
-                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"');";
+                "(id, idioma, fechaCompra, esRestringido, tema, tipo) "+
+                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"', 'Texto');";
 
         sqlO = "INSERT INTO TTexto "+
                 "(id, titulo, nombreAutor, fechaPublicacion, numeroPaginas) "+

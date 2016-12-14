@@ -10,7 +10,8 @@ public class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
-    protected String username;
+
+    protected String tipo;
 
     public Usuario(String id) {
         setId(id);
@@ -22,6 +23,13 @@ public class Usuario {
         this(id);
         setNombre(nombre);
         setApellido(apellido);
+    }
+
+    public Usuario(String nombre, String apellido, String id, String tipo) {
+        this(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setTipo(tipo);
     }
 
     /**
@@ -44,6 +52,14 @@ public class Usuario {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     /**
@@ -80,6 +96,6 @@ public class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Id: " + getId() + " - Nombre: " + getNombre() + " " + getApellido() + "\n";
+        return "Id: " + getId() + " | Nombre: " + getNombre() + " " + getApellido() + " | Tipo Usuario: " + getTipo() + "\n";
     }
 }

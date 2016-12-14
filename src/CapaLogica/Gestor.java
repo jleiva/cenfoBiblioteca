@@ -35,7 +35,7 @@ public class Gestor {
         return msg;
     }
 
-    public void crearAdministrativo(String nombre, String apellido, String cedula, char tipoNombramiento,
+    public void crearAdministrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
                                       int cantidadHorasSemanales) throws Exception {
         Usuario administrativo;
         administrativo = (new MultiAdministrativo()).crear(nombre, apellido, cedula, tipoNombramiento, cantidadHorasSemanales);
@@ -154,12 +154,50 @@ public class Gestor {
     public TreeMap buscarUsuario(String pidentificacion) throws Exception {
         TreeMap datos = null;
         Usuario usuario = null;
+        String tipoUsuario;
 
         datos = new TreeMap();
         usuario = (new MultiUsuario()).buscar(pidentificacion);
-        datos.put("id", usuario.getId());
-        datos.put("nombre", usuario.getNombre());
-        datos.put("apellido", usuario.getApellido());
+        tipoUsuario = usuario.getTipo();
+
+        switch (tipoUsuario) {
+            case "Estudiante":
+                Estudiante selectEstudiante = null;
+                selectEstudiante = (new MultiEstudiante()).buscar(pidentificacion);
+
+                datos.put("carnet", selectEstudiante.getId());
+                datos.put("nombre", selectEstudiante.getNombre());
+                datos.put("apellido", selectEstudiante.getApellido());
+                datos.put("carrera", selectEstudiante.getCarrera());
+                datos.put("numeroCreditos", selectEstudiante.getNumeroCreditos());
+                break;
+
+            case "Profesor":
+                Profesor selectProfe = null;
+                selectProfe = (new MultiProfesor()).buscar(pidentificacion);
+
+                datos.put("cedula", selectProfe.getId());
+                datos.put("nombre", selectProfe.getNombre());
+                datos.put("apellido", selectProfe.getApellido());
+                datos.put("tipoContrato", selectProfe.getTipoContrato());
+                datos.put("fechaContratacion", selectProfe.getFechaContratacion());
+                break;
+
+            case "Administrativo":
+                Administrativo selectAdmin = null;
+                selectAdmin = (new MultiAdministrativo()).buscar(pidentificacion);
+
+                datos.put("cedula", selectAdmin.getId());
+                datos.put("nombre", selectAdmin.getNombre());
+                datos.put("apellido", selectAdmin.getApellido());
+                datos.put("tipoNombramiento", selectAdmin.getTipoNombramiento());
+                datos.put("cantidadHorasSemanales", selectAdmin.getCantidadHorasSemanales());
+                break;
+
+            default:
+
+                break;
+        }
 
         return datos;
     }
@@ -209,8 +247,24 @@ public class Gestor {
 
     public void borrarUsuario(String id) throws Exception {
         Usuario usuario;
+        String tipoUsuario;
+
         usuario = (new MultiUsuario()).buscar(id);
-        (new MultiUsuario()).borrar(usuario);
+        tipoUsuario = usuario.getTipo();
+
+        switch (tipoUsuario) {
+            case "Estudiante":
+                (new MultiEstudiante()).borrar(usuario);
+                break;
+
+            case "Profesor":
+                (new MultiProfesor()).borrar(usuario);
+                break;
+
+            case "Administrativo":
+                (new MultiAdministrativo()).borrar(usuario);
+                break;
+        }
     }
 
     public void borrarMaterial(String id) throws Exception {

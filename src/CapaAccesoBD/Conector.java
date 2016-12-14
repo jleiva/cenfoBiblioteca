@@ -47,5 +47,4 @@ public class Conector{
 		}
 		return conectorBD;
 	}
-
 }

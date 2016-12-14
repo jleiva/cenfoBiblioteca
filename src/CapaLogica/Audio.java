@@ -23,21 +23,6 @@ public class Audio extends Material {
         super(id, fechaCompra, tema);
     }
 
-    /**
-     * Instantiates a new CapaLogica.Audio.
-     *
-     * @param fechaCompra   the fecha compra
-     * @param tema          the tema
-     * @param idioma        the idioma
-     * @param formato       the formato
-     * @param duracion      the duracion
-     */
-    public Audio(String id, String fechaCompra, String tema, String idioma, String formato,
-                 int duracion) {
-        super(id, fechaCompra, tema, idioma);
-        setFormato(formato);
-        setDuracion(duracion);
-    }
 
     /**
      * Instantiates a new CapaLogica.Audio.
@@ -51,7 +36,7 @@ public class Audio extends Material {
      */
     public Audio(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  int duracion) {
-        super(id, idioma, fechaCompra, esRestringido, tema);
+        super(id, idioma, fechaCompra, esRestringido, tema, "Audio");
         setFormato(formato);
         setDuracion(duracion);
     }

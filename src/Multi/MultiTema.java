@@ -19,7 +19,7 @@ public class MultiTema {
     }
 
     public Tema buscar(String pidentificacion) throws
-            java.sql.SQLException,Exception{
+            java.sql.SQLException,Exception {
         Tema tema = null;
         java.sql.ResultSet rs;
         String sql;

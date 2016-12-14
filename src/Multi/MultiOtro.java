@@ -1,7 +1,7 @@
 package Multi;
 
 import CapaAccesoBD.Conector;
-import CapaLogica.Otro;
+import CapaLogica.*;
 
 public class MultiOtro {
     public Otro crear(String id, String fechaCompra, boolean esRestringido, String tema, String idioma,
@@ -12,8 +12,8 @@ public class MultiOtro {
         String sqlO;
 
         sqlM = "INSERT INTO TMaterial "+
-                "(id, idioma, fechaCompra, esRestringido, tema) "+
-                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"');";
+                "(id, idioma, fechaCompra, esRestringido, tema, tipo) "+
+                "VALUES ('"+id+"', '"+idioma+"', '"+fechaCompra+"', "+esRestringido+" , '"+tema+"', 'Otro');";
 
         sqlO = "INSERT INTO TOtro "+
                 "(id, descripcion) "+

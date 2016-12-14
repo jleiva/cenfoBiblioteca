@@ -2,7 +2,6 @@ package Multi;
 
 import CapaAccesoBD.Conector;
 import CapaLogica.Material;
-
 import java.util.Vector;
 
 public class MultiMaterial {
@@ -31,7 +30,7 @@ public class MultiMaterial {
 
         if (rs.next()) {
             material = new Material(rs.getString("id"), rs.getString("idioma"), rs.getString("fechaCompra"),
-                    rs.getBoolean("esRestringido"), rs.getString("tema"));
+                    rs.getBoolean("esRestringido"), rs.getString("tema"), rs.getString("tipo"));
         } else {
             throw new Exception ("El material no está registrado.");
         }
@@ -53,7 +52,7 @@ public class MultiMaterial {
 
         while (rs.next()){
             material = new Material(rs.getString("id"), rs.getString("idioma"), rs.getString("fechaCompra"),
-                    rs.getBoolean("esRestringido"), rs.getString("tema"));
+                    rs.getBoolean("esRestringido"), rs.getString("tema"), rs.getString("tipo"));
             materiales.add(material);
         }
 

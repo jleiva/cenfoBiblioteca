@@ -27,23 +27,6 @@ public class Video extends Material {
         setEsRestringido(esRestringido);
     }
 
-    /**
-     * Instantiates a new CapaLogica.Video.
-     *
-     * @param fechaCompra   the fecha compra
-     * @param tema          the tema
-     * @param idioma        the idioma
-     * @param formato       the formato
-     * @param director      the director
-     * @param duracion      the duracion
-     */
-    public Video(String id, String fechaCompra, String tema, String idioma, String formato,
-                 String director, int duracion) {
-        super(id, fechaCompra, tema, idioma);
-        setFormato(formato);
-        setDirector(director);
-        setDuracion(duracion);
-    }
 
     /**
      * Instantiates a new CapaLogica.Video.
@@ -58,8 +41,7 @@ public class Video extends Material {
      */
     public Video(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
                  String director, int duracion) {
-        super(id, fechaCompra, tema, idioma);
-        setEsRestringido(esRestringido);
+        super(id, idioma, fechaCompra, esRestringido, tema, "Video");
         setFormato(formato);
         setDirector(director);
         setDuracion(duracion);
