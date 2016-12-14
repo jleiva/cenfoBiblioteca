@@ -1,10 +1,7 @@
 package UI;
 
-import java.awt.*;
 import java.io.*;
 import CapaLogica.*;
-
-import javax.swing.*;
 
 public class UI {
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -12,16 +9,6 @@ public class UI {
     private static Gestor gestor;
 
     public static void main(String[] args)throws java.io.IOException {
-
-        EventQueue.invokeLater(()->
-        {
-            JFrame login = new Login();
-            login.setTitle("Biblioteca");
-            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            login.setVisible(true);
-        });
-
-
         int opc;
         int noSalir;
         gestor = new Gestor();
