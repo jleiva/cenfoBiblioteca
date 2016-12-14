@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class Profesor extends Usuario {
     private String tipoContrato;
-    private LocalDate fechaContratacion;
+    private String fechaContratacion;
 
     /**
      * Instantiates a new CapaLogica.Profesor.
@@ -32,7 +32,7 @@ public class Profesor extends Usuario {
      * @param tipoContrato      the tipo contrato
      * @param fechaContratacion the fecha contratacion
      */
-    public Profesor(String nombre, String apellido, String cedula, String tipoContrato, LocalDate fechaContratacion) {
+    public Profesor(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion) {
         super(nombre, apellido, cedula);
         setTipoContrato(tipoContrato);
         setFechaContratacion(fechaContratacion);
@@ -52,7 +52,7 @@ public class Profesor extends Usuario {
      *
      * @param fechaContratacion the fecha contratacion
      */
-    public void setFechaContratacion(LocalDate fechaContratacion) {
+    public void setFechaContratacion(String fechaContratacion) {
         this.fechaContratacion = fechaContratacion;
     }
 
@@ -70,7 +70,7 @@ public class Profesor extends Usuario {
      *
      * @return the fecha contratacion
      */
-    public LocalDate getFechaContratacion() {
+    public String getFechaContratacion() {
         return fechaContratacion;
     }
 

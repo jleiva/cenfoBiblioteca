@@ -3,7 +3,6 @@ package CapaLogica;
 import Multi.*;
 
 import java.time.DateTimeException;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -36,74 +35,28 @@ public class Gestor {
         return msg;
     }
 
-    public String crearAdministrativo(String nombre, String apellido, String cedula, char tipoNombramiento,
-                                      int cantidadHorasSemanales) {
-        String msg;
-        Administrativo nuevoAdministrativo;
-
-        if (capaLogica.buscarUsuario(cedula) == null) {
-            nuevoAdministrativo = new Administrativo(nombre, apellido, cedula, tipoNombramiento,
-                    cantidadHorasSemanales);
-            capaLogica.crearUsuario(nuevoAdministrativo);
-            msg = "El usuario ha sido agregado";
-        } else {
-            msg = "El numero de identificacion " + cedula + " ya esta en el sistema.";
-        }
-
-        return msg;
+    public void crearAdministrativo(String nombre, String apellido, String cedula, char tipoNombramiento,
+                                      int cantidadHorasSemanales) throws Exception {
+        Usuario administrativo;
+        administrativo = (new MultiAdministrativo()).crear(nombre, apellido, cedula, tipoNombramiento, cantidadHorasSemanales);
     }
 
-    public String crearEstudiante(String nombre, String apellido, String carnet, String carrera,
-                                    int numeroCreditos) {
-        String msg;
-        Estudiante nuevoEstudiante;
-
-        if (capaLogica.buscarUsuario(carnet) == null) {
-            nuevoEstudiante = new Estudiante(nombre, apellido, carnet, carrera, numeroCreditos);
-            capaLogica.crearUsuario(nuevoEstudiante);
-            msg = "El usuario ha sido agregado";
-        } else {
-            msg = "El numero de identificacion " + carnet + " ya esta en el sistema.";
-        }
-
-        return msg;
+    public void crearEstudiante(String nombre, String apellido, String carnet, String carrera,
+                                    int numeroCreditos) throws Exception {
+        Usuario usuario;
+        usuario = (new MultiEstudiante()).crear(nombre, apellido, carnet, carrera, numeroCreditos);
     }
 
-    public String crearProfesor(String nombre, String apellido, String cedula, int contrato, int y, int m, int d) {
-        String msg;
-        String tipoContrato = "";
-        Profesor nuevoProfesor;
-
-        if (capaLogica.buscarUsuario(cedula) == null) {
-            switch (contrato) {
-                case 1:
-                    tipoContrato = "Tiempo Completo";
-                    break;
-                case 2:
-                    tipoContrato = "Medio Tiempo";
-                    break;
-            }
-
-            try {
-                LocalDate fechaContratacion = LocalDate.of(y, m, d);
-                nuevoProfesor = new Profesor(nombre, apellido, cedula, tipoContrato, fechaContratacion);
-                capaLogica.crearUsuario(nuevoProfesor);
-                msg = "El usuario ha sido agregado";
-            } catch (DateTimeException e) {
-                msg = "[Error] Fecha invalida, no se creo el Usuario.";
-            }
-        } else {
-            msg = "El numero de identificacion " + cedula + " ya esta en el sistema.";
-        }
-
-        return msg;
+    public void crearProfesor(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion)
+            throws Exception {
+        Usuario usuario;
+        usuario = (new MultiProfesor()).crear(nombre, apellido, cedula, tipoContrato, fechaContratacion);
     }
 
     public void crearTema(String pnombre) throws Exception {
         Tema tema;
         tema = (new MultiTema()).crear(pnombre);
     }
-
 
 
     public void crearTexto(String id, String fechaCompra, String pRestringido, String titulo, String nombreAutor,
@@ -152,19 +105,6 @@ public class Gestor {
         }
     }
 
-//    public String buscarMaterial(String id) {
-//        Material material = capaLogica.buscarMaterial(id);
-//        String msg;
-//
-//        if (material != null) {
-//            msg = material.toString();
-//        } else {
-//            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-//        }
-//
-//        return msg;
-//    }
-
     public TreeMap buscarMaterial(String pidentificacion) throws Exception {
         TreeMap datos = null;
         Material material = null;
@@ -211,17 +151,17 @@ public class Gestor {
         return datos;
     }
 
-    public String buscarUsuario(String id) {
-        Usuario usuario = capaLogica.buscarUsuario(id);
-        String msg;
+    public TreeMap buscarUsuario(String pidentificacion) throws Exception {
+        TreeMap datos = null;
+        Usuario usuario = null;
 
-        if (usuario != null) {
-            msg = usuario.toString();
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
+        datos = new TreeMap();
+        usuario = (new MultiUsuario()).buscar(pidentificacion);
+        datos.put("id", usuario.getId());
+        datos.put("nombre", usuario.getNombre());
+        datos.put("apellido", usuario.getApellido());
 
-        return msg;
+        return datos;
     }
 
     public String buscarReservacion(String id) {
@@ -267,18 +207,10 @@ public class Gestor {
         return msg;
     }
 
-    public String borrarUsuario(String id) {
-        String msg;
-        Usuario usuario = capaLogica.buscarUsuario(id);
-
-        if (usuario != null) {
-            capaLogica.borrarUsuario(usuario);
-            msg = "El usuario ha sido eliminado";
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
-
-        return msg;
+    public void borrarUsuario(String id) throws Exception {
+        Usuario usuario;
+        usuario = (new MultiUsuario()).buscar(id);
+        (new MultiUsuario()).borrar(usuario);
     }
 
     public void borrarMaterial(String id) throws Exception {
@@ -300,11 +232,11 @@ public class Gestor {
 
         try {
             if (cantMateriales > 0) {
-                for (int i = 0; i < datosMateriales.size(); i++) {
+                for (int i = 0; i < cantMateriales; i++) {
                     resul += datosMateriales.get(i).toString();
                 }
             } else {
-                resul = "No hay Materiales";
+                resul = "No hay Materiales.";
             }
 
         } catch (Exception e) {
@@ -314,31 +246,22 @@ public class Gestor {
         return resul;
     }
 
-    public String listarUsuarios() {
-        ArrayList<Usuario> usuarios = capaLogica.getListaUsuarios();
-        int cantUsuarios = usuarios.size();
+    public String listarUsuarios() throws Exception {
         String resul = "";
+        Vector datosUsuarios = (new MultiUsuario()).buscarUsuarios();
+        int cantUsuarios = datosUsuarios.size();
 
-        if (cantUsuarios > 0) {
-            for(int i=0; i < cantUsuarios; i++) {
-                Usuario usuarioSel = usuarios.get(i);
-                String id = usuarioSel.getId();
-                String nombre = usuarioSel.getNombre();
-                String apellido = usuarioSel.getApellido();
-                String rolUsuario = "";
-
-                if (usuarioSel.getClass().equals(Estudiante.class)) {
-                    rolUsuario = "Estudiante";
-                } else if (usuarioSel.getClass().equals(Profesor.class)) {
-                    rolUsuario = "Profesor";
-                } else if (usuarioSel.getClass().equals(Administrativo.class)) {
-                    rolUsuario = "Administrativo";
+        try {
+            if (cantUsuarios > 0) {
+                for (int i = 0; i < cantUsuarios; i++) {
+                    resul += datosUsuarios.get(i).toString();
                 }
-
-                resul += "Id: " + id + " | Nombre: " + nombre + " " + apellido + " | Rol: " + rolUsuario + "\n";
+            } else {
+                resul = "No hay Usuarios.";
             }
-        } else {
-            resul = "No hay usuarios.";
+
+        } catch (Exception e) {
+            e.getMessage();
         }
 
         return resul;

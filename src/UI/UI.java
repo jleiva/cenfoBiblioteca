@@ -13,41 +13,6 @@ public class UI {
         int noSalir;
         gestor = new Gestor();
 
-        // Agrego contenido para pruebas, despues debe cargar el menu y submenus
-
-        // Temas
-//        out.println(gestor.crearTema("Sociales"));
-//        out.println(gestor.crearTema("Ingles"));
-//        out.println(gestor.crearTema("Matematicas"));
-//        out.println(gestor.crearTema("Quimica"));
-//        out.println(gestor.crearTema("Fisica Matematica"));
-//        out.println(gestor.crearTema("Español"));
-
-        // Usuarios
-//        out.println(gestor.crearEstudiante("Jose", "Leiva", "5324", "BSOFT", 10));
-//        out.println(gestor.crearEstudiante("Pedro", "Pica", "6789", "Redes", 5));
-//        out.println(gestor.crearEstudiante("Luis", "Marmol", "5324", "Redes", 7)); // No se debe agregar, id repetido
-//        out.println(gestor.crearAdministrativo("Pablo", "Marmol", "1234", 'A', 48));
-//        out.println(gestor.crearAdministrativo("Javier", "Caos", "5151", 'B', 30));
-//        out.println(gestor.crearProfesor("Juan", "Solano", "2345", 1, 2016, 10, 1));
-//        out.println(gestor.crearProfesor("Diego", "Maradona", "11171", 2, 2016, 5, 1));
-
-        // Materiales
-//        out.println(gestor.crearTexto("ISBN001", 2015, 10, 1, "N", "Matematica Basica", "Pedro Pablo", "Matematicas", "Aleman", 2000, 10, 1, 200));
-//        out.println(gestor.crearOtroMaterial("1117", 2015, 10, 1, "S", "Ciencias", "Ingles", "Folleto de Comics"));
-//        out.println(gestor.crearOtroMaterial("ISBN1223", 2013, 10, 1, "S", "Musica", "Ingles", "Folleto de Letras"));
-//        out.println(gestor.crearVideo("V201", 2015, 10, 1, "S", "Ciencias", "Ingles", "VHS", "Laura Algo", 30));
-//        out.println(gestor.crearAudio("A101", 2016, 10, 1, "s", "Sociales", "Ingles", "CD", 120));
-//        out.println(gestor.crearAudio("A222", 2016, 10, 1, "n", "Musica", "Español", "CD", 10));
-
-        // Reservaciones
-//        out.println(gestor.crearReservacion("2345", "ISBN001"));
-//        out.println(gestor.crearReservacion("5324", "1117"));
-//        out.println(gestor.crearReservacion("1987", "ISBN001")); // Usuario no existe, no se debe crear
-//        out.println(gestor.crearReservacion("2345", "A101"));
-//        out.println(gestor.crearReservacion("5324", "V201"));
-//        out.println(gestor.crearReservacion("5324", "ISBN001"));
-
         do {
             menuAdmin();
             opc = leerOpcionSelecionada();
@@ -126,7 +91,7 @@ public class UI {
             out.println("2. Registrar nuevo Usuario.");
             out.println("3. Buscar Usuario.");
             out.println("4. Eliminar Usuario.");
-            out.println("5. Modificar Usuario."); // Falta la funcionalidad
+            out.println("5. Modificar Usuario.");
             out.println("0. Ir a Menu Principal.");
             out.println();
 
@@ -135,18 +100,25 @@ public class UI {
             switch (opc) {
                 case 1:
                     out.println("============== Lista de Usuarios ==============");
-                    out.println(gestor.listarUsuarios());
+
+                    try {
+                        out.println(gestor.listarUsuarios());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 2:
                     out.println("============== Registrar nuevo Usuario ==============");
                     out.println("Tipo de Usuario a crear:\n 1. Estudiante.\n 2. Profesor.\n 3. Administrativo.\nSeleccione tipo usuario: ");
                     int tipoUsuario = 0;
+
                     try {
                         tipoUsuario = Integer.parseInt(in.readLine());
                     } catch (NumberFormatException e) {
                         imprimirExepcion(e);
                     }
+
                     out.println("Id:");
                     String idNuevoUser = in.readLine();
                     out.println("Nombre:");
@@ -163,7 +135,12 @@ public class UI {
 
                             try {
                                 creditos = Integer.parseInt(in.readLine());
-                                out.println(gestor.crearEstudiante(nombre, apellido, idNuevoUser, carrera, creditos));
+                                try {
+                                    gestor.crearEstudiante(nombre, apellido, idNuevoUser, carrera, creditos);
+                                    out.println("Se creo el nuevo Usuario.");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
                                 out.println("No se creo el Usuario");
@@ -173,18 +150,19 @@ public class UI {
 
                         case 2:
                             out.println("Tipo Contrato\n 1. Tiempo Completo.\n 2. Medio Tiempo.\nIndique el tipo de contrato");
-                            int contrato = 0;
+                            String contrato = null;
 
                             try {
-                                contrato = Integer.parseInt(in.readLine());
+                                contrato = in.readLine();
                                 out.println("Fecha de contratatacion:");
-                                out.println("Dia:");
-                                int d = Integer.parseInt(in.readLine());
-                                out.println("Mes:");
-                                int m = Integer.parseInt(in.readLine());
-                                out.println("Año:");
-                                int y = Integer.parseInt(in.readLine());
-                                out.println(gestor.crearProfesor(nombre, apellido, idNuevoUser, contrato, y, m, d));
+                                String fechaContratacion = in.readLine();
+
+                                try {
+                                    gestor.crearProfesor(nombre, apellido, idNuevoUser, contrato, fechaContratacion);
+                                    out.println("Se creo el nuevo Usuario.");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             } catch (NumberFormatException e) {
                                 imprimirExepcion(e);
                                 out.println("No se creo el Usuario");
@@ -199,7 +177,15 @@ public class UI {
 
                             try {
                                 horas = Integer.parseInt(in.readLine());
-                                out.println(gestor.crearAdministrativo(nombre, apellido, idNuevoUser, tipoNombramiento, horas));
+
+                                try {
+                                    gestor.crearAdministrativo(nombre, apellido, idNuevoUser, tipoNombramiento,
+                                            horas);
+                                    out.println("Se creo el nuevo Usuario.");
+                                } catch (Exception e) {
+                                    out.println(e.getMessage());
+                                }
+
                             } catch (NumberFormatException e) {
                                imprimirExepcion(e);
                                 out.println("No se creo el Usuario");
@@ -215,22 +201,43 @@ public class UI {
                 case 3:
                     out.println("============== Buscar Usuario ==============");
                     out.println();
-                    out.println(gestor.listarUsuarios());
+
+                    try {
+                        out.println(gestor.listarUsuarios());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     out.println("Indique el numero de Id del Usuario: ");
                     userId = in.readLine();
                     out.println();
                     out.println("======= Datos del Usuario =======");
-                    out.println(gestor.buscarUsuario(userId));
+                    try {
+                        out.println(gestor.buscarUsuario(userId));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     out.println("=================================");
                     break;
 
                 case 4:
                     out.println("============== Eliminar Usuario ==============");
                     out.println();
-                    out.println(gestor.listarUsuarios());
+
+                    try {
+                        out.println(gestor.listarUsuarios());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Indique el numero de Id del Usuario a eliminar: ");
                     userId = in.readLine();
-                    out.println(gestor.borrarUsuario(userId));
+                    try {
+                        gestor.borrarUsuario(userId);
+                        out.println("Usuario eliminado del sistema.");
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 5:
@@ -596,7 +603,11 @@ public class UI {
 
                 case 4:
                     out.println("============== Buscar Reservacion por Usuario ==============");
-                    out.println(gestor.listarUsuarios());
+                    try {
+                        out.println(gestor.listarUsuarios());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     out.println("Ingrese el Id del usuario: ");
                     idUser = in.readLine();
                     out.println(gestor.listarReservacionesPorUsuario(idUser));
@@ -656,7 +667,11 @@ public class UI {
 
                 case 2:
                     out.println("============== Listar Usuarios ==============");
-                    out.println(gestor.listarUsuarios());
+                    try {
+                        out.println(gestor.listarUsuarios());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 3:

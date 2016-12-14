@@ -6,7 +6,7 @@ package CapaLogica;
  * @author jdleiva
  * @version %I% %G%
  */
-public abstract class Usuario {
+public class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
@@ -80,6 +80,6 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "Nombre: " + getNombre() + " " + getApellido() + "\n";
+        return "Id: " + getId() + " - Nombre: " + getNombre() + " " + getApellido() + "\n";
     }
 }
