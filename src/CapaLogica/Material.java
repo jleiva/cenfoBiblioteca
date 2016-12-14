@@ -8,39 +8,55 @@ import java.time.LocalDate;
  * @author jdleiva
  * @version %I% %G%
  */
-public abstract class Material {
+public class Material {
     protected String id;
-    protected String idioma = "No Indicado";
-    protected LocalDate fechaCompra;
+    protected String idioma = "Español"; // default
+    protected String fechaCompra;
     protected boolean esRestringido; // default es false
-    protected Tema tema;
+    protected String tema;
 
+    protected String tipo;
 
     /**
      * Instantiates a new CapaLogica.Material.
      *
-     * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
-     * @param tema          the tema
+     * @param id   the id
+     * @param tema the tema
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
+    public Material(String id, String fechaCompra, String tema) {
+        setId(id);
         setFechaCompra(fechaCompra);
-        setEsRestringido(esRestringido);
         setTema(tema);
+        setEsRestringido(esRestringido);
         setIdioma(idioma);
     }
 
     /**
      * Instantiates a new CapaLogica.Material.
      *
-     * @param fechaCompra   the fecha compra
+     * @param id     the id
+     * @param idioma the idioma
+     * @param tema   the tema
+     */
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema) {
+        this(id, fechaCompra, tema);
+        setIdioma(idioma);
+        setEsRestringido(esRestringido);
+    }
+
+    /**
+     * Instantiates a new CapaLogica.Material.
+     *
+     * @param id            the id
      * @param esRestringido the es restringido
      * @param tema          the tema
      * @param idioma        the idioma
      */
-    public Material(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma) {
-        this(fechaCompra, esRestringido, tema);
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema, String tipo) {
+        this(id, fechaCompra, tema);
         setIdioma(idioma);
+        setEsRestringido(esRestringido);
+        setTipo(tipo);
     }
 
     /**
@@ -48,7 +64,7 @@ public abstract class Material {
      *
      * @param fechaCompra the fecha compra
      */
-    public void setFechaCompra(LocalDate fechaCompra) {
+    public void setFechaCompra(String fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
@@ -75,8 +91,25 @@ public abstract class Material {
      *
      * @param tema the tema
      */
-    public void setTema(Tema tema) {
+    public void setTema(String tema) {
         this.tema = tema;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     /**
@@ -84,7 +117,7 @@ public abstract class Material {
      *
      * @return the tema
      */
-    public Tema getTema() {
+    public String getTema() {
         return tema;
     }
 
@@ -93,7 +126,7 @@ public abstract class Material {
      *
      * @return the fecha compra
      */
-    public LocalDate getFechaCompra() {
+    public String getFechaCompra() {
         return fechaCompra;
     }
 
@@ -116,12 +149,29 @@ public abstract class Material {
     }
 
     /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
      * Retorna un string que representa el estado de la clase. Incluye los
      * valores de los atributos.
      *
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "CapaLogica.Material{";
+        String resul = "Id: " + getId() + " | ";
+
+        resul += "Tema: " + getTema() + " | ";
+        resul += "Idioma: " + getIdioma() + " | ";
+        resul += (getEsRestringido() ? "Material Restringido" : "No Restringido") + " | ";
+        resul += "Fecha Compra: " + getFechaCompra() + " | ";
+        resul += "Tipo Material: " + getTipo() + "\n";
+
+        return resul;
     }
 }

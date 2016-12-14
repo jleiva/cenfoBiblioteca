@@ -11,18 +11,18 @@ import java.time.LocalDate;
  */
 public class Audio extends Material {
     private String formato;
-    private Duration duracion;
+    private int duracion;
 
     /**
      * Instantiates a new CapaLogica.Audio.
      *
      * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Audio(String id, String fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
     }
+
 
     /**
      * Instantiates a new CapaLogica.Audio.
@@ -34,9 +34,9 @@ public class Audio extends Material {
      * @param formato       the formato
      * @param duracion      the duracion
      */
-    public Audio(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
-                 Duration duracion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+    public Audio(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
+                 int duracion) {
+        super(id, idioma, fechaCompra, esRestringido, tema, "Audio");
         setFormato(formato);
         setDuracion(duracion);
     }
@@ -55,7 +55,7 @@ public class Audio extends Material {
      *
      * @param duracion the duracion
      */
-    public void setDuracion(Duration duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -73,11 +73,15 @@ public class Audio extends Material {
      *
      * @return the duracion
      */
-    public Duration getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
     public String toString() {
-        return "CapaLogica.Audio";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Duracion: " + getDuracion() + " minutos" + "\n";
+        return resul;
     }
 }

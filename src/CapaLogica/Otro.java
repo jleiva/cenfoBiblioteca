@@ -15,12 +15,12 @@ public class Otro extends Material {
      * Instantiates a new CapaLogica.Otro.
      *
      * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Otro(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Otro(String id, String fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
     }
+
 
     /**
      * Instantiates a new CapaLogica.Otro.
@@ -31,10 +31,11 @@ public class Otro extends Material {
      * @param idioma        the idioma
      * @param descripcion   the descripcion
      */
-    public Otro(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String descripcion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+    public Otro(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String descripcion) {
+        super(id, idioma, fechaCompra, esRestringido, tema, "Otro");
         setDescripcion(descripcion);
     }
+
 
     /**
      * Sets descripcion.

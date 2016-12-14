@@ -18,7 +18,7 @@ public class Estudiante extends Usuario {
      * @param carnet   the carnet
      */
     public Estudiante(String nombre, String apellido, String carnet) {
-        super(nombre, apellido, carnet);
+        super(nombre, apellido, carnet, "Estudiante");
     }
 
     /**
@@ -31,7 +31,7 @@ public class Estudiante extends Usuario {
      * @param numeroCreditos the numero creditos
      */
     public Estudiante(String nombre, String apellido, String carnet, String carrera, int numeroCreditos) {
-        super(nombre, apellido, carnet);
+        super(nombre, apellido, carnet, "Estudiante");
         setCarrera(carrera);
         setNumeroCreditos(numeroCreditos);
     }
@@ -54,6 +54,7 @@ public class Estudiante extends Usuario {
         this.numeroCreditos = numeroCreditos;
     }
 
+
     /**
      * Gets carrera.
      *
@@ -74,6 +75,13 @@ public class Estudiante extends Usuario {
 
     @Override
     public String toString() {
-        return "CapaLogica.Estudiante{";
+        String resul = super.toString();
+
+        resul += "Carnet: " + getId()  + "\n";
+        resul += "Carrera: " + getCarrera() + "\n";
+        resul += "Creditos Matriculados: " + getNumeroCreditos() + "\n";
+        resul += "Tipo Usuario: " + getTipo();
+
+        return resul;
     }
 }

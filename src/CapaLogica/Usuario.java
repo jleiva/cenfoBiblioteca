@@ -6,10 +6,12 @@ package CapaLogica;
  * @author jdleiva
  * @version %I% %G%
  */
-public abstract class Usuario {
+public class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
+
+    protected String tipo;
 
     public Usuario(String id) {
         setId(id);
@@ -21,6 +23,13 @@ public abstract class Usuario {
         this(id);
         setNombre(nombre);
         setApellido(apellido);
+    }
+
+    public Usuario(String nombre, String apellido, String id, String tipo) {
+        this(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setTipo(tipo);
     }
 
     /**
@@ -43,6 +52,14 @@ public abstract class Usuario {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     /**
@@ -79,9 +96,6 @@ public abstract class Usuario {
      * @return un string que representa el estado de la clase
      */
     public String toString() {
-        return "CapaLogica.Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
+        return "Id: " + getId() + " | Nombre: " + getNombre() + " " + getApellido() + " | Tipo Usuario: " + getTipo() + "\n";
     }
 }

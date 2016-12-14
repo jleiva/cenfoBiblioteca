@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Video extends Material {
     private String formato;
     private String director;
-    private Duration duracion;
+    private int duracion;
 
 
     /**
@@ -22,9 +22,11 @@ public class Video extends Material {
      * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Video(String id, String fechaCompra, boolean esRestringido, String tema) {
+        super(id, fechaCompra, tema);
+        setEsRestringido(esRestringido);
     }
+
 
     /**
      * Instantiates a new CapaLogica.Video.
@@ -37,9 +39,9 @@ public class Video extends Material {
      * @param director      the director
      * @param duracion      the duracion
      */
-    public Video(LocalDate fechaCompra, boolean esRestringido, Tema tema, String idioma, String formato,
-                 String director, Duration duracion) {
-        super(fechaCompra, esRestringido, tema, idioma);
+    public Video(String id, String fechaCompra, boolean esRestringido, String tema, String idioma, String formato,
+                 String director, int duracion) {
+        super(id, idioma, fechaCompra, esRestringido, tema, "Video");
         setFormato(formato);
         setDirector(director);
         setDuracion(duracion);
@@ -68,7 +70,7 @@ public class Video extends Material {
      *
      * @param duracion the duracion
      */
-    public void setDuracion(Duration duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -95,11 +97,16 @@ public class Video extends Material {
      *
      * @return the duracion
      */
-    public Duration getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
     public String toString() {
-        return "CapaLogica.Video";
+        String resul = super.toString();
+
+        resul += "Formato: " + getFormato() + "\n";
+        resul += "Director: " + getDirector() + "\n";
+        resul += "Duracion: " + getDuracion() + " minutos" + "\n";
+        return resul;
     }
 }

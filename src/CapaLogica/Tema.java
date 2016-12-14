@@ -10,12 +10,18 @@ public class Tema {
     private String id;
     private String nombre;
 
+    private static int countSerie;
+
     /**
      * Instantiates a new CapaLogica.Tema.
      *
-     * @param id     the id
      * @param nombre the nombre
      */
+    public Tema(String nombre) {
+        setId();
+        this.nombre = nombre;
+    }
+
     public Tema(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -33,10 +39,10 @@ public class Tema {
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setId() {
+        this.id = "T-" + ++countSerie;
     }
 
     /**
@@ -59,6 +65,10 @@ public class Tema {
 
     @Override
     public String toString() {
-        return "CapaLogica.Tema";
+        String resul = "";
+
+        resul += "Id: "  + getId() + " | Tema: " + getNombre() + "\n";
+
+        return resul;
     }
 }

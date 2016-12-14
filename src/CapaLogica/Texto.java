@@ -11,24 +11,21 @@ import java.time.LocalDate;
 public class Texto extends Material {
     private String titulo;
     private String nombreAutor;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
     private int numPaginas;
 
     /**
      * Instantiates a new CapaLogica.Texto.
      *
-     * @param fechaCompra   the fecha compra
-     * @param esRestringido the es restringido
      * @param tema          the tema
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, Tema tema) {
-        super(fechaCompra, esRestringido, tema);
+    public Texto(String id, String fechaCompra, String tema) {
+        super(id, fechaCompra, tema);
     }
 
     /**
      * Instantiates a new CapaLogica.Texto.
      *
-     * @param fechaCompra      the fecha compra
      * @param esRestringido    the es restringido
      * @param titulo           the titulo
      * @param nombreAutor      the nombre autor
@@ -37,12 +34,11 @@ public class Texto extends Material {
      * @param fechaPublicacion the fecha publicacion
      * @param numPaginas       the num paginas
      */
-    public Texto(LocalDate fechaCompra, boolean esRestringido, String titulo, String nombreAutor, Tema tema, String idioma,
-                 LocalDate fechaPublicacion, int numPaginas) {
-        super(fechaCompra, esRestringido, tema, idioma);
-        setIdioma(titulo);
+    public Texto(String id, String fechaCompra, boolean esRestringido, String titulo, String nombreAutor,
+                 String tema, String idioma, String fechaPublicacion, int numPaginas) {
+        super(id, idioma, fechaCompra, esRestringido, tema, "Texto");
         setNombreAutor(nombreAutor);
-        setIdioma(idioma);
+        setTitulo(titulo);
         setFechaPublicacion(fechaPublicacion);
         setNumPaginas(numPaginas);
     }
@@ -70,7 +66,7 @@ public class Texto extends Material {
      *
      * @param fechaPublicacion the fecha publicacion
      */
-    public void setFechaPublicacion(LocalDate fechaPublicacion) {
+    public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 
@@ -106,7 +102,7 @@ public class Texto extends Material {
      *
      * @return the fecha publicacion
      */
-    public LocalDate getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 
@@ -120,6 +116,12 @@ public class Texto extends Material {
     }
 
     public String toString() {
-        return "CapaLogica.Texto";
+        String resul = super.toString();
+
+        resul += "Titulo: " + getTitulo() + "\n";
+        resul += "Autor: " + getNombreAutor() + "\n";
+        resul += "Fecha Publicacion: " + getFechaPublicacion() + "\n";
+        resul += "Numero de Paginas: " + getNumPaginas() + "\n";
+        return resul;
     }
 }
