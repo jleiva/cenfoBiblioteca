@@ -1,38 +1,25 @@
 package CapaLogica;
 
 import Multi.*;
-
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Vector;
 
 public class Gestor {
-    private static CL capaLogica = new CL();
-
     public boolean validarDatos(String user, String pass) {
-        Usuario usuarioValido = capaLogica.buscarUsuario(user);
-
-        if (usuarioValido != null) {
-
-        }
-
         return true;
     }
 
-    public String crearReservacion(String userId, String materialId) {
-        String msg = "No se pudo crear la reservacion.";
-        Usuario usuario = capaLogica.buscarUsuario(userId);
-        Material material = capaLogica.buscarMaterial(materialId);
+    public void crearReservacion(String userId, String materialId) throws Exception {
+        Usuario usuario = null;
+        Material material = null;
+
+        usuario = (new MultiUsuario()).buscar(userId);
+        material = (new MultiMaterial()).buscar(materialId);
 
         if (usuario != null && material != null) {
-            Reservacion nuevaReserva = new Reservacion(usuario, material);
-            capaLogica.crearReservacion(nuevaReserva);
-            msg = "Reservacion creada";
+            Reservacion nuevaReserva;
+            nuevaReserva = (new MultiReservacion()).crear(usuario.getId(), material.getId());
         }
-
-        return msg;
     }
 
     public void crearAdministrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
@@ -259,47 +246,26 @@ public class Gestor {
         return datos;
     }
 
-    public String buscarReservacion(String id) {
-        Reservacion reservacion = capaLogica.buscarReservacion(id);
-        String msg;
+    public TreeMap buscarReservacion(String pidentificacion) throws Exception {
+        TreeMap datos = null;
+        Reservacion reservacion = null;
 
-        if (reservacion != null) {
-            msg = reservacion.toString();
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
+        datos = new TreeMap();
+        reservacion = (new MultiReservacion()).buscar(pidentificacion);
+        datos.put("id", reservacion.getId());
+        datos.put("fechaReservacion", reservacion.getFechaReservacion());
+        datos.put("idUsuario", reservacion.getUsuario());
+        datos.put("idMaterial", reservacion.getMaterial());
+        datos.put("estatusReserva", reservacion.getEstatusReserva());
 
-        return msg;
+        return datos;
     }
 
-    public ArrayList<Reservacion> buscarReservacionesPorUsuario(String id) {
-        ArrayList<Reservacion> reservasPorUsuario = new ArrayList<>();
-        ArrayList<Reservacion> listaReservaciones = capaLogica.getListaReservaciones();
-        int cantReservaciones = listaReservaciones.size();
+    public void borrarReservacion(String id) throws Exception {
+        Reservacion reservacion;
 
-        if (cantReservaciones > 0) {
-            for (int i = 0; i < cantReservaciones; i++) {
-                if(listaReservaciones.get(i).getUsuario().getId().equals(id)){
-                    reservasPorUsuario.add(listaReservaciones.get(i));
-                }
-            }
-        }
-
-        return reservasPorUsuario;
-    }
-
-    public String borrarReservacion(String id) {
-        String msg;
-        Reservacion reservacion = capaLogica.buscarReservacion(id);
-
-        if (reservacion != null) {
-            capaLogica.borrarReservacion(reservacion);
-            msg = "La reservacion con ID " + id + " ha sido eliminado";
-        } else {
-            msg = "El numero de identificacion " + id + " no esta en el sistema.";
-        }
-
-        return msg;
+        reservacion = (new MultiReservacion()).buscar(id);
+        (new MultiReservacion()).borrar(reservacion);
     }
 
     public void borrarUsuario(String id) throws Exception {
@@ -407,11 +373,17 @@ public class Gestor {
     public String listarTemas() throws Exception {
         String resul = "";
         Vector datosTemas = (new MultiTema()).buscarTemas();
+        int cantTemas = datosTemas.size();
 
         try {
-            for (int i = 0; i < datosTemas.size(); i++) {
-                resul += datosTemas.get(i).toString();
+            if (cantTemas > 0) {
+                for (int i = 0; i < datosTemas.size(); i++) {
+                    resul += datosTemas.get(i).toString();
+                }
+            } else {
+                resul = "No hay temas.";
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -419,81 +391,56 @@ public class Gestor {
         return resul;
     }
 
-    public String listarReservaciones() {
-        ArrayList<Reservacion> reservaciones = capaLogica.getListaReservaciones();
-        int cantReservas = reservaciones.size();
+    public String listarReservaciones() throws Exception {
         String resul = "";
+        Vector datosReservacion = (new MultiReservacion()).buscarReservaciones();
+        int cantReservas = datosReservacion.size();
 
-        if (cantReservas > 0) {
-            for (int i = 0; i < cantReservas; i++) {
-                String id = reservaciones.get(i).getId();
-                LocalDate fecha = reservaciones.get(i).getFechaReservacion();
-                String usuario = reservaciones.get(i).getUsuario().getId();
-                String material = reservaciones.get(i).getMaterial().getId();
-
-                resul += "Id: " + id + " | Fecha Reservacion: " + fecha +  " | Usuario Id: " + usuario + " | Material Id: " + material + "\n";
+        try {
+            if (cantReservas > 0) {
+                for (int i = 0; i < datosReservacion.size(); i++) {
+                    resul += datosReservacion.get(i).toString();
+                }
+            } else {
+                resul = "No hay reservaciones.";
             }
-        } else {
-            resul = "No hay reservaciones.";
+
+        } catch (Exception e) {
+            e.getMessage();
         }
 
         return resul;
     }
 
-    public String listarReservacionesPorUsuario(String id) {
+    public String listarReservacionesPorUsuario(String id) throws Exception {
         String resul = "";
-        Usuario usuario = capaLogica.buscarUsuario(id);
+        Vector datosReservaciones = (new MultiReservacion()).buscarReservacionPorUsuario(id);
+        int cantReservas = datosReservaciones.size();
 
-        if (usuario != null) {
-            ArrayList<Reservacion> reservasUsuario = buscarReservacionesPorUsuario(id);
-            for (int i = 0; i < reservasUsuario.size(); i++) {
-                String idU = reservasUsuario.get(i).getId();
-                LocalDate fecha = reservasUsuario.get(i).getFechaReservacion();
-                String userId = reservasUsuario.get(i).getUsuario().getId();
-                String material = reservasUsuario.get(i).getMaterial().getId();
-
-                resul += "Id: " + idU + " | Fecha Reservacion: " + fecha + " | Material Id: " + material + "\n";
+        try {
+            if (cantReservas > 0) {
+                for (int i = 0; i < datosReservaciones.size(); i++) {
+                    resul += datosReservaciones.get(i).toString();
+                }
+            } else {
+                resul = "No hay reservaciones.";
             }
-        } else {
-            resul = "El numero de identificacion " + id + " no esta en el sistema.";
+
+        } catch (Exception e) {
+            e.getMessage();
         }
 
         return resul;
     }
 
-    public Reservacion buscarReservacionARedimir(String idUser, String idMaterial) {
-        Reservacion reserva = null;
-        boolean encontrado = false;
-        ArrayList<Reservacion> reservasUsuario = buscarReservacionesPorUsuario(idUser);
-
-        for (int i = 0; i < reservasUsuario.size() && !encontrado; i++) {
-            if(reservasUsuario.get(i).getMaterial().getId().equals(idMaterial)){
-                encontrado = true;
-                reserva = reservasUsuario.get(i);
-            }
-        }
-
-        return reserva;
-    }
-
-    public String redimirReservacion(String idUser, String idMaterial) {
-        String msg = "No hay reservacion.";
-        Reservacion hayReserva = buscarReservacionARedimir(idUser, idMaterial);
-
-        if (hayReserva != null) {
-            capaLogica.borrarReservacion(hayReserva);
-            msg = "Reservacion con Id " + hayReserva.getId() + " ha sido redimida.";
-        }
-
-        return msg;
+    public void redimirReservacion(String idUser, String idMaterial) throws Exception {
+        Reservacion reserva = (new MultiReservacion().buscarReservacionPorUsuarioMaterial(idUser, idMaterial));
+        reserva.setEstatusReserva("Redimido");
+        (new MultiReservacion()).actualizar(reserva);
     }
 
     public static boolean hayUsuarios() {
         boolean hayUsuarios = false;
-
-        if (capaLogica.getListaUsuarios().size() > 0) {
-         hayUsuarios = true;
-        }
 
         return hayUsuarios;
     }

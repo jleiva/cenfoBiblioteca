@@ -49,7 +49,7 @@ public class UI {
     private static void menuAdmin() {
         out.println();
         out.println("============== Menu Principal del Sistema =========================");
-        out.println("1. Usuarios.\n2. Materiales.\n3. Temas.\n4. Reservaciones.\n5. Redimir reservacion.\n0. Salir");
+        out.println("1. Usuarios.\n2. Materiales.\n3. Temas.\n4. Reservaciones.\n0. Salir");
         out.println();
     }
 
@@ -71,9 +71,7 @@ public class UI {
             ejecutarAccionTemas();
         } else if (opcion == 4) { // Reservaciones
             ejecutarAccionReservaciones();
-        } else if (opcion == 5) { // Redimir
-            ejecutarAccionRedimir();
-        }else {
+        } else {
             noSalir = 0;
         }
 
@@ -487,7 +485,7 @@ public class UI {
                         out.println();
                     }
                     catch (Exception ex) {
-                        out.print("El número de identificación ya está en el sistema.");
+                        out.println(ex.getMessage());
                     }
 
                     break;
@@ -574,31 +572,51 @@ public class UI {
             switch (opc) {
                 case 1:
                     out.println("============== Lista de Reservaciones ==============");
-                    out.println(gestor.listarReservaciones());
+                    try {
+                        out.println(gestor.listarReservaciones());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 2:
                     out.println("============== Registrar Reservacion ==============");
                     out.println();
                     out.println("Materiales Disponibles:");
+
                     try {
                         out.println(gestor.listarMateriales());
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        out.println(e.getMessage());
                     }
+
                     out.println("Id Material a reservar: ");
                     idReserva = in.readLine();
                     out.println("Id Usuario: ");
                     idUser = in.readLine();
-                    out.println(gestor.crearReservacion(idUser, idReserva));
+
+                    try {
+                        gestor.crearReservacion(idUser, idReserva);
+                        out.println("Reservacion creada.");
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 3:
                     out.println("============== Buscar Reservacion ==============");
-                    out.println(gestor.listarReservaciones());
+                    try {
+                        out.println(gestor.listarReservaciones());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     out.println("Ingrese el Id de la Reservacion: ");
                     idReserva = in.readLine();
-                    out.println(gestor.buscarReservacion(idReserva));
+                    try {
+                        out.println(gestor.buscarReservacion(idReserva));
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 4:
@@ -610,103 +628,65 @@ public class UI {
                     }
                     out.println("Ingrese el Id del usuario: ");
                     idUser = in.readLine();
-                    out.println(gestor.listarReservacionesPorUsuario(idUser));
+                    try {
+                        out.println(gestor.listarReservacionesPorUsuario(idUser));
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 5:
                     out.println("============== Eliminar Reservacion ==============");
-                    out.println(gestor.listarReservaciones());
+                    try {
+                        out.println(gestor.listarReservaciones());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Ingrese el Id de la Reservacion: ");
                     idReserva = in.readLine();
-                    out.println(gestor.borrarReservacion(idReserva));
+
+                    try {
+                        gestor.borrarReservacion(idReserva);
+                        out.println("Reservacion eliminada.");
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 6:
                     out.println("============== Modificar Reservacion ==============");
-                    out.println(gestor.listarReservaciones());
+                    try {
+                        out.println(gestor.listarReservaciones());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     break;
 
                 case 7:
                     out.println("============== Redimir Reservacion ==============");
+                    try {
+                        out.println(gestor.listarReservaciones());
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
+
                     out.println("Ingrese el Id del usuario: ");
                     idUser = in.readLine();
-                    out.println(gestor.listarReservacionesPorUsuario(idUser));
+
+                    try {
+                        out.println(gestor.listarReservacionesPorUsuario(idUser));
+                    } catch (Exception e) {
+                        out.println(e.getMessage());
+                    }
                     out.println("Ingrese el Id del Material: ");
                     String idMaterial = in.readLine();
-                    out.println(gestor.redimirReservacion(idUser, idMaterial));
-                    break;
-
-                default:
-                    opc = 0;
-                    break;
-            }
-
-        } while (opc != 0);
-    }
-
-    private static void ejecutarAccionRedimir() throws java.io.IOException {
-        int opc;
-        String idUser = null;
-
-        do {
-            out.println();
-            out.println("============== Submenu Redimir =========================");
-            out.println("1. Listar Reservaciones.");
-            out.println("2. Listar Usuarios.");
-            out.println("3. Redimir reservacion.");
-            out.println("0. Ir a Menu Principal.");
-            out.println();
-
-            opc = leerOpcionSelecionada();
-
-            switch (opc) {
-                case 1:
-                    out.println("============== Lista de Reservaciones ==============");
-                    out.println(gestor.listarReservaciones());
-                    break;
-
-                case 2:
-                    out.println("============== Listar Usuarios ==============");
                     try {
-                        out.println(gestor.listarUsuarios());
+                        gestor.redimirReservacion(idUser, idMaterial);
+                        out.println("El Material ha sido redimido de manera exitosa.");
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        out.println(e.getMessage());
                     }
-                    break;
-
-                case 3:
-                    out.println("============== Redimir Reservacion ==============");
-                    out.println("Ingrese el Id del usuario: ");
-
-                    try {
-                        idUser = in.readLine();
-
-                        if (idUser.isEmpty()) {
-                            throw new Exception();
-                        }
-
-                        out.println("Reservaciones del Usuario: ");
-                        out.println(gestor.listarReservacionesPorUsuario(idUser));
-
-                    } catch (Exception e) {
-                        out.println("[Error] Debe ingresar un valor.");
-                    }
-
-                    out.println("Ingrese el Id del Material: ");
-                    String idMaterial = null;
-
-                    try {
-                        idMaterial = in.readLine();
-
-                        if (idMaterial.isEmpty()) {
-                            throw new Exception();
-                        }
-
-                        out.println(gestor.redimirReservacion(idUser, idMaterial));
-                    } catch (Exception e) {
-                        out.println("[Error] Debe ingresar un valor.");
-                    }
-
                     break;
 
                 default:

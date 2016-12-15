@@ -4,14 +4,30 @@ import java.time.LocalDate;
 
 public class Reservacion {
     private String id;
-    private Usuario usuario;
-    private Material material;
+    private String usuario;
+    private String material;
     private LocalDate fechaReservacion;
 
+    private String estatusReserva;
     private static int countSerie;
 
-    public Reservacion(Usuario usuario, Material material) {
+    public Reservacion(String usuario, String material) {
         setId();
+        setFechaReservacion();
+        setUsuario(usuario);
+        setMaterial(material);
+    }
+
+    public Reservacion(String id, String usuario, String material) {
+        this.id = id;
+        setFechaReservacion();
+        setUsuario(usuario);
+        setMaterial(material);
+    }
+
+    public Reservacion(String id, String usuario, String material, String estatusReserva) {
+        this.id = id;
+        this.estatusReserva = estatusReserva;
         setFechaReservacion();
         setUsuario(usuario);
         setMaterial(material);
@@ -21,16 +37,24 @@ public class Reservacion {
         this.id = "R-" + ++countSerie;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public void setMaterial(Material material) {
+    public void setMaterial(String material) {
         this.material = material;
     }
 
     public void setFechaReservacion() {
         this.fechaReservacion = LocalDate.now();
+    }
+
+    public void setEstatusReserva(String estatusReserva) {
+        this.estatusReserva = estatusReserva;
+    }
+
+    public String getEstatusReserva() {
+        return estatusReserva;
     }
 
     public LocalDate getFechaReservacion() {
@@ -41,22 +65,23 @@ public class Reservacion {
         return id;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public Material getMaterial() {
+    public String getMaterial() {
         return material;
     }
 
     @Override
     public String toString() {
-        String resul = "== Datos Reservacion == \n";
+        String resul = "";
 
-        resul += "Id: " + getId() + "\n";
-        resul += "Fecha Reservacion: " + getFechaReservacion() + "\n";
-        resul += "Material: \n";
-        resul += getMaterial().toString();
+        resul += "Id Reserva: " + getId() + " | ";
+        resul += "Fecha Reservacion: " + getFechaReservacion() + " | ";
+        resul += "Usuario Id: " + getUsuario() + " | ";
+        resul += "Material Id: " + getMaterial() + " | ";
+        resul += "Estatus: " + getEstatusReserva() + "\n";
 
         return resul;
     }

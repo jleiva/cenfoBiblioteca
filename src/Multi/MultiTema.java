@@ -14,7 +14,7 @@ public class MultiTema {
             Conector.getConector().ejecutarSQL(sql);
         }
         catch (Exception e) {
-            throw new Exception ("Error al borrar el tema.");
+            throw new Exception ("[Error] No se pudo borrar el tema.");
         }
     }
 
@@ -31,7 +31,7 @@ public class MultiTema {
         if (rs.next()) {
             tema = new Tema(rs.getString("id"), rs.getString("nombre"));
         } else {
-            throw new Exception ("El tema no está registrado.");
+            throw new Exception ("[Error] El tema no está registrado.");
         }
         rs.close();
         return tema;
@@ -54,7 +54,7 @@ public class MultiTema {
                 temas.add(tema);
             } while (rs.next());
         } else {
-            throw new Exception ("No hay temas con ese nombre.");
+            throw new Exception ("[Error] No hay temas con ese nombre.");
         }
 
         rs.close();
@@ -92,7 +92,7 @@ public class MultiTema {
             tema = new Tema(pnombre);
         }
         catch (Exception e) {
-            throw new Exception ("El número de identificación ya está en el sistema.");
+            throw new Exception ("[Error] El número de identificación ya está en el sistema.");
         }
 
         return tema;

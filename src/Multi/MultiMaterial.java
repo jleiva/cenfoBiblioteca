@@ -1,7 +1,7 @@
 package Multi;
 
 import CapaAccesoBD.Conector;
-import CapaLogica.Material;
+import CapaLogica.*;
 import java.util.Vector;
 
 public class MultiMaterial {
@@ -14,7 +14,7 @@ public class MultiMaterial {
             Conector.getConector().ejecutarSQL(sql);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception ("[Error] No se pudo eliminar el material.");
         }
     }
 
@@ -32,7 +32,7 @@ public class MultiMaterial {
             material = new Material(rs.getString("id"), rs.getString("idioma"), rs.getString("fechaCompra"),
                     rs.getBoolean("esRestringido"), rs.getString("tema"), rs.getString("tipo"));
         } else {
-            throw new Exception ("El material no está registrado.");
+            throw new Exception ("[Error] El material no está registrado.");
         }
 
         rs.close();
@@ -72,7 +72,7 @@ public class MultiMaterial {
             material = new Material(id, idioma, fechaCompra, esRestringido, tema);
         }
         catch (Exception e) {
-            throw new Exception ("El número de ISBN ya está en el sistema.");
+            throw new Exception ("[Error] El número de ISBN ya está en el sistema.");
         }
 
         return material;
