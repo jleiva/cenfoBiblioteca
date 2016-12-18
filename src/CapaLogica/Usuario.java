@@ -12,6 +12,8 @@ public class Usuario {
     protected String apellido;
 
     protected String tipo;
+    protected String password;
+    protected String rol;
 
     public Usuario(String id) {
         setId(id);
@@ -30,6 +32,24 @@ public class Usuario {
         setNombre(nombre);
         setApellido(apellido);
         setTipo(tipo);
+    }
+
+    public Usuario(String nombre, String apellido, String id, String tipo, String password) {
+        this(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setTipo(tipo);
+        setPassword(password);
+        setRol("Usuario");
+    }
+
+    public Usuario(String nombre, String apellido, String id, String tipo, String password, String rol) {
+        this(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setTipo(tipo);
+        setPassword(password);
+        setRol(rol);
     }
 
     /**
@@ -56,6 +76,22 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRol() {
+        return rol;
     }
 
     public String getTipo() {

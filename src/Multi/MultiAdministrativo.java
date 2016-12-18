@@ -45,15 +45,15 @@ public class MultiAdministrativo {
     }
 
     public Administrativo crear(String nombre, String apellido, String cedula, String tipoNombramiento,
-                                int cantidadHorasSemanales)
+                                int cantidadHorasSemanales, String password)
             throws Exception {
         Administrativo administrativo = null;
         String sqlP;
         String sqlS;
 
         sqlP = "INSERT INTO TUsuario "+
-                "(id, nombre, apellido, tipo) "+
-                "VALUES ('"+cedula+"', '"+nombre+"', '"+apellido+"', 'Administrativo');";
+                "(id, nombre, apellido, tipo, pass, rol) "+
+                "VALUES ('"+cedula+"', '"+nombre+"', '"+apellido+"', 'Administrativo', '"+password+"', 'Usuario');";
 
         sqlS = "INSERT INTO TAdministrativo "+
                 "(id, tipoNombramiento, cantidadHorasSemanales) "+

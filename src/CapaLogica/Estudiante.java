@@ -36,6 +36,12 @@ public class Estudiante extends Usuario {
         setNumeroCreditos(numeroCreditos);
     }
 
+    public Estudiante(String nombre, String apellido, String carnet, String carrera, int numeroCreditos, String password) {
+        super(nombre, apellido, carnet, "Estudiante", password);
+        setCarrera(carrera);
+        setNumeroCreditos(numeroCreditos);
+    }
+
     /**
      * Sets carrera.
      *

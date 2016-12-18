@@ -44,15 +44,15 @@ public class MultiEstudiante {
         return usuario;
     }
 
-    public Estudiante crear(String nombre, String apellido, String carnet, String carrera, int numeroCreditos)
+    public Estudiante crear(String nombre, String apellido, String carnet, String carrera, int numeroCreditos, String password)
             throws Exception {
         Estudiante estudiante = null;
         String sqlP;
         String sqlS;
 
         sqlP = "INSERT INTO TUsuario "+
-                "(id, nombre, apellido, tipo) "+
-                "VALUES ('"+carnet+"', '"+nombre+"', '"+apellido+"', 'Estudiante');";
+                "(id, nombre, apellido, tipo, pass, rol) "+
+                "VALUES ('"+carnet+"', '"+nombre+"', '"+apellido+"', 'Estudiante', '"+password+"', 'Usuario');";
 
         sqlS = "INSERT INTO TEstudiante "+
                 "(id, carrera, numeroCreditos) "+

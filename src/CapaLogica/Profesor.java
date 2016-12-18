@@ -38,6 +38,12 @@ public class Profesor extends Usuario {
         setFechaContratacion(fechaContratacion);
     }
 
+    public Profesor(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion, String password) {
+        super(nombre, apellido, cedula, "Profesor", password);
+        setTipoContrato(tipoContrato);
+        setFechaContratacion(fechaContratacion);
+    }
+
     /**
      * Sets tipo contrato.
      *

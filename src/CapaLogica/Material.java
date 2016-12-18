@@ -16,6 +16,7 @@ public class Material {
     protected String tema;
 
     protected String tipo;
+    protected boolean estaDisponible;
 
     /**
      * Instantiates a new CapaLogica.Material.
@@ -57,6 +58,14 @@ public class Material {
         setIdioma(idioma);
         setEsRestringido(esRestringido);
         setTipo(tipo);
+    }
+
+    public Material(String id, String idioma, String fechaCompra, boolean esRestringido, String tema, String tipo, boolean estaDisponible) {
+        this(id, fechaCompra, tema);
+        setIdioma(idioma);
+        setEsRestringido(esRestringido);
+        setTipo(tipo);
+        setEsRestringido(estaDisponible);
     }
 
     /**
@@ -106,6 +115,14 @@ public class Material {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setEstaDisponible(boolean estaDisponible) {
+        this.estaDisponible = estaDisponible;
+    }
+
+    public boolean estaDisponible() {
+        return estaDisponible;
     }
 
     public String getTipo() {

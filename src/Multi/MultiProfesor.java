@@ -44,15 +44,16 @@ public class MultiProfesor {
         return usuario;
     }
 
-    public Profesor crear(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion)
+    public Profesor crear(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion,
+                          String password)
             throws Exception {
         Profesor profesor = null;
         String sqlP;
         String sqlS;
 
         sqlP = "INSERT INTO TUsuario "+
-                "(id, nombre, apellido, tipo) "+
-                "VALUES ('"+cedula+"', '"+nombre+"', '"+apellido+"', 'Profesor');";
+                "(id, nombre, apellido, tipo, pass, rol) "+
+                "VALUES ('"+cedula+"', '"+nombre+"', '"+apellido+"', 'Profesor', '"+password+"', 'Usuario');";
 
         sqlS = "INSERT INTO TProfesor "+
                 "(id, tipoContrato, fechaContratacion) "+

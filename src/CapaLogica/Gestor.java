@@ -23,21 +23,23 @@ public class Gestor {
     }
 
     public void crearAdministrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
-                                      int cantidadHorasSemanales) throws Exception {
+                                      int cantidadHorasSemanales, String password) throws Exception {
         Usuario administrativo;
-        administrativo = (new MultiAdministrativo()).crear(nombre, apellido, cedula, tipoNombramiento, cantidadHorasSemanales);
+        administrativo = (new MultiAdministrativo()).crear(nombre, apellido, cedula, tipoNombramiento,
+                cantidadHorasSemanales, password);
     }
 
     public void crearEstudiante(String nombre, String apellido, String carnet, String carrera,
-                                    int numeroCreditos) throws Exception {
+                                    int numeroCreditos, String password) throws Exception {
         Usuario usuario;
-        usuario = (new MultiEstudiante()).crear(nombre, apellido, carnet, carrera, numeroCreditos);
+        usuario = (new MultiEstudiante()).crear(nombre, apellido, carnet, carrera, numeroCreditos, password);
     }
 
-    public void crearProfesor(String nombre, String apellido, String cedula, String tipoContrato, String fechaContratacion)
+    public void crearProfesor(String nombre, String apellido, String cedula, String tipoContrato,
+                              String fechaContratacion, String password)
             throws Exception {
         Usuario usuario;
-        usuario = (new MultiProfesor()).crear(nombre, apellido, cedula, tipoContrato, fechaContratacion);
+        usuario = (new MultiProfesor()).crear(nombre, apellido, cedula, tipoContrato, fechaContratacion, password);
     }
 
     public void crearTema(String pnombre) throws Exception {
@@ -196,54 +198,57 @@ public class Gestor {
     }
 
     public TreeMap buscarUsuario(String pidentificacion) throws Exception {
-        TreeMap datos = null;
-        Usuario usuario = null;
-        String tipoUsuario;
+        try {
+            TreeMap datos = null;
+            Usuario usuario;
+            String tipoUsuario;
+            usuario = (new MultiUsuario()).buscar(pidentificacion);
 
-        datos = new TreeMap();
-        usuario = (new MultiUsuario()).buscar(pidentificacion);
-        tipoUsuario = usuario.getTipo();
+            if (usuario != null) {
+                tipoUsuario = usuario.getTipo();
+                datos = new TreeMap();
 
-        switch (tipoUsuario) {
-            case "Estudiante":
-                Estudiante selectEstudiante = null;
-                selectEstudiante = (new MultiEstudiante()).buscar(pidentificacion);
+                switch (tipoUsuario) {
+                    case "Estudiante":
+                        Estudiante selectEstudiante = (new MultiEstudiante()).buscar(pidentificacion);
 
-                datos.put("carnet", selectEstudiante.getId());
-                datos.put("nombre", selectEstudiante.getNombre());
-                datos.put("apellido", selectEstudiante.getApellido());
-                datos.put("carrera", selectEstudiante.getCarrera());
-                datos.put("numeroCreditos", selectEstudiante.getNumeroCreditos());
-                break;
+                        datos.put("carnet", selectEstudiante.getId());
+                        datos.put("nombre", selectEstudiante.getNombre());
+                        datos.put("apellido", selectEstudiante.getApellido());
+                        datos.put("carrera", selectEstudiante.getCarrera());
+                        datos.put("numeroCreditos", selectEstudiante.getNumeroCreditos());
+                        break;
 
-            case "Profesor":
-                Profesor selectProfe = null;
-                selectProfe = (new MultiProfesor()).buscar(pidentificacion);
+                    case "Profesor":
+                        Profesor selectProfe = (new MultiProfesor()).buscar(pidentificacion);
 
-                datos.put("cedula", selectProfe.getId());
-                datos.put("nombre", selectProfe.getNombre());
-                datos.put("apellido", selectProfe.getApellido());
-                datos.put("tipoContrato", selectProfe.getTipoContrato());
-                datos.put("fechaContratacion", selectProfe.getFechaContratacion());
-                break;
+                        datos.put("cedula", selectProfe.getId());
+                        datos.put("nombre", selectProfe.getNombre());
+                        datos.put("apellido", selectProfe.getApellido());
+                        datos.put("tipoContrato", selectProfe.getTipoContrato());
+                        datos.put("fechaContratacion", selectProfe.getFechaContratacion());
+                        break;
 
-            case "Administrativo":
-                Administrativo selectAdmin = null;
-                selectAdmin = (new MultiAdministrativo()).buscar(pidentificacion);
+                    case "Administrativo":
+                        Administrativo selectAdmin = (new MultiAdministrativo()).buscar(pidentificacion);
 
-                datos.put("cedula", selectAdmin.getId());
-                datos.put("nombre", selectAdmin.getNombre());
-                datos.put("apellido", selectAdmin.getApellido());
-                datos.put("tipoNombramiento", selectAdmin.getTipoNombramiento());
-                datos.put("cantidadHorasSemanales", selectAdmin.getCantidadHorasSemanales());
-                break;
+                        datos.put("cedula", selectAdmin.getId());
+                        datos.put("nombre", selectAdmin.getNombre());
+                        datos.put("apellido", selectAdmin.getApellido());
+                        datos.put("tipoNombramiento", selectAdmin.getTipoNombramiento());
+                        datos.put("cantidadHorasSemanales", selectAdmin.getCantidadHorasSemanales());
+                        break;
 
-            default:
+                    default:
+                        break;
+                }
+            }
 
-                break;
+            return datos;
+
+        } catch (Exception e) {
+            throw new Exception ("Usuario no existe.");
         }
-
-        return datos;
     }
 
     public TreeMap buscarReservacion(String pidentificacion) throws Exception {
@@ -328,9 +333,30 @@ public class Gestor {
         (new MultiTema()).borrar(tema);
     }
 
+    public String listarMaterialesExistentes() throws Exception {
+        String resul = "";
+        Vector datosMateriales = (new MultiMaterial()).buscarTodosMateriales();
+        int cantMateriales = datosMateriales.size();
+
+        try {
+            if (cantMateriales > 0) {
+                for (int i = 0; i < cantMateriales; i++) {
+                    resul += datosMateriales.get(i).toString();
+                }
+            } else {
+                resul = "No hay Materiales.";
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
+        return resul;
+    }
+
     public String listarMateriales() throws Exception {
         String resul = "";
-        Vector datosMateriales = (new MultiMaterial()).buscarMateriales();
+        Vector datosMateriales = (new MultiMaterial()).buscarMaterialesDisponibles();
         int cantMateriales = datosMateriales.size();
 
         try {
@@ -437,6 +463,12 @@ public class Gestor {
         Reservacion reserva = (new MultiReservacion().buscarReservacionPorUsuarioMaterial(idUser, idMaterial));
         reserva.setEstatusReserva("Redimido");
         (new MultiReservacion()).actualizar(reserva);
+    }
+
+    public static boolean materialEstaDisponible() {
+        boolean materialDisponible = false;
+
+        return materialDisponible;
     }
 
     public static boolean hayUsuarios() {

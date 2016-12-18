@@ -45,12 +45,12 @@ public class MultiUsuario {
         Usuario usuario = null;
         Vector usuarios = null;
         sql="SELECT * "+
-                "FROM TUsuario;";
+                "FROM TUsuario WHERE rol <> 'Admin';"; // No listamos al administrador del sistema
         Conector.getConector().ejecutarSQL(sql);
         rs = Conector.getConector().ejecutarSQL(sql,true);
         usuarios = new Vector();
 
-        while (rs.next()){
+        while (rs.next()) {
             usuario = new Usuario(rs.getString("nombre"), rs.getString("apellido"), rs.getString("id"), rs.getString("tipo"));
             usuarios.add(usuario);
         }

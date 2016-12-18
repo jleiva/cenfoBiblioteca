@@ -37,6 +37,20 @@ public class Administrativo extends Usuario {
         setCantidadHorasSemanales(cantidadHorasSemanales);
     }
 
+    public Administrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
+                          int cantidadHorasSemanales, String password) {
+        super(nombre, apellido, cedula, "Administrativo", password);
+        setTipoNombramiento(tipoNombramiento);
+        setCantidadHorasSemanales(cantidadHorasSemanales);
+    }
+
+    public Administrativo(String nombre, String apellido, String cedula, String tipoNombramiento,
+                          int cantidadHorasSemanales, String password, String rol) {
+        super(nombre, apellido, cedula, "Administrativo", password, rol);
+        setTipoNombramiento(tipoNombramiento);
+        setCantidadHorasSemanales(cantidadHorasSemanales);
+    }
+
     /**
      * Sets tipo nombramiento.
      *

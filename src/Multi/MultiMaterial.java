@@ -39,13 +39,35 @@ public class MultiMaterial {
         return material;
     }
 
-    public Vector buscarMateriales() throws java.sql.SQLException,Exception {
+    public Vector buscarMaterialesDisponibles() throws java.sql.SQLException,Exception {
         java.sql.ResultSet rs;
         String sql;
         Material material = null;
         Vector materiales = null;
         sql="SELECT * "+
-                "FROM TMaterial;";
+                "FROM TMaterial "+
+                "WHERE disponibilidad LIKE '%Disponible%';";
+        Conector.getConector().ejecutarSQL(sql);
+        rs = Conector.getConector().ejecutarSQL(sql,true);
+        materiales = new Vector();
+
+        while (rs.next()){
+            material = new Material(rs.getString("id"), rs.getString("idioma"), rs.getString("fechaCompra"),
+                    rs.getBoolean("esRestringido"), rs.getString("tema"), rs.getString("tipo"));
+            materiales.add(material);
+        }
+
+        rs.close();
+        return materiales;
+    }
+
+    public Vector buscarTodosMateriales() throws java.sql.SQLException,Exception {
+        java.sql.ResultSet rs;
+        String sql;
+        Material material = null;
+        Vector materiales = null;
+        sql="SELECT * "+
+                "FROM TMaterial";
         Conector.getConector().ejecutarSQL(sql);
         rs = Conector.getConector().ejecutarSQL(sql,true);
         materiales = new Vector();
