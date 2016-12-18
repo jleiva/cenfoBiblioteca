@@ -1,0 +1,45 @@
+JFDML JFormDesigner: "6.0.0.0.63" Java: "1.8.0_112-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::257:x, comp label1:::p::p, space :p:248:p}, seq l {space :p:129:p, par l {comp SalirBtn:::p::p, comp RegistrarUsuarioBtn:::p::p, comp VerUsuariosBtn:::p::p, comp BuscarUsuarioBtn::l:p::p, comp EliminarUsuarioBtn::l:p::p}, space ::403:x}}"
+			"$verticalGroup": "par l {seq l {space :p:47:p, comp label1:::p::p, space :p:76:p, comp VerUsuariosBtn:::p::p, space :::p, comp RegistrarUsuarioBtn:::p::p, space s:::p, comp BuscarUsuarioBtn:::p::p, space u:::p, comp EliminarUsuarioBtn:::p::p, space s:::p, comp SalirBtn:::p::p, space ::85:x}}"
+		} ) {
+			name: "this"
+			"title": "Biblioteca - Menu Principal del Sistema"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Menu Principal del Sistema"
+				"font": new java.awt.Font( "Segoe UI", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "VerUsuariosBtn"
+				"text": "1. Usuarios"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "UsuariosActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "EliminarUsuarioBtn"
+				"text": "4. Reservaciones"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "EliminarUsuarioBtnActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "BuscarUsuarioBtn"
+				"text": "3. Temas"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "RegistrarUsuarioBtn"
+				"text": "2. Materiales"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "SalirBtn"
+				"text": "0. Salir"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SalirBtnActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 650, 470 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}

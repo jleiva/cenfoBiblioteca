@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+
 /*
  * Created by JFormDesigner on Sat Dec 17 22:25:55 CST 2016
  */
@@ -35,6 +36,10 @@ public class LoginUI extends JFrame {
 		{
 
 			JOptionPane.showMessageDialog(frame, "Login correcto");
+
+			JFrame menuPrincipal = new MenuPrincipalUI();
+			menuPrincipal.setVisible(true);
+			this.setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(frame, "Login incorrecto", "Error",JOptionPane.ERROR_MESSAGE);
 		}

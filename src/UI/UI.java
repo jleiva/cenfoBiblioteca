@@ -23,10 +23,14 @@ public class UI {
             login.setTitle("Biblioteca");
             login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             login.setVisible(true);
+
+
+
+
         });
 
 //        do {
-//            menuAdmin();
+            menuAdmin();
 //            opc = leerOpcionSelecionada();
 //            noSalir = ejecutarAccionSeleccionada(opc);
 //        } while (noSalir != 0);
