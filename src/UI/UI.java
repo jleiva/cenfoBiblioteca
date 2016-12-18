@@ -1,7 +1,10 @@
 package UI;
 
+import java.awt.*;
 import java.io.*;
 import CapaLogica.*;
+
+import javax.swing.*;
 
 public class UI {
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -13,11 +16,20 @@ public class UI {
         int noSalir;
         gestor = new Gestor();
 
-        do {
-            menuAdmin();
-            opc = leerOpcionSelecionada();
-            noSalir = ejecutarAccionSeleccionada(opc);
-        } while (noSalir != 0);
+
+        EventQueue.invokeLater(()->
+        {
+            JFrame login = new LoginUI();
+            login.setTitle("Biblioteca");
+            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            login.setVisible(true);
+        });
+
+//        do {
+//            menuAdmin();
+//            opc = leerOpcionSelecionada();
+//            noSalir = ejecutarAccionSeleccionada(opc);
+//        } while (noSalir != 0);
     }
 
     private static int leerOpcionSelecionada()throws java.io.IOException{
