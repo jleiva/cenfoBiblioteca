@@ -37,7 +37,7 @@ public class eliminarUsuarioUI extends JFrame {
 
         //---- label1 ----
         label1.setText("Eliminar Usuario");
-        label1.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        label1.setFont(new Font("Segoe UI", Font.BOLD, 20));
 
         //---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -54,7 +54,7 @@ public class eliminarUsuarioUI extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(256, Short.MAX_VALUE)
+                    .addContainerGap(268, Short.MAX_VALUE)
                     .addComponent(label1)
                     .addGap(253, 253, 253))
                 .addGroup(contentPaneLayout.createSequentialGroup()
@@ -62,7 +62,7 @@ public class eliminarUsuarioUI extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
                         .addComponent(label2))
-                    .addContainerGap(223, Short.MAX_VALUE))
+                    .addContainerGap(219, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -73,7 +73,7 @@ public class eliminarUsuarioUI extends JFrame {
                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(240, Short.MAX_VALUE))
+                    .addContainerGap(243, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());

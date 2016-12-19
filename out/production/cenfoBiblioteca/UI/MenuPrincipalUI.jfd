@@ -4,15 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::257:x, comp label1:::p::p, space :p:248:p}, seq l {space :p:129:p, par l {comp SalirBtn:::p::p, comp RegistrarUsuarioBtn:::p::p, comp VerUsuariosBtn:::p::p, comp BuscarUsuarioBtn::l:p::p, comp EliminarUsuarioBtn::l:p::p}, space ::403:x}}"
-			"$verticalGroup": "par l {seq l {space :p:47:p, comp label1:::p::p, space :p:76:p, comp VerUsuariosBtn:::p::p, space :::p, comp RegistrarUsuarioBtn:::p::p, space s:::p, comp BuscarUsuarioBtn:::p::p, space u:::p, comp EliminarUsuarioBtn:::p::p, space s:::p, comp SalirBtn:::p::p, space ::85:x}}"
+			"$horizontalGroup": "par l {seq t {space ::177:x, comp label1:::p::p, space :p:91:p, comp Salir:1::p::p, space :::p}, seq l {space :p:129:p, par l {comp VerUsuariosBtn:1::p::p, comp VerTemasBtn:1:l:p::p, comp VerReservacionesBtn:1:l:p::p, comp VerMaterialBtn:1:l:p::p}, space ::403:x}}"
+			"$verticalGroup": "par l {seq {space :p:37:p, par t {comp label1:::p::p, comp Salir:2::p::p}, space :p:76:p, comp VerUsuariosBtn:2::p::p, space :p:12:p, comp VerMaterialBtn:2::p::p, space :::p, comp VerTemasBtn:2::p::p, space :::p, comp VerReservacionesBtn:2::p::p, space ::141:x}}"
 		} ) {
 			name: "this"
-			"title": "Biblioteca - Menu Principal del Sistema"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Menu Principal del Sistema"
-				"font": new java.awt.Font( "Segoe UI", 1, 16 )
+				"font": new java.awt.Font( "Segoe UI", 1, 20 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "VerUsuariosBtn"
@@ -20,22 +19,24 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "UsuariosActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "EliminarUsuarioBtn"
+				name: "VerReservacionesBtn"
 				"text": "4. Reservaciones"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "EliminarUsuarioBtnActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "VerReservacionesBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "BuscarUsuarioBtn"
+				name: "VerTemasBtn"
 				"text": "3. Temas"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "VerTemasBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "RegistrarUsuarioBtn"
+				name: "VerMaterialBtn"
 				"text": "2. Materiales"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "VerMaterialBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "SalirBtn"
-				"text": "0. Salir"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SalirBtnActionPerformed", true ) )
+				name: "Salir"
+				"text": "Salir"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 650, 470 )

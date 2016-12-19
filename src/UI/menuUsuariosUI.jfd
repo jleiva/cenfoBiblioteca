@@ -4,14 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::257:x, comp label1:::p::p, space :p:248:p}, seq l {space :p:129:p, par l {comp Salir:1::p::p, comp RegistrarUsuarioBtn:1::p::p, comp VerUsuariosBtn:1::p::p, comp BuscarUsuarioBtn:1:l:p::p, comp EliminarUsuarioBtn:1:l:p::p}, space ::352:x}}"
-			"$verticalGroup": "par l {seq l {space :p:47:p, comp label1:::p::p, space :p:76:p, comp VerUsuariosBtn:2::p::p, space :::p, comp RegistrarUsuarioBtn:2::p::p, space s:::p, comp BuscarUsuarioBtn:2::p::p, space u:::p, comp EliminarUsuarioBtn:2::p::p, space s:::p, comp Salir:2::p::p, space ::79:x}}"
+			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :p:75:p, comp Salir:::p:167:p, space :::p}, seq l {space :p:129:p, par c {comp VerUsuariosBtn:1:c:p:167:p, comp RegistrarUsuarioBtn:1:c:p::p, comp BuscarUsuarioBtn:1:c:p:167:p, comp EliminarUsuarioBtn:1:c:p:167:p}, space :p:352:p}}"
+			"$verticalGroup": "par l {seq l {space :p:44:p, par b {comp label1::b:p::p, comp Salir::b:p:32:p}, space :p:69:p, comp VerUsuariosBtn:2::p::p, space :p:12:p, comp RegistrarUsuarioBtn:2::p:32:p, space u:p::p, comp BuscarUsuarioBtn:2::p:32:p, space u:p::p, comp EliminarUsuarioBtn:2::p:32:p, space ::128:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Submenu Usuarios"
-				"font": new java.awt.Font( "Segoe UI", 1, 16 )
+				"font": new java.awt.Font( "Segoe UI", 1, 20 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "VerUsuariosBtn"
@@ -33,7 +33,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "Salir"
-				"text": "0. Ir a Menu Principal"
+				"text": "Ir a Menu Principal"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {

@@ -4,14 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::256:x, comp label1:::p::p, space :p:253:p}, seq l {space :p:224:p, par t {comp comboBox1:::p:201:p, comp label2:::p::p}, space ::223:x}}"
-			"$verticalGroup": "par l {seq l {space :p:26:p, comp label1:::p::p, space :p:83:p, comp label2:::p:32:p, space :::p, comp comboBox1:::p::p, space ::240:x}}"
+			"$horizontalGroup": "par l {seq t {space ::268:x, comp label1:::p::p, space :p:253:p}, seq l {space :p:224:p, par t {comp comboBox1:::p:201:p, comp label2:::p::p}, space ::219:x}}"
+			"$verticalGroup": "par l {seq l {space :p:26:p, comp label1:::p::p, space :p:83:p, comp label2:::p:32:p, space :::p, comp comboBox1:::p::p, space ::243:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Eliminar Usuario"
-				"font": new java.awt.Font( "Segoe UI", 1, 16 )
+				"font": new java.awt.Font( "Segoe UI", 1, 20 )
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "comboBox1"

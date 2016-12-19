@@ -54,7 +54,7 @@ public class menuUsuariosUI extends JFrame {
 
         //---- label1 ----
         label1.setText("Submenu Usuarios");
-        label1.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        label1.setFont(new Font("Segoe UI", Font.BOLD, 20));
 
         //---- VerUsuariosBtn ----
         VerUsuariosBtn.setText("1. Ver lista de Usuarios");
@@ -71,7 +71,7 @@ public class menuUsuariosUI extends JFrame {
         RegistrarUsuarioBtn.setText("2. Registrar nuevo Usuario");
 
         //---- Salir ----
-        Salir.setText("0. Ir a Menu Principal");
+        Salir.setText("Ir a Menu Principal");
         Salir.addActionListener(e -> button5ActionPerformed(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
@@ -79,38 +79,39 @@ public class menuUsuariosUI extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(257, Short.MAX_VALUE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label1)
-                    .addGap(248, 248, 248))
+                    .addGap(75, 75, 75)
+                    .addComponent(Salir, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(129, 129, 129)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(Salir)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(VerUsuariosBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
                         .addComponent(RegistrarUsuarioBtn)
-                        .addComponent(VerUsuariosBtn)
-                        .addComponent(BuscarUsuarioBtn)
-                        .addComponent(EliminarUsuarioBtn))
-                    .addContainerGap(352, Short.MAX_VALUE))
+                        .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))
+                    .addGap(352, 352, 352))
         );
-        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, RegistrarUsuarioBtn, Salir, VerUsuariosBtn});
+        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, RegistrarUsuarioBtn, VerUsuariosBtn});
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(label1)
-                    .addGap(76, 76, 76)
+                    .addGap(44, 44, 44)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(Salir, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                    .addGap(69, 69, 69)
                     .addComponent(VerUsuariosBtn)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(RegistrarUsuarioBtn)
-                    .addGap(18, 18, 18)
-                    .addComponent(BuscarUsuarioBtn)
+                    .addGap(12, 12, 12)
+                    .addComponent(RegistrarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(EliminarUsuarioBtn)
-                    .addGap(18, 18, 18)
-                    .addComponent(Salir)
-                    .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(128, Short.MAX_VALUE))
         );
-        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, RegistrarUsuarioBtn, Salir, VerUsuariosBtn});
+        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, RegistrarUsuarioBtn, VerUsuariosBtn});
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
