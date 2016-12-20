@@ -16,7 +16,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "VerMaterialBtn"
 				"text": "1. Ver lista de Materiales"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "UsuariosActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "VerMaterialBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "EliminarMaterialBtn"

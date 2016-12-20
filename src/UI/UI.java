@@ -50,7 +50,7 @@ public class UI {
         return opcion;
     }
 
-    public static void login() throws java.io.IOException {
+    public  void login() throws java.io.IOException {
         String usuario;
         String password;
 
@@ -76,7 +76,7 @@ public class UI {
         out.println();
     }
 
-    private static int ejecutarAccionSeleccionada(int opcion) throws java.io.IOException {
+    private  int ejecutarAccionSeleccionada(int opcion) throws java.io.IOException {
         int noSalir = -1;
 
         if (opcion == 1) { // Usuarios
@@ -94,7 +94,7 @@ public class UI {
         return noSalir;
     }
 
-    private static void ejecutarAccionUsuarios() throws java.io.IOException {
+    private  void ejecutarAccionUsuarios() throws java.io.IOException {
         int opc;
         String userId;
 
@@ -267,7 +267,7 @@ public class UI {
         } while (opc != 0);
     }
 
-    private static void ejecutarAccionMateriales() throws java.io.IOException {
+    private  void ejecutarAccionMateriales() throws java.io.IOException {
         int opc;
         String materialId;
 
@@ -461,7 +461,7 @@ public class UI {
         } while (opc != 0);
     }
 
-    private static void ejecutarAccionTemas() throws java.io.IOException {
+    private  void ejecutarAccionTemas() throws java.io.IOException {
         int opc;
 
         do {
@@ -565,7 +565,7 @@ public class UI {
         } while (opc != 0);
     }
 
-    private static void ejecutarAccionReservaciones() throws java.io.IOException {
+    private  void ejecutarAccionReservaciones() throws java.io.IOException {
         int opc;
         String idUser;
         String idReserva;

@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :p:75:p, comp Salir:::p:167:p, space :::p}, seq l {space :p:129:p, par c {comp VerListReservBtn:1:c:p:167:p, comp RegistrarReservBtn:1:c:p::p, comp BuscarReservBtn:1:c:p:167:p, comp EliminaReservBtn:1:c:p:167:p, comp BuscarReservUsuarioBtn:1:c:p:216:p}, space :p:38:p, par l {comp ModificarReservBtn:1::p:189:p, comp RedimirReservBtn:1::p:189:p}, space ::49:x}}"
-			"$verticalGroup": "par l {seq l {space :p:44:p, par b {comp label1::b:p::p, comp Salir::b:p:32:p}, space :p:69:p, par b {comp VerListReservBtn:2:b:p::p, comp ModificarReservBtn:2:b:p::p}, space :p:12:p, par b {comp RegistrarReservBtn:2:b:p:32:p, comp RedimirReservBtn:2:b:p::p}, space :::p, comp BuscarReservBtn:2::p:32:p, space u:::p, comp BuscarReservUsuarioBtn:2::p:38:p, space :::p, comp EliminaReservBtn:2::p::p, space ::66:x}}"
+			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :p:75:p, comp Salir:::p:167:p, space :::p}, seq l {space :p:129:p, par c {comp VerListReservBtn:3:c:p:167:p, comp RegistrarReservBtn:3:c:p::p, comp BuscarReservBtn:3:c:p:167:p, comp EliminaReservBtn:3:c:p:167:p, comp BuscarReservUsuarioBtn:3:c:p:216:p}, space :p:38:p, par l {comp ModificarReservBtn:3::p:189:p, comp RedimirReservBtn:3::p:189:p}, space ::49:x}}"
+			"$verticalGroup": "par l {seq l {space :p:44:p, par b {comp label1::b:p::p, comp Salir::b:p:32:p}, space :p:69:p, par b {comp VerListReservBtn:4:b:p::p, comp ModificarReservBtn:4:b:p::p}, space :p:12:p, par b {comp RegistrarReservBtn:4:b:p:32:p, comp RedimirReservBtn:4:b:p::p}, space :::p, comp BuscarReservBtn:4::p:32:p, space u:::p, comp BuscarReservUsuarioBtn:4::p:38:p, space :::p, comp EliminaReservBtn:4::p::p, space ::66:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {

@@ -4,6 +4,8 @@
 
 package UI;
 
+import CapaLogica.Gestor;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,6 +15,7 @@ import javax.swing.GroupLayout;
  * @author Yves Roulin
  */
 public class menuMaterialesUI extends JFrame {
+    private Component frame;
     public menuMaterialesUI() {
         initComponents();
     }
@@ -36,6 +39,11 @@ public class menuMaterialesUI extends JFrame {
         this.setVisible(false);
     }
 
+    private void VerMaterialBtnActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        JOptionPane.showMessageDialog(frame, "Listado de Materiales");
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yves Roulin
@@ -56,7 +64,7 @@ public class menuMaterialesUI extends JFrame {
 
         //---- VerMaterialBtn ----
         VerMaterialBtn.setText("1. Ver lista de Materiales");
-        VerMaterialBtn.addActionListener(e -> UsuariosActionPerformed(e));
+        VerMaterialBtn.addActionListener(e -> VerMaterialBtnActionPerformed(e));
 
         //---- EliminarMaterialBtn ----
         EliminarMaterialBtn.setText("4. Eliminar Material");

@@ -30,6 +30,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "RegistrarUsuarioBtn"
 				"text": "2. Registrar nuevo Usuario"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegistrarUsuarioBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "Salir"

@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class MultiUsuario {
     public void borrar(Usuario pusuario) throws
-            java.sql.SQLException,Exception{
+            Exception{
         String sql;
         sql = "DELETE FROM TUsuario "+
                 "WHERE id='"+pusuario.getId()+"';";
@@ -39,7 +39,7 @@ public class MultiUsuario {
         return usuario;
     }
 
-    public Vector buscarUsuarios() throws java.sql.SQLException,Exception {
+    public Vector buscarUsuarios() throws Exception {
         java.sql.ResultSet rs;
         String sql;
         Usuario usuario = null;

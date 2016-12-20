@@ -23,6 +23,7 @@ public class LoginUI extends JFrame {
 	private Component frame;
 	public LoginUI() {
 		initComponents();
+
 	}
 
 	private void jButton1ActionPerformed(ActionEvent e) {
@@ -36,7 +37,6 @@ public class LoginUI extends JFrame {
 		{
 
 			JOptionPane.showMessageDialog(frame, "Login correcto");
-
 			JFrame menuPrincipal = new MenuPrincipalUI();
 			menuPrincipal.setVisible(true);
 			this.setVisible(false);

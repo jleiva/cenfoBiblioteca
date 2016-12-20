@@ -4,6 +4,7 @@
 
 package UI;
 
+import javax.swing.event.*;
 import CapaLogica.Gestor;
 
 import java.awt.*;
@@ -14,90 +15,100 @@ import javax.swing.GroupLayout;
 /**
  * @author Yves Roulin
  */
+
+
 public class ListaUsuariosUI extends JFrame {
     public ListaUsuariosUI() {
         initComponents();
     }
 
-    private void UsuariosActionPerformed(ActionEvent e) {
+    private void button5ActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        JFrame menuPrincipal = new MenuPrincipalUI();
+        menuPrincipal.setVisible(true);
+        this.setVisible(false);
+    }
+
+    private void RegistrarUsuarioActionPerformed(ActionEvent e) {
+        // TODO add your code here
+        JFrame crearUsuario = new crearUsuarioUI();
+        crearUsuario.setVisible(true);
+        this.setVisible(false);
+    }
+
+    private void ListaUsuariosBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         //Gestor.listarUsuarios();
     }
 
-    private void button5ActionPerformed(ActionEvent e) {
+    private void textArea1CaretUpdate(CaretEvent e) {
         // TODO add your code here
+        JTextArea textBox = new JTextArea();
+
+        //text = Gestor.listarUsuarios();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yves Roulin
         label1 = new JLabel();
-        Usuarios = new JButton();
-        Reservaciones = new JButton();
-        Temas = new JButton();
-        Materiales = new JButton();
         Salir = new JButton();
+        scrollPane1 = new JScrollPane();
+        textArea1 = new JTextArea();
+
+        try {
+            textArea1.setText(Gestor.listarUsuarios());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         //======== this ========
         Container contentPane = getContentPane();
 
         //---- label1 ----
         label1.setText("Listado de Usuarios");
-
-        //---- Usuarios ----
-        Usuarios.setText("1. Ver lista de Usuarios");
-        Usuarios.addActionListener(e -> {
-			UsuariosActionPerformed(e);
-			UsuariosActionPerformed(e);
-		});
-
-        //---- Reservaciones ----
-        Reservaciones.setText("4. Eliminar Usuario");
-
-        //---- Temas ----
-        Temas.setText("3. Buscar Usuario");
-
-        //---- Materiales ----
-        Materiales.setText("2. Registrar nuevo Usuario");
+        label1.setEnabled(false);
+        label1.setFont(new Font("Segoe UI", Font.BOLD, 20));
 
         //---- Salir ----
-        Salir.setText("0. Ir a Menu Principal");
+        Salir.setText("Ir a Menu Principal");
         Salir.addActionListener(e -> button5ActionPerformed(e));
+
+        //======== scrollPane1 ========
+        {
+
+            //---- textArea1 ----
+            textArea1.setEditable(false);
+            textArea1.addCaretListener(e -> textArea1CaretUpdate(e));
+            scrollPane1.setViewportView(textArea1);
+        }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(301, Short.MAX_VALUE)
+                    .addContainerGap(214, Short.MAX_VALUE)
                     .addComponent(label1)
-                    .addGap(248, 248, 248))
+                    .addGap(101, 101, 101)
+                    .addComponent(Salir)
+                    .addContainerGap())
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(129, 129, 129)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(Salir)
-                        .addComponent(Materiales)
-                        .addComponent(Usuarios)
-                        .addComponent(Temas)
-                        .addComponent(Reservaciones))
-                    .addContainerGap(352, Short.MAX_VALUE))
+                    .addGap(45, 45, 45)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(73, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(label1)
-                    .addGap(76, 76, 76)
-                    .addComponent(Usuarios)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Materiales)
-                    .addGap(18, 18, 18)
-                    .addComponent(Temas)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(Reservaciones)
-                    .addGap(18, 18, 18)
-                    .addComponent(Salir)
-                    .addContainerGap(85, Short.MAX_VALUE))
+                    .addGap(39, 39, 39)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label1)
+                        .addComponent(Salir))
+                    .addGap(44, 44, 44)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(47, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -107,10 +118,8 @@ public class ListaUsuariosUI extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Yves Roulin
     private JLabel label1;
-    private JButton Usuarios;
-    private JButton Reservaciones;
-    private JButton Temas;
-    private JButton Materiales;
     private JButton Salir;
+    private JScrollPane scrollPane1;
+    private JTextArea textArea1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

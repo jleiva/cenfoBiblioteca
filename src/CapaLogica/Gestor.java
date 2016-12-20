@@ -349,7 +349,7 @@ public class Gestor {
         return resul;
     }
 
-    public String listarUsuarios() throws Exception {
+    public static String listarUsuarios() throws Exception {
         String resul = "";
         Vector datosUsuarios = (new MultiUsuario()).buscarUsuarios();
         int cantUsuarios = datosUsuarios.size();
