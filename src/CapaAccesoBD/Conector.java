@@ -41,9 +41,9 @@ public class Conector{
 	public static AccesoBD getConector() throws java.sql.SQLException,Exception{
 		if(conectorBD==null){
 			conectorBD = new AccesoBD("com.mysql.jdbc.Driver",
-					"jdbc:mysql://localhost:8889/cenfotecBiblioteca",
+					"jdbc:mysql://localhost:3306/cenfotecBiblioteca",
 					"root",
-					"00bar");
+					"");
 		}
 		return conectorBD;
 	}

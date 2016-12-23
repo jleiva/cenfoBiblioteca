@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "6.0.0.0.63" Java: "1.8.0_112-release" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.5.1.342" Java: "1.8.0_112-release" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::177:x, comp label1:::p::p, space :p:91:p, comp Salir:1::p::p, space :::p}, seq l {space :p:129:p, par l {comp VerUsuariosBtn:1::p::p, comp VerTemasBtn:1:l:p::p, comp VerReservacionesBtn:1:l:p::p, comp VerMaterialBtn:1:l:p::p}, space ::403:x}}"
-			"$verticalGroup": "par l {seq {space :p:37:p, par t {comp label1:::p::p, comp Salir:2::p::p}, space :p:76:p, comp VerUsuariosBtn:2::p::p, space :p:12:p, comp VerMaterialBtn:2::p::p, space :::p, comp VerTemasBtn:2::p::p, space :::p, comp VerReservacionesBtn:2::p::p, space ::141:x}}"
+			"$horizontalGroup": "par l {seq {space ::576:x, comp Salir:::p::p, space :::p}, seq l {space :p:172:p, par l {comp label1::l:p::p, seq l {par l {comp VerTemasBtn:3:l:p::p, comp VerUsuariosBtn:3:l:p::p}, space s:::p, par l {comp VerMaterialBtn:3::p::p, comp VerReservacionesBtn:3::p::p}}}, space ::204:x}}"
+			"$verticalGroup": "par l {seq {space :p:37:p, comp Salir:::p::p, space :::p, comp label1:::p::p, space :p:81:p, par l {seq l {comp VerUsuariosBtn:4::p::p, space s:::p, par b {comp VerTemasBtn:4:b:p::p, comp VerReservacionesBtn:4:b:p::p}}, comp VerMaterialBtn:4::p::p}, space ::166:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {

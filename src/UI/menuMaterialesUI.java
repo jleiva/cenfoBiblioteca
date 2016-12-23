@@ -41,7 +41,7 @@ public class menuMaterialesUI extends JFrame {
 
     private void VerMaterialBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
-        JOptionPane.showMessageDialog(frame, "Listado de Materiales");
+
     }
 
     private void initComponents() {

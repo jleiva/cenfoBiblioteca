@@ -5,6 +5,7 @@
 package UI;
 
 import CapaLogica.Gestor;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -22,10 +23,12 @@ public class menuUsuariosUI extends JFrame {
 
     private void UsuariosActionPerformed(ActionEvent e) {
         // TODO add your code here
-        //JOptionPane.showMessageDialog(frame, Gestor.listarUsuarios());
-        JFrame ListaUsuarios = new ListaUsuariosUI();
-        ListaUsuarios.setVisible(true);
-        this.setVisible(false);
+        try {
+            JOptionPane.showMessageDialog(frame, Gestor.listarUsuarios());
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     private void button5ActionPerformed(ActionEvent e) {
@@ -48,8 +51,8 @@ public class menuUsuariosUI extends JFrame {
 
     private void RegistrarUsuarioBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
-        JFrame crearUsuario = new crearUsuarioUI();
-        crearUsuario.setVisible(true);
+        JFrame crearEstudiante = new crearEstudianteUI();
+        crearEstudiante.setVisible(true);
         this.setVisible(false);
     }
 
@@ -77,53 +80,51 @@ public class menuUsuariosUI extends JFrame {
         VerUsuariosBtn.addActionListener(e -> UsuariosActionPerformed(e));
 
         //---- EliminarUsuarioBtn ----
-        EliminarUsuarioBtn.setText("4. Eliminar Usuario");
+        EliminarUsuarioBtn.setText("3. Eliminar Usuario");
         EliminarUsuarioBtn.addActionListener(e -> EliminarUsuarioBtnActionPerformed(e));
 
         //---- BuscarUsuarioBtn ----
-        BuscarUsuarioBtn.setText("5. Buscar Usuario");
+        BuscarUsuarioBtn.setText("2. Buscar Usuario");
 
         //---- Salir ----
         Salir.setText("Ir a Menu Principal");
         Salir.addActionListener(e -> button5ActionPerformed(e));
 
         //---- RegistrarUsuarioBtn2 ----
-        RegistrarUsuarioBtn2.setText("2. Registrar nuevo Profesor");
+        RegistrarUsuarioBtn2.setText("6. Registrar nuevo Profesor");
         RegistrarUsuarioBtn2.addActionListener(e -> RegistrarUsuarioBtnActionPerformed(e));
 
         //---- RegistrarUsuarioBtn3 ----
-        RegistrarUsuarioBtn3.setText("3. Registrar nuevo Administrativo");
+        RegistrarUsuarioBtn3.setText("4. Registrar nuevo Administrativo");
         RegistrarUsuarioBtn3.addActionListener(e -> RegistrarUsuarioBtnActionPerformed(e));
 
         //---- RegistrarUsuarioBtn4 ----
-        RegistrarUsuarioBtn4.setText("4. Registrar nuevo Estudiante");
+        RegistrarUsuarioBtn4.setText("5. Registrar nuevo Estudiante");
         RegistrarUsuarioBtn4.addActionListener(e -> RegistrarUsuarioBtnActionPerformed(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label1)
-                    .addGap(75, 75, 75)
-                    .addComponent(Salir, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(129, 129, 129)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(VerUsuariosBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))
-                    .addGap(23, 23, 23)
-                    .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 148, Short.MAX_VALUE))
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(127, 127, 127)
+                    .addContainerGap(145, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(RegistrarUsuarioBtn2)
-                        .addComponent(RegistrarUsuarioBtn3)
-                        .addComponent(RegistrarUsuarioBtn4))
-                    .addContainerGap(302, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addComponent(label1)
+                            .addGap(75, 75, 75)
+                            .addComponent(Salir, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(VerUsuariosBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(RegistrarUsuarioBtn3)
+                                .addComponent(RegistrarUsuarioBtn4)
+                                .addComponent(RegistrarUsuarioBtn2))
+                            .addGap(99, 99, 99))))
         );
         contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, VerUsuariosBtn});
         contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {RegistrarUsuarioBtn2, RegistrarUsuarioBtn3, RegistrarUsuarioBtn4});
@@ -134,25 +135,21 @@ public class menuUsuariosUI extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label1)
                         .addComponent(Salir, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                    .addGap(69, 69, 69)
-                    .addComponent(VerUsuariosBtn)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(RegistrarUsuarioBtn2)
-                    .addGap(18, 18, 18)
-                    .addComponent(RegistrarUsuarioBtn3)
-                    .addGap(18, 18, 18)
-                    .addComponent(RegistrarUsuarioBtn4)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(56, Short.MAX_VALUE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                            .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                            .addGap(42, 42, 42))))
+                    .addGap(83, 83, 83)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(RegistrarUsuarioBtn3)
+                        .addComponent(VerUsuariosBtn))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(RegistrarUsuarioBtn4)
+                        .addComponent(BuscarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(RegistrarUsuarioBtn2)
+                        .addComponent(EliminarUsuarioBtn, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(151, Short.MAX_VALUE))
         );
-        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, VerUsuariosBtn});
+        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {BuscarUsuarioBtn, EliminarUsuarioBtn, RegistrarUsuarioBtn2, RegistrarUsuarioBtn3, RegistrarUsuarioBtn4, VerUsuariosBtn});
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

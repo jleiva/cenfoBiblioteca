@@ -4,6 +4,8 @@
 
 package UI;
 
+import CapaLogica.Gestor;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,12 +15,17 @@ import javax.swing.GroupLayout;
  * @author Yves Roulin
  */
 public class menuTemasUI extends JFrame {
+    private Component frame;
     public menuTemasUI() {
         initComponents();
     }
 
     private void UsuariosActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        try {
+            JOptionPane.showMessageDialog(frame, Gestor.listarMateriales());
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
     }
 
     private void EliminarUsuarioBtnActionPerformed(ActionEvent e) {

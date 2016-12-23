@@ -104,40 +104,44 @@ public class MenuPrincipalUI extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(177, Short.MAX_VALUE)
-                    .addComponent(label1)
-                    .addGap(91, 91, 91)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(576, Short.MAX_VALUE)
                     .addComponent(Salir)
                     .addContainerGap())
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(129, 129, 129)
+                    .addGap(172, 172, 172)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(VerUsuariosBtn)
-                        .addComponent(VerTemasBtn)
-                        .addComponent(VerReservacionesBtn)
-                        .addComponent(VerMaterialBtn))
-                    .addContainerGap(403, Short.MAX_VALUE))
+                        .addComponent(label1)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(VerTemasBtn)
+                                .addComponent(VerUsuariosBtn))
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(VerMaterialBtn)
+                                .addComponent(VerReservacionesBtn))))
+                    .addContainerGap(204, Short.MAX_VALUE))
         );
-        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {Salir, VerMaterialBtn, VerReservacionesBtn, VerTemasBtn, VerUsuariosBtn});
+        contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {VerMaterialBtn, VerReservacionesBtn, VerTemasBtn, VerUsuariosBtn});
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(37, 37, 37)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(label1)
-                        .addComponent(Salir))
-                    .addGap(76, 76, 76)
-                    .addComponent(VerUsuariosBtn)
-                    .addGap(12, 12, 12)
-                    .addComponent(VerMaterialBtn)
+                    .addComponent(Salir)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(VerTemasBtn)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(VerReservacionesBtn)
-                    .addContainerGap(141, Short.MAX_VALUE))
+                    .addComponent(label1)
+                    .addGap(81, 81, 81)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(VerUsuariosBtn)
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(VerTemasBtn)
+                                .addComponent(VerReservacionesBtn)))
+                        .addComponent(VerMaterialBtn))
+                    .addContainerGap(166, Short.MAX_VALUE))
         );
-        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {Salir, VerMaterialBtn, VerReservacionesBtn, VerTemasBtn, VerUsuariosBtn});
+        contentPaneLayout.linkSize(SwingConstants.VERTICAL, new Component[] {VerMaterialBtn, VerReservacionesBtn, VerTemasBtn, VerUsuariosBtn});
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

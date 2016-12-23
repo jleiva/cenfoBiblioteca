@@ -29,11 +29,11 @@ public class UI {
 
         });
 
-//        do {
-            menuAdmin();
-//            opc = leerOpcionSelecionada();
-//            noSalir = ejecutarAccionSeleccionada(opc);
-//        } while (noSalir != 0);
+       // do {
+        //    menuAdmin();
+       //     opc = leerOpcionSelecionada();
+      //      noSalir = ejecutarAccionSeleccionada(opc);
+      //  } while (noSalir != 0);
     }
 
     private static int leerOpcionSelecionada()throws java.io.IOException{

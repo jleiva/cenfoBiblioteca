@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :p:75:p, comp Salir:::p:167:p, space :::p}, seq l {space :p:129:p, par c {comp VerUsuariosBtn:1:c:p:167:p, comp BuscarUsuarioBtn:1:c:p:167:p}, space :p:23:p, comp EliminarUsuarioBtn:1::p:167:p, space :0:148:x}, seq l {space :p:127:p, par l {comp RegistrarUsuarioBtn2:3::p::p, comp RegistrarUsuarioBtn3:3::p::p, comp RegistrarUsuarioBtn4:3::p::p}, space ::302:x}}"
-			"$verticalGroup": "par l {seq l {space :p:44:p, par b {comp label1::b:p::p, comp Salir::b:p:32:p}, space :p:69:p, comp VerUsuariosBtn:2::p::p, space :::p, comp RegistrarUsuarioBtn2:::p::p, space s:::p, comp RegistrarUsuarioBtn3:::p::p, space :p:18:p, comp RegistrarUsuarioBtn4:::p::p, par l {seq l {space :p:27:p, comp BuscarUsuarioBtn:2::p:32:p, space ::56:x}, seq {space ::41:x, comp EliminarUsuarioBtn:2::p:32:p, space :p:42:p}}}}"
+			"$horizontalGroup": "par l {seq {space ::145:x, par l {seq t {comp label1:::p::p, space :p:75:p, comp Salir:::p:167:p, space :::p}, seq t {par t {comp VerUsuariosBtn:1::p:167:p, comp EliminarUsuarioBtn:1::p:167:p, comp BuscarUsuarioBtn:1::p:167:p}, space s:::p, par l {comp RegistrarUsuarioBtn3:3::p::p, comp RegistrarUsuarioBtn4:3:l:p::p, comp RegistrarUsuarioBtn2:3:l:p::p}, space :p:99:p}}}}"
+			"$verticalGroup": "par l {seq l {space :p:44:p, par b {comp label1::b:p::p, comp Salir::b:p:32:p}, space :p:83:p, par b {comp RegistrarUsuarioBtn3:2:b:p::p, comp VerUsuariosBtn:2:b:p::p}, space u:::p, par b {comp RegistrarUsuarioBtn4:2:b:p::p, comp BuscarUsuarioBtn:2:b:p:32:p}, space u:::p, par b {comp RegistrarUsuarioBtn2:2:b:p::p, comp EliminarUsuarioBtn:2:b:p:32:p}, space ::151:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -20,12 +20,12 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "EliminarUsuarioBtn"
-				"text": "4. Eliminar Usuario"
+				"text": "3. Eliminar Usuario"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "EliminarUsuarioBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "BuscarUsuarioBtn"
-				"text": "5. Buscar Usuario"
+				"text": "2. Buscar Usuario"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "Salir"
@@ -34,17 +34,17 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "RegistrarUsuarioBtn2"
-				"text": "2. Registrar nuevo Profesor"
+				"text": "6. Registrar nuevo Profesor"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegistrarUsuarioBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "RegistrarUsuarioBtn3"
-				"text": "3. Registrar nuevo Administrativo"
+				"text": "4. Registrar nuevo Administrativo"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegistrarUsuarioBtnActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "RegistrarUsuarioBtn4"
-				"text": "4. Registrar nuevo Estudiante"
+				"text": "5. Registrar nuevo Estudiante"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegistrarUsuarioBtnActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
